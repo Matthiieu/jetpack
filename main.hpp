@@ -26,6 +26,7 @@
 #define	TAILLE_RECTANGLE_LONGUEUR	120
 #define	TAILLE_RECTANGLE_LARGEUR	50
 #define ECHELLE_RECTANGLE		2.0f
+#define ECHELLE_SAM			1.5f
 
 #define TAILLE_POLICE 50
 #define POLICE_BOUTON 65
@@ -42,6 +43,12 @@
 #define ZONE8	690
 
 #define SPEED	8
+#define SPEED2	-2
+
+#define FLOOR	540
+#define MIDDLE	300
+
+#define UPDATE	200
 
 /**********************************/
 /*kikoo*/

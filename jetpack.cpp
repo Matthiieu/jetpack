@@ -29,7 +29,8 @@ Jetpack::launch ()
   audio_->play_menu();
   int Round = 0;
   int Play = 0;
- Personnage *sam = NULL;
+  int gravity = 0;
+  Personnage *sam = NULL;
   sam = new Personnage;
   while (win_->isOpen()){
 		sf:: Event event;
@@ -40,8 +41,8 @@ Jetpack::launch ()
 					if (Round == 0){		
 					switch (menu_->setCurrentAction(localPosition)) {
         				  case 0:
-						Round = 1;
-						Play = 1;
+						 Round = 1;
+						 Play = 1;
            					 audio_->stop_menu();
 						 audio_->play_fond();
 						 win_->clear();
@@ -66,19 +67,11 @@ Jetpack::launch ()
 					
 					break;
 				case sf::Event::KeyPressed:
-					/*if (event.key.code != sf::Keyboard::Up){
-						if (Play == 1)
-						sam->setPosition( sam->getX(), sam->getY());	
-						sam->deplacer(0, -SPEED);
-						//win_->clear();
-						//sam->display(win_);					
-					}*/
 					if (event.key.code == sf::Keyboard::Up){
 						if (Play == 1){
-						sam->setPosition( sam->getX(), sam->getY());	
+						gravity = 1;
+						sam->setPosition(sam->getX(), sam->getY());	
 						sam->deplacer(0, SPEED);
-						//win_->clear();
-						//sam->display(win_);
 						}					
 					}
 					break;
@@ -89,13 +82,17 @@ Jetpack::launch ()
 					break;
 			}
 		}
-		if (Play== 1){
-			if (!sam->courrir())
-				sam->gravity();
-			else
+		if (Play == 1){
+			if (gravity == 1){
 				sam->courrir();
-		win_->clear();
-		sam->display(win_);
+				gravity = 0;
+			}
+			else{
+				sam->gravity(0, SPEED2);
+				sam->courrir();
+			}
+			win_->clear();
+			sam->display(win_);
 		}
 		if (Round == 0){
 			win_->clear();

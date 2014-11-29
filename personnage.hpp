@@ -23,9 +23,9 @@ class Personnage{
 
 		int getY();
 	
-		bool courrir();
+		void courrir();
 
-		void gravity();
+		void gravity(int X, int Y);
 
 	private:
 		int nbre_vie;
@@ -33,6 +33,7 @@ class Personnage{
 		sf:: Sprite *sprite_perso_;
 		int x_, y_;
 		sf:: Vector2i anim;
+		sf:: Clock time;
 };
 
 

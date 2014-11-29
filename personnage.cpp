@@ -12,15 +12,13 @@ Personnage:: Personnage(){
 	personnage_.setSmooth(true);
 	sprite_perso_ = new sf::Sprite;
 	sprite_perso_->setTexture(personnage_);
-	
-	x_ = 300;
-	y_ = 540;
+	x_ = MIDDLE;
+	y_ = FLOOR;
 	anim.x = 0;
 	anim.y = 2;
 }
 
 Personnage:: ~Personnage(){
-	//delete personnage_;
 	delete sprite_perso_;
 }
 
@@ -28,8 +26,8 @@ void
 Personnage:: setPosition (int x, int y){
   	 	x_ = x;
    	 	y_ = y;
-		if(y_ >= 540)
-			y_ = 540;
+		if(y_ >= FLOOR)
+			y_ = FLOOR;
 		if (y_ <= 0)
 			y_ = 0;
 }
@@ -46,30 +44,22 @@ Personnage:: deplacer(int X, int Y){
 	sprite_perso_->move(x_, y_);
 }
 
-bool
+void
 Personnage:: courrir(){
-
-	//cout << time.getElapsedTime().asMilliseconds() << endl;
-	/*if (time.getElapsedTime().asMilliseconds() >= 50){
-		cout << "je suis une pastèque!" << endl;
-	}
-	else{
-		time.restart();
-		cout << "restart" << endl;
-	}*/
-	if (y_ == 540){
-		anim.x--;
-		if (anim.x * 32 >= personnage_.getSize().x){
-			anim.x = 2;
-			sprite_perso_->setTextureRect(sf::IntRect(anim.x * 32, anim.y * 32, 32, 32));
-			sprite_perso_->setScale(1.5f, 1.5f);
-			return true;
+	sf::Time elapsed1 = time.getElapsedTime();
+	if (y_ == FLOOR){
+		if (elapsed1.asMilliseconds() > UPDATE){
+			anim.x++;
+			if (anim.x * 32 >= personnage_.getSize().x)
+				anim.x = 0;
+			time.restart();
 		}
+		sprite_perso_->setTextureRect(sf::IntRect(anim.x * 32, anim.y * 32, 32, 32));
+		sprite_perso_->setScale(ECHELLE_SAM,ECHELLE_SAM);
 	}
 	else{
-		sprite_perso_->setTextureRect(sf::IntRect(64, 64, 32, 32));
-		sprite_perso_->setScale(1.5f, 1.5f);
-		return false;
+		sprite_perso_->setTextureRect(sf::IntRect(32, 64, 32, 32));
+		sprite_perso_->setScale(ECHELLE_SAM, ECHELLE_SAM);
 	}
 }
 
@@ -80,10 +70,14 @@ Personnage:: display(sf::RenderTarget *rt){
 }
 
 void
-Personnage:: gravity(){
-	do{
-		sprite_perso_->move(0, 4);
-	}while(y_ != 540);
+Personnage:: gravity(int X, int Y){
+		x_ = x_ - X;
+		y_ = y_ - Y;
+		if(y_ >= FLOOR)
+			y_ = FLOOR;
+		if (y_ <= 0)
+			y_ = 0;
+		sprite_perso_->move(x_, y_);
 }
 
 int 
