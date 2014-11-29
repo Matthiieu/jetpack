@@ -11,19 +11,26 @@ class Fusee{
 		Fusee();
 		~Fusee(); 
 
-		void deplacer(int X, int Y);
+		void launch(int X, const int Y);
 
 		void display(sf::RenderTarget *rt);
 
-		void setPosition (int x, int y);
+		void setPosition (int x,const int y);
 
 		int getX();
 
 		int getY();
+		
+		int generator_number();
+
+		bool far_away(int x);
+
+		bool from_scratch(bool boolean);
 
 	private:
 		sf:: Texture fusee_;
 		sf:: Sprite *sprite_fusee_;
+		int x_, y_;
 };
 
 

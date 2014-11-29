@@ -5,6 +5,7 @@
 #include "jetpack.hpp"
 #include "audio.hpp"
 #include "personnage.hpp"
+#include "fusee.hpp"
 
 using namespace std;
 
@@ -30,8 +31,11 @@ Jetpack::launch ()
   int Round = 0;
   int Play = 0;
   int gravity = 0;
+ int Attaque = 0;
   Personnage *sam = NULL;
+  Fusee *fusee = NULL;
   sam = new Personnage;
+  fusee = new Fusee;
   while (win_->isOpen()){
 		sf:: Event event;
 		sf::Vector2i localPosition = sf::Mouse::getPosition();	
@@ -46,7 +50,6 @@ Jetpack::launch ()
            					 audio_->stop_menu();
 						 audio_->play_fond();
 						 win_->clear();
-						//sam->deplacer();
 						 sam->courrir();
 						 sam->display(win_);
          					 break;
@@ -69,9 +72,8 @@ Jetpack::launch ()
 				case sf::Event::KeyPressed:
 					if (event.key.code == sf::Keyboard::Up){
 						if (Play == 1){
-						gravity = 1;
-						sam->setPosition(sam->getX(), sam->getY());	
-						sam->deplacer(0, SPEED);
+							sam->setPosition(sam->getX(), sam->getY());	
+							sam->deplacer(0, SPEED);		
 						}					
 					}
 					break;
@@ -83,16 +85,16 @@ Jetpack::launch ()
 			}
 		}
 		if (Play == 1){
-			if (gravity == 1){
-				sam->courrir();
-				gravity = 0;
-			}
-			else{
-				sam->gravity(0, SPEED2);
-				sam->courrir();
+			sam->gravity(0, SPEED2);
+			sam->courrir();
+				fusee->launch(5, 0);
+			if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
+				fusee->setPosition(fusee->getX(), fusee->generator_number());
+				fusee->launch(5, 0);
 			}
 			win_->clear();
 			sam->display(win_);
+			fusee->display(win_);
 		}
 		if (Round == 0){
 			win_->clear();
