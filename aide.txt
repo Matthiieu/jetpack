@@ -1,0 +1,8 @@
+Bienvenue dans le (super) jeu de Jetpack Joyride. 
+
+Pour jouer, rien de plus simple. Vous avez à votre disposition que deux boutons: le premier est la touche directionnelle "UP" et le deuxième la touche directionnelle
+"DOWN".
+
+Le but du jeu est d'aller le plus loin possible sans vous faire toucher par les lignes électriques ou les missiles!
+
+Bon courage et surtout.. Bonne chance!!!! 
