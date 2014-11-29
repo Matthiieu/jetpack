@@ -9,7 +9,7 @@ class Fusee{
 
 	public:
 		Fusee();
-		~Fusee();
+		~Fusee(); 
 
 		void deplacer(int X, int Y);
 

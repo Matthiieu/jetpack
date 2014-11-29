@@ -21,7 +21,7 @@
 #define	BOUTON_RECTANGLE_MENU_X2	400
 
 #define	BOUTON_RECTANGLE_MENU_Y1	350	
-#define	BOUTON_RECTANGLE_MENU_Y2	480
+#define	BOUTON_RECTANGLE_MENU_Y2	480 
 
 #define	TAILLE_RECTANGLE_LONGUEUR	120
 #define	TAILLE_RECTANGLE_LARGEUR	50
@@ -44,6 +44,6 @@
 #define SPEED	8
 
 /**********************************/
-
+/*kikoo*/
 
 #endif // MAIN_HPP

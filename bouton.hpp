@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "main.hpp"
-#include "menu.hpp"
+#include "menu.hpp" 
 
 class Bouton{
 	public:

@@ -82,7 +82,7 @@ Jetpack::launch ()
 						}					
 					}
 					break;
-				case sf::Event:: Closed:
+				case sf::Event:: Closed: 
         				win_->close();
        					break;
 				default:

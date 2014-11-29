@@ -11,7 +11,7 @@ class Personnage{
 		Personnage();
 		~Personnage();
 
-		void deplacer(int X, int Y);
+		void deplacer(int X, int Y); 
 
 		void gagner_vie();
 

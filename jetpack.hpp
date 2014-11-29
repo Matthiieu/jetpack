@@ -9,7 +9,7 @@
 
 class Jetpack
 {
-public:
+public: 
   Jetpack ();
   ~Jetpack ();
 

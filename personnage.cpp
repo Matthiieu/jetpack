@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Personnage:: Personnage(){
+Personnage:: Personnage(){ 
 	nbre_vie = 1;
 	personnage_.loadFromFile("character.png");
 	personnage_.setSmooth(true);

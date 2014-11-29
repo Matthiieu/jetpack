@@ -4,7 +4,7 @@
 #include "menu.hpp"
 #include "bouton.hpp"
 
-Bouton::Bouton (int X, int Y, sf::String text)
+Bouton::Bouton (int X, int Y, sf::String text) 
 {
 	rectangleShape_ = new sf::RectangleShape(sf::Vector2f(TAILLE_RECTANGLE_LONGUEUR, TAILLE_RECTANGLE_LARGEUR));
 	texture_ = new sf::Texture;
