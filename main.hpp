@@ -42,7 +42,7 @@
 #define ZONE7	590
 #define ZONE8	690
 
-#define SPEED	8
+#define SPEED	10
 #define SPEED2	-2
 
 #define FLOOR	540

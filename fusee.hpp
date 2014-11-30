@@ -2,7 +2,9 @@
 #define FUSEE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp> 
 #include "main.hpp"
+#include "audio.hpp"
 #include "jetpack.hpp"
 
 class Fusee{
@@ -27,10 +29,11 @@ class Fusee{
 
 		bool from_scratch(bool boolean);
 
+
 	private:
 		sf:: Texture fusee_;
 		sf:: Sprite *sprite_fusee_;
-		int x_, y_;
+		int xf_, yf_;
 };
 
 

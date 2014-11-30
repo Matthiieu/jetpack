@@ -15,6 +15,9 @@ class Menu{
 		void display_bouton(sf::RenderTarget *rt);
 		int setCurrentAction(sf::Vector2i localPosition);
 		void display_aide(sf::RenderTarget *rt);
+		void display_looser(sf::RenderTarget *rt);
+
+		void distance(sf::RenderTarget *rt, int number);
 
 
 	private:

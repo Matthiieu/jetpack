@@ -51,6 +51,42 @@ Menu:: display_texte(sf::RenderTarget *rt){
 	rt->draw(texte_);
 }
 
+void 
+Menu:: distance(sf::RenderTarget *rt, int number){
+		char buffer[6];
+		gcvt(number, 6, buffer);
+		sf:: Text texte_;
+		sf:: Text texte2_;
+		sf:: Font font_;
+		if(!font_.loadFromFile("police.ttf")){
+			exit(1);
+		}
+		texte_.setFont(font_);
+		texte2_.setFont(font_);
+		texte_.setCharacterSize(20);
+		texte2_.setCharacterSize(20);
+		texte_.setColor(sf::Color::White);
+		texte2_.setColor(sf::Color::White);
+		texte2_.setString("metres");
+		texte_.setString(buffer);
+		texte2_.setPosition(80, 0);
+		rt->draw(texte_);
+		rt->draw(texte2_);
+}
+
+void 
+Menu:: display_looser(sf::RenderTarget *rt){
+		sf:: Text texte_;
+		sf:: Font font_;
+		if(!font_.loadFromFile("police.ttf")){
+			exit(1);
+		}
+		texte_.setFont(font_);
+		texte_.setCharacterSize(20);
+		texte_.setColor(sf::Color::White);
+		texte_.setString("PERDU!!!");
+		rt->draw(texte_);
+}
 
 void 
 Menu:: display(sf::RenderTarget *rt){

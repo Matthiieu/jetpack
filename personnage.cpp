@@ -37,6 +37,16 @@ Personnage:: gagner_vie(){
 	nbre_vie += 1;
 }
 
+bool 
+Personnage:: collision(int a, int b, int c, int d){
+	// previens s'il y a eu collision avec la fusee!
+	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 25)){
+		return true;
+	}
+	else
+		return false;
+}
+
 void 
 Personnage:: deplacer(int X, int Y){
 	x_ = x_ - X;
@@ -45,7 +55,7 @@ Personnage:: deplacer(int X, int Y){
 }
 
 void
-Personnage:: courrir(){
+Personnage:: run(){
 	sf::Time elapsed1 = time.getElapsedTime();
 	if (y_ == FLOOR){
 		if (elapsed1.asMilliseconds() > UPDATE){

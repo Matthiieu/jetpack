@@ -1,9 +1,8 @@
 #include <SFML/Graphics.hpp>
-//#include<st>
-//#include <time.hpp>
 #include <iostream>
 #include "main.hpp"
 #include "menu.hpp"
+#include "audio.hpp"
 #include "fusee.hpp"
 
 
@@ -15,8 +14,8 @@ Fusee:: Fusee(){
 	sprite_fusee_ = new sf::Sprite;
 	sprite_fusee_->setTexture(fusee_);
 	sprite_fusee_->setScale(0.05f, 0.05f);
-	x_ = 800;
-	y_ = 200;
+	xf_ = 800;
+	yf_ = 200;
 }
 
 Fusee:: ~Fusee(){
@@ -25,20 +24,20 @@ Fusee:: ~Fusee(){
 
 void
 Fusee:: setPosition (int x, const int y){
-  	 	x_ = x;
-   	 	y_ = y;
+  	 	xf_ = x;
+   	 	yf_ = y;
 }
 
 void 
 Fusee:: launch(int X, const int Y){
-	x_ = x_ - X;
-	y_ = y_ - Y;
-	sprite_fusee_->move(x_, y_);
+	xf_ = xf_ - X;
+	yf_ = yf_ - Y;
+	sprite_fusee_->move(xf_, yf_);
 }
 
 void
 Fusee:: display(sf::RenderTarget *rt){
-		sprite_fusee_->setPosition(x_, y_);
+		sprite_fusee_->setPosition(xf_, yf_);
 		rt->draw(*sprite_fusee_);
 }
 
@@ -48,13 +47,12 @@ Fusee:: generator_number(){
 	srand(time(NULL));
 	int alea = rand() % 600;
 	return alea;
-
 }
 
 bool
 Fusee:: from_scratch(bool boolean){
 	if (boolean){
-		x_ = 800;
+		xf_ = 800;
 		return true;
 	}
 	else 
@@ -72,10 +70,10 @@ Fusee:: far_away(int x){
 
 int 
 Fusee:: getX(){
-    return x_;
+    return xf_;
 }
 
 int
 Fusee:: getY(){
-    return y_;
+    return yf_;
 }

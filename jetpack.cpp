@@ -6,6 +6,8 @@
 #include "audio.hpp"
 #include "personnage.hpp"
 #include "fusee.hpp"
+#include "neon.hpp"
+#include "background.hpp"
 
 using namespace std;
 
@@ -27,16 +29,26 @@ Jetpack::~Jetpack ()
 void
 Jetpack::launch ()
 {	
-  audio_->play_menu();
+ // audio_->play_menu();
   int Round = 0;
   int Play = 0;
   int gravity = 0;
- int Attaque = 0;
+  int Attaque = 0;
+  int Loose =0;
+  int First = 1;
+  int ok1 = 0, ok2 = 0, ok3 = 0;
   Personnage *sam = NULL;
   Fusee *fusee = NULL;
+  Neon *neon = NULL;
+  Background *background = NULL;
+  background = new Background;
+  neon = new Neon;
   sam = new Personnage;
   fusee = new Fusee;
+  sf:: Clock time;
+  sf:: Clock time2;
   while (win_->isOpen()){
+
 		sf:: Event event;
 		sf::Vector2i localPosition = sf::Mouse::getPosition();	
 		while(win_->pollEvent(event)){
@@ -47,11 +59,11 @@ Jetpack::launch ()
         				  case 0:
 						 Round = 1;
 						 Play = 1;
-           					 audio_->stop_menu();
-						 audio_->play_fond();
-						 win_->clear();
-						 sam->courrir();
+           					// audio_->stop_menu();
+						// audio_->play_fond();
+						 sam->run();
 						 sam->display(win_);
+						time2.restart();
          					 break;
         				  case 1:
 						Round = 1;
@@ -86,15 +98,40 @@ Jetpack::launch ()
 		}
 		if (Play == 1){
 			sam->gravity(0, SPEED2);
-			sam->courrir();
-				fusee->launch(5, 0);
+			sam->run();
+				fusee->launch(7, 0);
+				neon->move(5, 0);
 			if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
 				fusee->setPosition(fusee->getX(), fusee->generator_number());
-				fusee->launch(5, 0);
+				fusee->launch(7, 0);
 			}
-			win_->clear();
+			if (neon->from_scratch(neon->far_away(neon->getX()))){
+				neon->setPosition(neon->getX(), neon->generator_number());
+				neon->move(5, 0);
+			}
+			win_->clear(sf::Color(ok1, ok2, ok3));
+			sf::Time elapsed1 = time.getElapsedTime();
+			//cout << elapsed1.asSeconds() << endl;
+			if (elapsed1.asSeconds() > 5){
+				ok1 = background->generator_number1();
+				ok2 = background->generator_number2(), 
+				ok3 = background->generator_number3();
+				cout << ok1 << ok2 << ok3 << endl;
+				time.restart();
+			}			
 			sam->display(win_);
 			fusee->display(win_);
+			neon->display(win_);
+			sf::Time elapsed2 = time2.getElapsedTime();
+			menu_->distance(win_, elapsed2.asMilliseconds());
+			if(((sam->collision(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true) || (sam->collision(sam->getX(), sam->getY(), neon->getX(), (neon->getY() + 30))) == true){
+				Play = 0;
+				Loose = 1;
+			}	
+		}
+		if (Loose == 1){
+			win_->clear();
+			menu_->display_looser(win_);
 		}
 		if (Round == 0){
 			win_->clear();

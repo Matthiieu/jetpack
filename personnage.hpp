@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "main.hpp"
 #include "jetpack.hpp"
+#include "fusee.hpp"
 
 class Personnage{
 
@@ -23,9 +24,13 @@ class Personnage{
 
 		int getY();
 	
-		void courrir();
+		void run();
 
 		void gravity(int X, int Y);
+
+		bool collision(int a, int b, int c, int d);
+
+		friend class Fusee;
 
 	private:
 		int nbre_vie;

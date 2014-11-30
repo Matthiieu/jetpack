@@ -35,9 +35,13 @@ class Audio{
 		music2menu_->stop();
 	}
 
+	friend class Fusee;
+
 	private:
 		sf:: Music *music2fond_;
 		sf:: Music *music2menu_;
+		sf::SoundBuffer	buffer;
+		sf:: Sound *music_fusee_;
 };
 
 #endif
