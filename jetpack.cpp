@@ -29,13 +29,14 @@ Jetpack::~Jetpack ()
 void
 Jetpack::launch ()
 {	
- // audio_->play_menu();
+  audio_->play_menu();
   int Round = 0;
   int Play = 0;
   int gravity = 0;
   int Attaque = 0;
   int Loose =0;
   int First = 1;
+  int level = 0;
   int ok1 = 0, ok2 = 0, ok3 = 0;
   Personnage *sam = NULL;
   Fusee *fusee = NULL;
@@ -48,7 +49,6 @@ Jetpack::launch ()
   sf:: Clock time;
   sf:: Clock time2;
   while (win_->isOpen()){
-
 		sf:: Event event;
 		sf::Vector2i localPosition = sf::Mouse::getPosition();	
 		while(win_->pollEvent(event)){
@@ -59,11 +59,11 @@ Jetpack::launch ()
         				  case 0:
 						 Round = 1;
 						 Play = 1;
-           					// audio_->stop_menu();
-						// audio_->play_fond();
+           					 audio_->stop_menu();
+						 audio_->play_fond();
 						 sam->run();
 						 sam->display(win_);
-						time2.restart();
+						 time2.restart();
          					 break;
         				  case 1:
 						Round = 1;
@@ -96,39 +96,117 @@ Jetpack::launch ()
 					break;
 			}
 		}
-		if (Play == 1){
-			sam->gravity(0, SPEED2);
-			sam->run();
-				fusee->launch(7, 0);
-				neon->move(5, 0);
-			if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
-				fusee->setPosition(fusee->getX(), fusee->generator_number());
-				fusee->launch(7, 0);
+		switch(level){
+				case 0:
+					if (Play == 1){
+						sam->gravity(0, SPEED02);
+						sam->run();
+						neon->move(NEON0, 0);
+						if (neon->from_scratch(neon->far_away(neon->getX()))){
+							neon->setPosition(neon->getX(), neon->generator_number());
+							neon->move(NEON0, 0);
+						}
+						sf::Time elapsed1 = time.getElapsedTime();
+						win_->clear(sf::Color(ok1, ok2, ok3));
+						if (elapsed1.asSeconds() > 5){
+							ok1 = background->generator_number1();
+							ok2 = background->generator_number2(), 
+							ok3 = background->generator_number3();
+							time.restart();
+						}
+						sf::Time elapsed2 = time2.getElapsedTime();
+						menu_->distance(win_, elapsed2.asMilliseconds());
+						if (elapsed2.asMilliseconds() > SOSO)
+							level = 1;
+						if(((sam->collision(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+							Play = 0;	//On sort de la gamePlay
+							Loose = 1;	//On rentre dans la fenetre "Perdu"
+						}
+						sam->display(win_);
+						neon->display(win_);
+					}				
+					break;
+				case 1:
+					if (Play == 1){
+						sam->gravity(0, SPEED12);
+						sam->run();
+						fusee->launch(ROCKET1, 0);
+						neon->move(NEON1, 0);
+						if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
+							fusee->setPosition(fusee->getX(), fusee->generator_number());
+							fusee->launch(ROCKET1, 0);
+						}
+						if (neon->from_scratch(neon->far_away(neon->getX()))){
+							neon->setPosition(neon->getX(), neon->generator_number());
+							neon->move(NEON1, 0);
+						}
+						sf::Time elapsed1 = time.getElapsedTime();
+						win_->clear(sf::Color(ok1, ok2, ok3));
+						if (elapsed1.asSeconds() > 5){
+							ok1 = background->generator_number1();
+							ok2 = background->generator_number2(), 
+							ok3 = background->generator_number3();
+							time.restart();
+						}
+						sf::Time elapsed2 = time2.getElapsedTime();
+						menu_->distance(win_, elapsed2.asMilliseconds());
+						if (elapsed2.asMilliseconds() > HARD)
+							level = 2;
+						if(((sam->collision(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
+							Play = 0;	//On sort de la gamePlay
+							Loose = 1;	//On rentre dans la fenetre "Perdu"
+						}
+						if(((sam->collision(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+							Play = 0;	//On sort de la gamePlay
+							Loose = 1;	//On rentre dans la fenetre "Perdu"
+						}
+						sam->display(win_);
+						fusee->display(win_);
+						neon->display(win_);
+					}
+					break;
+				case 2:
+					if (Play == 1){
+						sam->gravity(0, SPEED22);
+						sam->run();
+						fusee->launch(ROCKET2, 0);
+						neon->move(NEON2, 0);
+						if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
+							fusee->setPosition(fusee->getX(), fusee->generator_number());
+							fusee->launch(ROCKET2, 0);
+						}
+						if (neon->from_scratch(neon->far_away(neon->getX()))){
+							neon->setPosition(neon->getX(), neon->generator_number());
+							neon->move(NEON2, 0);
+						}
+						sf::Time elapsed1 = time.getElapsedTime();
+						win_->clear(sf::Color(ok1, ok2, ok3));
+						if (elapsed1.asSeconds() > 5){
+							ok1 = background->generator_number1();
+							ok2 = background->generator_number2(), 
+							ok3 = background->generator_number3();
+							time.restart();
+						}
+						sf::Time elapsed2 = time2.getElapsedTime();
+						menu_->distance(win_, elapsed2.asMilliseconds());
+						if(((sam->collision(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
+							Play = 0;	//On sort de la gamePlay
+							Loose = 1;	//On rentre dans la fenetre "Perdu"
+						}
+						if(((sam->collision(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+							Play = 0;	//On sort de la gamePlay
+							Loose = 1;	//On rentre dans la fenetre "Perdu"
+						}
+						neon->rotate();
+						sam->display(win_);
+						fusee->display(win_);
+						neon->display(win_);
+					}
+					break;
+				default:
+					break;
+
 			}
-			if (neon->from_scratch(neon->far_away(neon->getX()))){
-				neon->setPosition(neon->getX(), neon->generator_number());
-				neon->move(5, 0);
-			}
-			win_->clear(sf::Color(ok1, ok2, ok3));
-			sf::Time elapsed1 = time.getElapsedTime();
-			//cout << elapsed1.asSeconds() << endl;
-			if (elapsed1.asSeconds() > 5){
-				ok1 = background->generator_number1();
-				ok2 = background->generator_number2(), 
-				ok3 = background->generator_number3();
-				cout << ok1 << ok2 << ok3 << endl;
-				time.restart();
-			}			
-			sam->display(win_);
-			fusee->display(win_);
-			neon->display(win_);
-			sf::Time elapsed2 = time2.getElapsedTime();
-			menu_->distance(win_, elapsed2.asMilliseconds());
-			if(((sam->collision(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true) || (sam->collision(sam->getX(), sam->getY(), neon->getX(), (neon->getY() + 30))) == true){
-				Play = 0;
-				Loose = 1;
-			}	
-		}
 		if (Loose == 1){
 			win_->clear();
 			menu_->display_looser(win_);
