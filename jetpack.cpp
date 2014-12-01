@@ -1,6 +1,4 @@
-
 #include "jetpack.hpp"
-
 
 using namespace std;
 
@@ -25,12 +23,10 @@ Jetpack::launch ()
   audio_->play_menu();
   int Round = 0;
   int Play = 0;
-  int gravity = 0;
-  int Attaque = 0;
   int Loose =0;
-  int First = 1;
   int level = 0;
   int Aide = 0;
+  int High_Score = 0;
   int ok1 = 0, ok2 = 0, ok3 = 0;
   Personnage *sam = NULL;
   Fusee *fusee = NULL;
@@ -45,7 +41,6 @@ Jetpack::launch ()
   sf:: Clock time3;
   while (win_->isOpen()){
 		sf:: Event event;
-		sf:: Event event2;
 		sf::Vector2i localPosition = sf::Mouse::getPosition();	
 		while((win_->pollEvent(event))){
 			switch(event.type){
@@ -66,12 +61,14 @@ Jetpack::launch ()
 						Aide = 1;
 						audio_->stop_menu();
 						audio_->play_help();
+						time3.restart();	//décompte page aide
 						break;
          				  case 2:
 						Round = 1;
 						break;
 					  case 3:
 						Round = 1;
+						High_Score = 1;
 						break;
          				  default: break;
          				 }
@@ -105,7 +102,7 @@ Jetpack::launch ()
 						}
 						sf::Time elapsed1 = time.getElapsedTime();
 						win_->clear(sf::Color(ok1, ok2, ok3));
-						if (elapsed1.asSeconds() > 5){
+						if (elapsed1.asSeconds() > 15){
 							ok1 = background->generator_number1();
 							ok2 = background->generator_number2(), 
 							ok3 = background->generator_number3();
@@ -115,7 +112,7 @@ Jetpack::launch ()
 						menu_->distance(win_, elapsed2.asMilliseconds());
 						if (elapsed2.asMilliseconds() > SOSO)
 							level = 1;
-						if(((sam->collision(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+						if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
 							Play = 0;	//On sort de la gamePlay
 							Loose = 1;	//On rentre dans la fenetre "Perdu"
 						}
@@ -140,7 +137,7 @@ Jetpack::launch ()
 						}
 						sf::Time elapsed1 = time.getElapsedTime();
 						win_->clear(sf::Color(ok1, ok2, ok3));
-						if (elapsed1.asSeconds() > 5){
+						if (elapsed1.asSeconds() > 15){
 							ok1 = background->generator_number1();
 							ok2 = background->generator_number2(), 
 							ok3 = background->generator_number3();
@@ -150,11 +147,11 @@ Jetpack::launch ()
 						menu_->distance(win_, elapsed2.asMilliseconds());
 						if (elapsed2.asMilliseconds() > HARD)
 							level = 2;
-						if(((sam->collision(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
+						if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
 							Play = 0;	//On sort de la gamePlay
 							Loose = 1;	//On rentre dans la fenetre "Perdu"
 						}
-						if(((sam->collision(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+						if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
 							Play = 0;	//On sort de la gamePlay
 							Loose = 1;	//On rentre dans la fenetre "Perdu"
 						}
@@ -180,7 +177,7 @@ Jetpack::launch ()
 						}
 						sf::Time elapsed1 = time.getElapsedTime();
 						win_->clear(sf::Color(ok1, ok2, ok3));
-						if (elapsed1.asSeconds() > 5){
+						if (elapsed1.asSeconds() > 15){
 							ok1 = background->generator_number1();
 							ok2 = background->generator_number2(), 
 							ok3 = background->generator_number3();
@@ -188,11 +185,11 @@ Jetpack::launch ()
 						}
 						sf::Time elapsed2 = time2.getElapsedTime();
 						menu_->distance(win_, elapsed2.asMilliseconds());
-						if(((sam->collision(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
+						if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
 							Play = 0;	//On sort de la gamePlay
 							Loose = 1;	//On rentre dans la fenetre "Perdu"
 						}
-						if(((sam->collision(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+						if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
 							Play = 0;	//On sort de la gamePlay
 							Loose = 1;	//On rentre dans la fenetre "Perdu"
 						}
@@ -209,17 +206,36 @@ Jetpack::launch ()
 			win_->clear();
 			menu_->display_aide(win_);
 			sf::Time elapsed3 = time3.getElapsedTime();
-			int number = 20 - elapsed3.asSeconds();
+			int number = 10 - elapsed3.asSeconds();
 			// creer la fonction
-			if (number < 0){
+			if (number < 1){
 				Play = 1;
 				Aide = 0;
+				time2.restart();
 			}
 			menu_->display_chrono(win_, number);
+		}
+		if(High_Score == 1){
+			win_->clear();
+			menu_->reading_score(win_);
+			High_Score = 0;
 		}
 		if (Loose == 1){
 			win_->clear();
 			menu_->display_looser(win_);
+			Play = 0 ;
+			Aide = 0;
+			Round = 1;
+			//time.restart();
+			time3.restart();
+			//time2.restart();
+			neon->from_scratch(neon->far_away(neon->getX()));
+			fusee->from_scratch(fusee->far_away(fusee->getX()));
+			Loose = 0;
+			Play = 1;
+			sf::Time elapsed4 = time2.getElapsedTime();
+			//Obtenir le kilometrage et l'inscrire dans le fichier
+			menu_->written_score(elapsed4.asMilliseconds());
 		}
 		if (Round == 0){
 			win_->clear();

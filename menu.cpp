@@ -1,4 +1,3 @@
-
 #include "menu.hpp"
 
 using namespace std;
@@ -28,20 +27,93 @@ Menu:: display_bouton(sf::RenderTarget *rt){
 	bouton_play_.display(rt);
 }
 
-void 
-Menu:: display_texte(sf::RenderTarget *rt){
-	sf:: Text texte_;
+sf::Text
+Menu:: transformator_string(int Taille, int PosX, int PosY, string String){
+	sf:: Text text;	
 	sf:: Font font_;
 	if(!font_.loadFromFile("police.ttf")){
 		exit(1);
 	}
-	texte_.setFont(font_);
-	texte_.setRotation(ROTATE);
-	texte_.setCharacterSize(TAILLE_POLICE);
-	texte_.setColor(sf::Color::White);
-	texte_.setPosition(POSITION_TITRE_MENU_X, POSITION_TITRE_MENU_Y);
-	texte_.setString("Welcome to the\n");
-	rt->draw(texte_);
+	text.setFont(font_);
+	text.setCharacterSize(Taille);
+	text.setPosition(PosX, PosY);
+	text.setString(String);
+	text.setColor(sf::Color::White);
+	return text;
+}
+
+void 
+Menu:: display_texte(sf::RenderTarget *rt){
+	//sf:: Text texte_;
+	//texte_ = transformator_string(20, 40, 40, "Welcome to the\n");
+	//texte_.setRotation(ROTATE);
+	rt->draw(transformator_string(20, 40, 40, "Welcome to the\n"));
+}
+
+void 
+Menu:: written_score(int number){
+	char buffer[6];
+	gcvt(number, 6, buffer);
+	ofstream fichier ("aide.txt", ios::app);
+	if (fichier){
+		fichier << number << endl;
+		fichier.close();
+	}
+	else{
+		cerr << "Impossible d'ouvrir le fichier en ecriture" << endl;
+	}
+
+}
+
+void
+Menu:: reading_score(sf::RenderTarget *rt){
+	string string1, string2;
+	//int number1, number2;
+	int number;
+	char buffer[6];
+	char buffer2[6];
+	int i = 1;
+	sf:: Text texte_;
+	sf:: Text texte2_;
+	sf:: Text texte3_;
+	sf:: Font font_;
+	if(!font_.loadFromFile("police.ttf")){
+		exit(1);
+	}
+	texte2_.setFont(font_);
+	texte2_.setCharacterSize(40);
+	texte2_.setColor(sf::Color::White);
+	texte2_.setString("Last Score:");
+	texte2_.setPosition(30, 2);
+	rt->draw(texte2_);
+	ifstream fichier ("aide.txt", ios::in);
+	if (fichier){
+		// Changer la position du while-do! car le dernier chiffre s'écrit en 2 fois!!
+		do{
+			fichier >> number;
+			//cout << number << endl;
+			gcvt(number, 6, buffer);
+			gcvt(i, 2, buffer2);
+			texte3_.setFont(font_);
+			texte3_.setCharacterSize(40);
+			texte3_.setColor(sf::Color::White);
+			texte3_.setString(buffer2);
+			texte3_.setPosition(10, 30 * i);
+			texte_.setFont(font_);
+			texte_.setCharacterSize(40);
+			texte_.setColor(sf::Color::White);
+			texte_.setPosition(70, 30 * i);
+			texte_.setString(buffer);
+			rt->draw(texte_);
+			rt->draw(texte3_);
+			i++;
+		}while(!fichier.eof());
+		fichier.close();
+	}
+	else{
+		cerr << "Impossible d'ouvrir le fichier en lecture" << endl;
+	}
+	//cout << string1 << string2 << endl;	
 }
 
 void 
@@ -129,7 +201,7 @@ Menu:: display_aide(sf::RenderTarget *rt){
 	texte_.setCharacterSize(20);
 	texte_.setColor(sf::Color::White);
 	texte_.setPosition(0, 20);
-	texte_.setString("Bienvenue dans le (super) jeu de Jetpack Joyride.\n\n Pour jouer, rien de plus simple. Vous avez a votre disposition\n que deux boutons:\n le premier est la touche directionnelle UP et le deuxieme\n la touche directionnelle DOWN.\n\n Le but du jeu est d'aller le plus loin possible\n sans vous faire toucher par les lignes\n electriques ou les missiles!\n\n\n Bon courage et surtout.. Bonne chance!!!!\n\n\n");
+	texte_.setString("Bienvenue dans le (super) jeu de Jetpack Joyride.\n\n\n Pour jouer, rien de plus simple. Vous avez a votre disposition\n qu'un seul bouton:\n le premier est la touche directionnelle UP, pour monter en haut.\n\n Le personnage descend automatiquement par gravite.\n\n Le but du jeu est d'aller le plus loin possible\n sans vous faire toucher par les lignes\n electriques ou les missiles!\n\n\n Bon courage et surtout.. Bonne chance!!!!\n\n");
 	rt->draw(texte_);
 }
 

@@ -7,6 +7,8 @@
 #include "bouton.hpp"
 #include "jetpack.hpp"
 
+using namespace std;
+
 class Menu
 {
 	public:
@@ -24,6 +26,10 @@ class Menu
 		void display_chrono(sf::RenderTarget *rt, int number);
 
 		void display_vie(sf::RenderTarget *rt);
+
+ 		void written_score(int number);
+		void reading_score(sf::RenderTarget *rt);
+		sf::Text transformator_string(int Taille, int PosX, int PosY, string String);
 
 	private:
 		sf:: Texture texture_;

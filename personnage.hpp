@@ -27,7 +27,8 @@ class Personnage{
 
 		void gravity(int X, int Y);
 
-		bool collision(int a, int b, int c, int d);
+		bool collision1(int a, int b, int c, int d);
+		bool collision2(int a, int b, int c, int d);
 
 		friend class Fusee;
 

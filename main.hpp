@@ -44,16 +44,16 @@
 
 #define SPEED		10		//Vitesse de montee
 //Niveau Facile
-#define SPEED02		-2		//Force de gravité
+#define SPEED02		-3		//Force de gravité
 #define NEON0		10
 //Niveau Moyen
-#define SOSO		25000
-#define SPEED12		-4
+#define SOSO		10000
+#define SPEED12		-3
 #define NEON1		15
 #define ROCKET1		15
 //Niveau Difficile
-#define HARD		45000
-#define SPEED22		-6
+#define HARD		15000
+#define SPEED22		-3
 #define NEON2		20
 #define ROCKET2		20
 
@@ -63,6 +63,5 @@
 #define UPDATE	200
 
 /**********************************/
-/*kikoo*/
 
 #endif // MAIN_HPP

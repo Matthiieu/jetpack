@@ -33,7 +33,7 @@ Neon:: scale(int number){
 
 void
 Neon:: rotate(void){
-	sprite_neon_->rotate(2);
+	sprite_neon_->rotate(5);
 }
 
 void 

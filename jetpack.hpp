@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <fstream>
 #include "jetpack.hpp"
 #include "main.hpp"
 #include "menu.hpp"

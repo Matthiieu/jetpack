@@ -34,9 +34,19 @@ Personnage:: gagner_vie(){
 }
 
 bool 
-Personnage:: collision(int a, int b, int c, int d){
+Personnage:: collision1(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec la fusee!
-	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 25)){
+	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 25)){
+		return true;
+	}
+	else
+		return false;
+}
+
+bool 
+Personnage:: collision2(int a, int b, int c, int d){
+	// previens s'il y a eu collision avec le neon!
+	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
 		return true;
 	}
 	else
