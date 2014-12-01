@@ -33,14 +33,13 @@
 
 #define ROTATE	-10
 
-#define ZONE1	82
-#define ZONE2	320
-#define ZONE3	480
-#define ZONE4	640
-#define ZONE5	460
-#define ZONE6	560
-#define ZONE7	590
-#define ZONE8	690
+#define ZONE1	588
+#define ZONE2	688
+#define ZONE3	83
+#define ZONE4	322
+#define ZONE5	403
+#define ZONE6	675
+
 
 #define SPEED		10		//Vitesse de montee
 //Niveau Facile

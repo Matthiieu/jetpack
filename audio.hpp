@@ -9,8 +9,8 @@ class Audio{
 		music2fond_ = new sf::Music;
 		music2menu_ = new sf::Music;
 		music2help_ = new sf::Music;
-		music2help_->openFromFile("boulanger.ogg");
-		music2fond_->openFromFile("boulanger3.ogg");
+		music2help_->openFromFile("boulanger4.ogg");
+		music2fond_->openFromFile("boulanger.ogg");
 		music2menu_->openFromFile("boulanger2.ogg");
 	}
 

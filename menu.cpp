@@ -167,7 +167,7 @@ Menu:: display_chrono(sf::RenderTarget *rt, int number){
 		texte3_.setCharacterSize(60);
 		texte3_.setColor(sf::Color::White);
 		texte3_.setString(buffer);
-		texte3_.setPosition(300, 400);
+		texte3_.setPosition(400, 400);
 		rt->draw(texte3_);
 }
 
@@ -202,31 +202,22 @@ Menu:: display_aide(sf::RenderTarget *rt){
 	texte_.setCharacterSize(20);
 	texte_.setColor(sf::Color::White);
 	texte_.setPosition(0, 20);
-	texte_.setString("Bienvenue dans le (super) jeu de Jetpack Joyride.\n\n\n Pour jouer, rien de plus simple. Vous avez a votre disposition\n qu'un seul bouton:\n le premier est la touche directionnelle UP, pour monter en haut.\n\n Le personnage descend automatiquement par gravite.\n\n Le but du jeu est d'aller le plus loin possible\n sans vous faire toucher par les lignes\n electriques ou les missiles!\n\n\n Bon courage et surtout.. Bonne chance!!!!\n\n");
+	texte_.setString("Bienvenue dans le (super) jeu de Jetpack Joyride.\n\n\n Pour jouer, rien de plus simple. Vous avez a votre disposition\n qu'un seul bouton:\n le premier est la touche directionnelle UP, pour aller en haut.\n\n Le personnage descend automatiquement par gravite.\n\n Le but du jeu est d'aller le plus loin possible\n sans vous faire toucher par les lignes\n electriques ou les missiles!\n\n\n Bon courage et surtout.. Bonne chance!!!!\n\n");
 	rt->draw(texte_);
 }
 
 int
 Menu:: setCurrentAction(sf::Vector2i localPosition){
-	if (localPosition.x >= ZONE1 && localPosition.x <=ZONE2){
-		if (localPosition.y >= ZONE5 && localPosition.y <= ZONE6){
+	cout << localPosition.x << endl << localPosition.y << endl;
+	if(localPosition.y >= ZONE1 && localPosition.y <= ZONE2){
+		if (localPosition.x >= ZONE3 && localPosition.x <= ZONE4){
 			cout << "Play" << endl;
 			return 0;
 		}
-		if (localPosition.y >= ZONE7 && localPosition.y <= ZONE8){
-			cout << "Aide" << endl;
+		else if (localPosition.x >= ZONE5 && localPosition.x <= ZONE6){
+			cout << "Score" << endl;
 			return 1;
 		}
 	}
-	else if(localPosition.x >= ZONE3 && localPosition.x <= ZONE4){
-		if (localPosition.y >= ZONE5 && localPosition.y <= ZONE6){
-			cout << "Option" << endl;
-			return 2;
-		}
-		if (localPosition.y >= ZONE7 && localPosition.y <= ZONE8){
-			cout << "Score" << endl;
-			return 3;
-		}
-	}
-	return 0;
+	return 2;
 }
