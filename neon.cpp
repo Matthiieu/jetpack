@@ -1,8 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "main.hpp"
-#include "menu.hpp"
-#include "audio.hpp"
+
 #include "neon.hpp"
 
 
@@ -26,6 +22,18 @@ void
 Neon:: setPosition (int x, const int y){
   	 	xn_ = x;
    	 	yn_ = y;
+}
+
+/*void
+Neon:: scale(int number){
+	int ok = number % 1 ;
+	cout << ok << endl;
+	sprite_neon_->setScale(0.1f , 0.1f * ok);
+}*/
+
+void
+Neon:: rotate(void){
+	sprite_neon_->rotate(2);
 }
 
 void 

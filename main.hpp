@@ -42,8 +42,20 @@
 #define ZONE7	590
 #define ZONE8	690
 
-#define SPEED	10
-#define SPEED2	-2
+#define SPEED		10		//Vitesse de montee
+//Niveau Facile
+#define SPEED02		-2		//Force de gravité
+#define NEON0		10
+//Niveau Moyen
+#define SOSO		25000
+#define SPEED12		-4
+#define NEON1		15
+#define ROCKET1		15
+//Niveau Difficile
+#define HARD		45000
+#define SPEED22		-6
+#define NEON2		20
+#define ROCKET2		20
 
 #define FLOOR	540
 #define MIDDLE	300

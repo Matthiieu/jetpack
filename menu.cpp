@@ -1,8 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "main.hpp"
+
 #include "menu.hpp"
-#include "bouton.hpp"
 
 using namespace std;
 
@@ -12,15 +9,11 @@ Menu:: Menu(){
 	}
 	logo_.setTexture(texture_);
 	logo_.setPosition(POSITION_IMAGE_MENU_X, POSITION_IMAGE_MENU_Y);
-	logo_.setScale(ECHELLE_IMAGE_MENU_X, ECHELLE_IMAGE_MENU_Y);
-	//bouton_play_ = new Bouton(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y1, "Play");	
-	//bouton_aide_ = new Bouton(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2, "Aide");	
-	//bouton_option_ = new Bouton(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y1, "Option");	
-	//bouton_score_ = new Bouton(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2, "Score");	
+	logo_.setScale(ECHELLE_IMAGE_MENU_X, ECHELLE_IMAGE_MENU_Y);	
 }
 	
 Menu:: ~Menu(){
-
+ //
 }
 
 void
@@ -75,6 +68,37 @@ Menu:: distance(sf::RenderTarget *rt, int number){
 }
 
 void 
+Menu:: display_vie(sf::RenderTarget *rt){
+	sf:: Texture vie_;
+	sf:: Sprite sprite_vie_;
+	if(!vie_.loadFromFile("vie.png")){
+		exit(1);
+	}
+	sprite_vie_.setTexture(vie_);
+	sprite_vie_.setPosition(600, 10);
+	sprite_vie_.setScale(0.05f, 0.05f);
+	//cout << "coucou"<< endl;
+	rt->draw(sprite_vie_);
+}
+
+void 
+Menu:: display_chrono(sf::RenderTarget *rt, int number){
+		char buffer[7];
+		gcvt(number, 7, buffer);
+		sf:: Text texte3_;
+		sf:: Font font_;
+		if(!font_.loadFromFile("police.ttf")){
+			exit(1);
+		}
+		texte3_.setFont(font_);
+		texte3_.setCharacterSize(60);
+		texte3_.setColor(sf::Color::White);
+		texte3_.setString(buffer);
+		texte3_.setPosition(300, 400);
+		rt->draw(texte3_);
+}
+
+void 
 Menu:: display_looser(sf::RenderTarget *rt){
 		sf:: Text texte_;
 		sf:: Font font_;
@@ -82,7 +106,7 @@ Menu:: display_looser(sf::RenderTarget *rt){
 			exit(1);
 		}
 		texte_.setFont(font_);
-		texte_.setCharacterSize(20);
+		texte_.setCharacterSize(120);
 		texte_.setColor(sf::Color::White);
 		texte_.setString("PERDU!!!");
 		rt->draw(texte_);
@@ -104,7 +128,8 @@ Menu:: display_aide(sf::RenderTarget *rt){
 	texte_.setFont(font_);
 	texte_.setCharacterSize(20);
 	texte_.setColor(sf::Color::White);
-	texte_.setString("Bienvenue dans le (super) jeu de Jetpack Joyride.\n\n Pour jouer, rien de plus simple. Vous avez a votre disposition\n que deux boutons:\n le premier est la touche directionnelle UP et le deuxieme\n la touche directionnelle DOWN.\n\n Le but du jeu est d'aller le plus loin possible\n sans vous faire toucher par les lignes\n electriques ou les missiles!\n\n\n Bon courage et surtout.. Bonne chance!!!!\n\n\n Cliquer n'importe ou pour sortir de la centrale d'aide\n\n");
+	texte_.setPosition(0, 20);
+	texte_.setString("Bienvenue dans le (super) jeu de Jetpack Joyride.\n\n Pour jouer, rien de plus simple. Vous avez a votre disposition\n que deux boutons:\n le premier est la touche directionnelle UP et le deuxieme\n la touche directionnelle DOWN.\n\n Le but du jeu est d'aller le plus loin possible\n sans vous faire toucher par les lignes\n electriques ou les missiles!\n\n\n Bon courage et surtout.. Bonne chance!!!!\n\n\n");
 	rt->draw(texte_);
 }
 

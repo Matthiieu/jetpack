@@ -2,6 +2,7 @@
 #define BOUTON_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "main.hpp"
 #include "menu.hpp" 
 

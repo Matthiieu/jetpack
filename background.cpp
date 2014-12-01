@@ -1,6 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "main.hpp"
+
 #include "background.hpp"
 
 int 
@@ -30,3 +28,4 @@ Background:: generator_number3(){
 		alea3 = 20;
 	return alea3;
 }
+

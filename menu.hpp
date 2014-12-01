@@ -2,10 +2,13 @@
 #define MENU_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "main.hpp"
 #include "bouton.hpp"
+#include "jetpack.hpp"
 
-class Menu{
+class Menu
+{
 	public:
 		Menu();
 		~Menu();
@@ -18,7 +21,9 @@ class Menu{
 		void display_looser(sf::RenderTarget *rt);
 
 		void distance(sf::RenderTarget *rt, int number);
+		void display_chrono(sf::RenderTarget *rt, int number);
 
+		void display_vie(sf::RenderTarget *rt);
 
 	private:
 		sf:: Texture texture_;

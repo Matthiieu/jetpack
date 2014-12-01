@@ -1,6 +1,12 @@
 #ifndef BACKGROUND_HPP
 #define BACKGROUND_HPP
 
+
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include "main.hpp"
+#include "jetpack.hpp"
+
 class Background{
 	public:
 

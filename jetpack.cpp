@@ -1,13 +1,6 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "main.hpp"
-#include "menu.hpp"
+
 #include "jetpack.hpp"
-#include "audio.hpp"
-#include "personnage.hpp"
-#include "fusee.hpp"
-#include "neon.hpp"
-#include "background.hpp"
+
 
 using namespace std;
 
@@ -15,8 +8,8 @@ Jetpack::Jetpack()
 {
 	win_ = new sf::RenderWindow(sf::VideoMode(LONGUEUR_FENETRE, LARGEUR_FENETRE), "Jetpack Joyride", sf::Style::Close); 
 	//win_->setFramerateLimit(50);
- 	menu_ = new Menu;
-	audio_ = new Audio;
+ 	menu_ = new Menu();
+	audio_ = new Audio();
 }
 
 Jetpack::~Jetpack ()
@@ -37,25 +30,28 @@ Jetpack::launch ()
   int Loose =0;
   int First = 1;
   int level = 0;
+  int Aide = 0;
   int ok1 = 0, ok2 = 0, ok3 = 0;
   Personnage *sam = NULL;
   Fusee *fusee = NULL;
   Neon *neon = NULL;
   Background *background = NULL;
-  background = new Background;
+  background = new Background();
   neon = new Neon;
   sam = new Personnage;
   fusee = new Fusee;
   sf:: Clock time;
   sf:: Clock time2;
+  sf:: Clock time3;
   while (win_->isOpen()){
 		sf:: Event event;
+		sf:: Event event2;
 		sf::Vector2i localPosition = sf::Mouse::getPosition();	
-		while(win_->pollEvent(event)){
+		while((win_->pollEvent(event))){
 			switch(event.type){
 				case sf:: Event:: MouseButtonPressed:	
 					if (Round == 0){		
-					switch (menu_->setCurrentAction(localPosition)) {
+					switch (menu_->setCurrentAction(localPosition)){
         				  case 0:
 						 Round = 1;
 						 Play = 1;
@@ -67,8 +63,9 @@ Jetpack::launch ()
          					 break;
         				  case 1:
 						Round = 1;
-						win_->clear();
-						menu_->display_aide(win_);
+						Aide = 1;
+						audio_->stop_menu();
+						audio_->play_help();
 						break;
          				  case 2:
 						Round = 1;
@@ -122,6 +119,7 @@ Jetpack::launch ()
 							Play = 0;	//On sort de la gamePlay
 							Loose = 1;	//On rentre dans la fenetre "Perdu"
 						}
+						menu_->display_vie(win_);
 						sam->display(win_);
 						neon->display(win_);
 					}				
@@ -167,6 +165,7 @@ Jetpack::launch ()
 					break;
 				case 2:
 					if (Play == 1){
+						//menu_->display_vie(win_);
 						sam->gravity(0, SPEED22);
 						sam->run();
 						fusee->launch(ROCKET2, 0);
@@ -205,8 +204,19 @@ Jetpack::launch ()
 					break;
 				default:
 					break;
-
 			}
+		if (Aide == 1){
+			win_->clear();
+			menu_->display_aide(win_);
+			sf::Time elapsed3 = time3.getElapsedTime();
+			int number = 20 - elapsed3.asSeconds();
+			// creer la fonction
+			if (number < 0){
+				Play = 1;
+				Aide = 0;
+			}
+			menu_->display_chrono(win_, number);
+		}
 		if (Loose == 1){
 			win_->clear();
 			menu_->display_looser(win_);

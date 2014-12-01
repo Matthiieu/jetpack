@@ -1,7 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "main.hpp"
-#include "menu.hpp"
+
+
 #include "bouton.hpp"
 
 Bouton::Bouton (int X, int Y, sf::String text) 

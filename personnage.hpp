@@ -2,9 +2,8 @@
 #define PERSONNAGE_HPP
 
 #include <SFML/Graphics.hpp>
-#include "main.hpp"
 #include "jetpack.hpp"
-#include "fusee.hpp"
+
 
 class Personnage{
 

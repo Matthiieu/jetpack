@@ -29,6 +29,10 @@ class Neon{
 
 		bool from_scratch(bool boolean);
 
+		void rotate(void);
+
+		void scale(int number);
+
 
 	private:
 		sf:: Texture neon_;

@@ -1,8 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "main.hpp"
 #include "personnage.hpp"
-#include "jetpack.hpp"
 
 using namespace std;
 
@@ -60,7 +56,7 @@ Personnage:: run(){
 	if (y_ == FLOOR){
 		if (elapsed1.asMilliseconds() > UPDATE){
 			anim.x++;
-			if (anim.x * 32 >= personnage_.getSize().x)
+			if ((unsigned)anim.x * 32 >= personnage_.getSize().x)
 				anim.x = 0;
 			time.restart();
 		}
