@@ -58,7 +58,7 @@
 #define ROCKET2		20
 
 #define FLOOR	540
-#define MIDDLE	300
+#define MIDDLE	100
 
 #define UPDATE	200
 

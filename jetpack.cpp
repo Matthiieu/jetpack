@@ -67,6 +67,8 @@ Jetpack::launch ()
 						Round = 1;
 						break;
 					  case 3:
+						audio_->stop_menu();
+						audio_->play_fond();
 						Round = 1;
 						High_Score = 1;
 						break;
@@ -245,4 +247,8 @@ Jetpack::launch ()
 		//win_->setPosition(sf::Vector2i(POSITION_FENETRE_X, POSITION_FENETRE_Y));
 		win_->display();			
 	}
+	delete sam;
+	delete fusee;
+	delete neon;
+	delete background;
 }

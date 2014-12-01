@@ -17,37 +17,38 @@ Menu:: ~Menu(){
 
 void
 Menu:: display_bouton(sf::RenderTarget *rt){
-	Bouton bouton_play_(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y1, "Play");
-	Bouton bouton_option_(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y1, "Option");
-	Bouton bouton_aide_(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2, "Aide");
+	//Bouton bouton_play_(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y1, "Play");
+	//Bouton bouton_option_(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y1, "Score");
+	Bouton bouton_aide_(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2, "Play");
 	Bouton bouton_score_(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2, "Score");
 	bouton_score_.display(rt);
-	bouton_option_.display(rt);
+	//bouton_option_.display(rt);
 	bouton_aide_.display(rt);
-	bouton_play_.display(rt);
-}
-
-sf::Text
-Menu:: transformator_string(int Taille, int PosX, int PosY, string String){
-	sf:: Text text;	
-	sf:: Font font_;
-	if(!font_.loadFromFile("police.ttf")){
-		exit(1);
-	}
-	text.setFont(font_);
-	text.setCharacterSize(Taille);
-	text.setPosition(PosX, PosY);
-	text.setString(String);
-	text.setColor(sf::Color::White);
-	return text;
+	//bouton_play_.display(rt);
 }
 
 void 
 Menu:: display_texte(sf::RenderTarget *rt){
-	//sf:: Text texte_;
-	//texte_ = transformator_string(20, 40, 40, "Welcome to the\n");
-	//texte_.setRotation(ROTATE);
-	rt->draw(transformator_string(20, 40, 40, "Welcome to the\n"));
+	sf:: Text texte_;
+	sf:: Text texte2_;
+	sf:: Font font_;
+	if(!font_.loadFromFile("police.ttf")){
+		exit(1);
+	}
+	texte_.setFont(font_);
+	texte_.setRotation(ROTATE);
+	texte_.setCharacterSize(TAILLE_POLICE);
+	texte_.setColor(sf::Color::White);
+	texte_.setPosition(POSITION_TITRE_MENU_X, POSITION_TITRE_MENU_Y);
+	texte_.setString("Welcome to the\n");
+	texte2_.setFont(font_);
+	//texte2_.setRotation(ROTATE);
+	texte2_.setCharacterSize(TAILLE_POLICE);
+	texte2_.setColor(sf::Color::White);
+	texte2_.setPosition(130, 320);
+	texte2_.setString("On the bakery!\n");
+	rt->draw(texte_);
+	rt->draw(texte2_);
 }
 
 void 

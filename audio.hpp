@@ -10,8 +10,8 @@ class Audio{
 		music2menu_ = new sf::Music;
 		music2help_ = new sf::Music;
 		music2help_->openFromFile("boulanger.ogg");
-		music2fond_->openFromFile("Joyrade.ogg");
-		music2menu_->openFromFile("Joyrade_menu.ogg");
+		music2fond_->openFromFile("boulanger3.ogg");
+		music2menu_->openFromFile("boulanger2.ogg");
 	}
 
 	~Audio(){
@@ -45,13 +45,10 @@ class Audio{
 	void stop_help(void){
 		music2help_->stop();
 	}
-	friend class Fusee;
 
 	private:
 		sf:: Music *music2fond_;
 		sf:: Music *music2menu_;
-		sf::SoundBuffer	buffer;
-		sf:: Sound *music_fusee_;
 		sf:: Music *music2help_;
 };
 

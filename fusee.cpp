@@ -9,11 +9,11 @@
 using namespace std;
 
 Fusee:: Fusee(){ 
-	fusee_.loadFromFile("balle.png");
+	fusee_.loadFromFile("pain.png");
 	//fusee_.setSmooth(true);
 	sprite_fusee_ = new sf::Sprite;
 	sprite_fusee_->setTexture(fusee_);
-	sprite_fusee_->setScale(0.05f, 0.05f);
+	sprite_fusee_->setScale(0.4f, 0.4f);
 	xf_ = 800;
 	yf_ = 200;
 }

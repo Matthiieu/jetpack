@@ -1,15 +1,14 @@
-
 #include "neon.hpp"
 
 
 using namespace std;
 
 Neon:: Neon(){ 
-	neon_.loadFromFile("neon.png");
+	neon_.loadFromFile("baguette.png");
 	//fusee_.setSmooth(true);
 	sprite_neon_ = new sf::Sprite;
 	sprite_neon_->setTexture(neon_);
-	sprite_neon_->setScale(0.1f, 0.2f);
+	sprite_neon_->setScale(0.8f, 0.5f);
 	xn_ = 800;
 	yn_ = 100;
 }

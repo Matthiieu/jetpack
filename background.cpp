@@ -1,4 +1,3 @@
-
 #include "background.hpp"
 
 int 
