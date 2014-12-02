@@ -5,7 +5,7 @@ using namespace std;
 
 Neon:: Neon(){ 
 	neon_.loadFromFile("baguette.png");
-	//fusee_.setSmooth(true);
+	neon_.setSmooth(true);
 	sprite_neon_ = new sf::Sprite;
 	sprite_neon_->setTexture(neon_);
 	sprite_neon_->setScale(0.8f, 0.5f);
@@ -23,12 +23,12 @@ Neon:: setPosition (int x, const int y){
    	 	yn_ = y;
 }
 
-/*void
+void
 Neon:: scale(int number){
 	int ok = number % 1 ;
 	cout << ok << endl;
 	sprite_neon_->setScale(0.1f , 0.1f * ok);
-}*/
+}
 
 void
 Neon:: rotate(void){

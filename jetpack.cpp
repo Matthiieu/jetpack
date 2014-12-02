@@ -5,7 +5,7 @@ using namespace std;
 Jetpack::Jetpack()
 {
 	win_ = new sf::RenderWindow(sf::VideoMode(LONGUEUR_FENETRE, LARGEUR_FENETRE), "Jetpack Joyride", sf::Style::Close); 
-	//win_->setFramerateLimit(50);
+	win_->setFramerateLimit(50);
  	menu_ = new Menu();
 	audio_ = new Audio();
 }
@@ -87,6 +87,11 @@ Jetpack::launch ()
 		switch(level){
 			case 0:
 				if (Play == 1){
+					background->launch(NEON0, 0);
+					if (background->from_scratch(background->far_away(background->getX()))){
+						background->setPosition(background->getX(), background->getY());
+						background->launch(NEON0, 0);
+					}
 					sam->gravity(0, SPEED02);
 					sam->run();
 					neon->move(NEON0, 0);
@@ -111,7 +116,9 @@ Jetpack::launch ()
 						Loose = 1;	//On rentre dans la fenetre "Perdu"
 						time4.restart();
 					}
+					background->display(win_);
 					menu_->display_vie(win_);
+					//background->display(win_);
 					sam->display(win_);
 					neon->display(win_);
 				}				
@@ -236,7 +243,7 @@ Jetpack::launch ()
 		if (Loose == 1){
 			//level = 5;
 			sf::Time elapsed5 = time4.getElapsedTime();
-			int number = 3 - elapsed5.asSeconds();
+			int number = 10 - elapsed5.asSeconds();
 			if (number < 1){
 				High_Score = 1;
 				Loose = 0;
@@ -245,7 +252,7 @@ Jetpack::launch ()
 				audio_->play_help();
 			}
 			win_->clear();
-			menu_->display_looser(win_);
+			//menu_->display_looser(win_);
 			//time.restart();
 			//time3.restart();
 			//time2.restart();

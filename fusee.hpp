@@ -2,9 +2,7 @@
 #define FUSEE_HPP
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp> 
 #include "main.hpp"
-#include "audio.hpp"
 #include "jetpack.hpp"
 
 class Fusee{

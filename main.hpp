@@ -46,12 +46,12 @@
 #define SPEED02		-3		//Force de gravité
 #define NEON0		10
 //Niveau Moyen
-#define SOSO		10000
+#define SOSO		40000
 #define SPEED12		-3
 #define NEON1		15
 #define ROCKET1		15
 //Niveau Difficile
-#define HARD		15000
+#define HARD		75000
 #define SPEED22		-3
 #define NEON2		20
 #define ROCKET2		20

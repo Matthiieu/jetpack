@@ -57,7 +57,7 @@ Menu:: written_score(int number){
 	gcvt(number, 6, buffer);
 	ofstream fichier ("aide.txt", ios::app);
 	if (fichier){
-		fichier << number << endl;
+		//fichier << number << endl;
 		fichier.close();
 	}
 	else{
