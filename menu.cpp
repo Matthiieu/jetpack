@@ -46,7 +46,7 @@ Menu:: display_texte(sf::RenderTarget *rt){
 	texte2_.setCharacterSize(TAILLE_POLICE);
 	texte2_.setColor(sf::Color::White);
 	texte2_.setPosition(130, 320);
-	texte2_.setString("On the bakery!\n");
+	texte2_.setString("At the bakery!\n");
 	rt->draw(texte_);
 	rt->draw(texte2_);
 }
@@ -179,9 +179,10 @@ Menu:: display_looser(sf::RenderTarget *rt){
 			exit(1);
 		}
 		texte_.setFont(font_);
-		texte_.setCharacterSize(120);
+		texte_.setCharacterSize(100);
 		texte_.setColor(sf::Color::White);
-		texte_.setString("PERDU!!!");
+		texte_.setPosition(50, 100);
+		texte_.setString("Tu t'es pris\n\t un pain!");
 		rt->draw(texte_);
 }
 
@@ -199,10 +200,10 @@ Menu:: display_aide(sf::RenderTarget *rt){
 		exit(1);
 	}
 	texte_.setFont(font_);
-	texte_.setCharacterSize(20);
+	texte_.setCharacterSize(30);
 	texte_.setColor(sf::Color::White);
 	texte_.setPosition(0, 20);
-	texte_.setString("Bienvenue dans le (super) jeu de Jetpack Joyride.\n\n\n Pour jouer, rien de plus simple. Vous avez a votre disposition\n qu'un seul bouton:\n le premier est la touche directionnelle UP, pour aller en haut.\n\n Le personnage descend automatiquement par gravite.\n\n Le but du jeu est d'aller le plus loin possible\n sans vous faire toucher par les lignes\n electriques ou les missiles!\n\n\n Bon courage et surtout.. Bonne chance!!!!\n\n");
+	texte_.setString("Le boulanger ne veut plus vendre de baguette!\nAide Sam a acheter sa baguette en evitant\nles projectiles lances par le boulanger.\n\nVous disposez d une seule touche de\n direction 'Up' qui permet de surelever Sam\nSam redescend automatiquement par gravite\n\nBon courage et surtout.. Bonne chance!");
 	rt->draw(texte_);
 }
 

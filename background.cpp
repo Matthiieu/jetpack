@@ -1,5 +1,6 @@
 #include "background.hpp"
 
+
 int 
 Background:: generator_number1(){
 	// Génerer un nombre entre 0 et 600!
