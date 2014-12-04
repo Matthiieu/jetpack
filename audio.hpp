@@ -1,55 +1,57 @@
 #ifndef AUDIO_HPP
 #define AUDIO_HPP
 
-#include <SFML/Audio.hpp> 
+#include <SFML/Audio.hpp>
 
-class Audio{
+class Audio
+{
 	public:
 	Audio () {
-		music2fond_ = new sf::Music;
-		music2menu_ = new sf::Music;
-		music2help_ = new sf::Music;
-		music2help_->openFromFile("boulanger4.ogg");
-		music2fond_->openFromFile("boulanger.ogg");
-		music2menu_->openFromFile("boulanger2.ogg");
+		music_main = new sf::Music;
+		music_menu = new sf::Music;
+		music_score = new sf::Music;
+		music_main->openFromFile("main.ogg");
+		music_menu->openFromFile("menu.ogg");
+		music_score->openFromFile("score.ogg");
 	}
 
 	~Audio(){
-		delete music2fond_;
-		delete music2menu_;
-		delete music2help_;
+		delete music_main;
+		delete music_menu;
+		delete music_score;
 	}
 
-	void play_fond(void){
-		music2fond_->play();
-		music2fond_->setVolume(100);
+	void play_main(void){
+		music_main->play();
+		music_main->setVolume(100);
 	}
 
-	void play_help(void){
-		music2help_->play();
+	void play_score(void){
+		music_score->play();
+		music_score->setVolume(100);
 	}
 
-	void stop_fond(void){
-		music2fond_->stop();
-	}
-	
 	void play_menu(void){
-		music2menu_->play();
-		music2menu_->setVolume(100);
+		music_menu->play();
+		music_menu->setVolume(100);
+	}
+
+	void stop_main(void){
+		music_main->stop();
+	}
+
+	void stop_score(void){
+		music_score->stop();
 	}
 
 	void stop_menu(void){
-		music2menu_->stop();
-	}
-
-	void stop_help(void){
-		music2help_->stop();
+		music_menu->stop();
 	}
 
 	private:
-		sf:: Music *music2fond_;
-		sf:: Music *music2menu_;
-		sf:: Music *music2help_;
+		sf:: Music *music_main;
+		sf:: Music *music_score;
+		sf:: Music *music_menu;
 };
 
 #endif

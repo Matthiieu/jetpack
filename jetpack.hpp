@@ -13,7 +13,7 @@
 #include "neon.hpp"
 #include "background.hpp"
 
-class Menu;
+//class Menu;
 
 class Jetpack
 {
@@ -24,7 +24,6 @@ public:
   void launch ();
 
 private:
-  Menu *menu_;
   sf::RenderWindow *win_;
   Audio *audio_;
 };

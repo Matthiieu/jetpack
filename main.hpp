@@ -6,7 +6,7 @@
 #define LARGEUR_FENETRE  600
 
 #define POSITION_FENETRE_X 200
-#define POSITION_FENETRE_Y 200
+#define POSITION_FENETRE_Y 100
 
 #define	POSITION_IMAGE_MENU_X	200
 #define	POSITION_IMAGE_MENU_Y	5
@@ -31,6 +31,8 @@
 #define TAILLE_POLICE 50
 #define POLICE_BOUTON 65
 
+#define LIMIT_BACKGROUND	-1600
+
 #define ROTATE	-10
 
 #define ZONE1	588
@@ -46,7 +48,7 @@
 #define SPEED02		-3		//Force de gravité
 #define NEON0		10
 //Niveau Moyen
-#define SOSO		40000
+#define SOSO		20000
 #define SPEED12		-3
 #define NEON1		15
 #define ROCKET1		15

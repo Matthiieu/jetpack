@@ -6,36 +6,36 @@
 #include "main.hpp"
 #include "jetpack.hpp"
 
-class Background{
+using namespace std;
+
+class Background
+{
 	public:
 
-	Background();
+	Background(string name, int x, int y);
 	~Background();
-	int generator_number1();
-	int generator_number2();
-	int generator_number3();
 
-	void launch(int X, const int Y);
+	void parade(int X, const int Y);
 
 	bool far_away(int x);
 
 	void setPosition (int x, const int y);
 
-	int getX();
-
-	int getY();
-
 	bool from_scratch(bool boolean);
 
 	void display(sf::RenderTarget *rt);
+	
+	int getX();
+	
+	int getY();
 
 	private:
 		sf:: Texture background_;
-		sf:: Sprite *sprite_background_;
 		sf:: Texture background2_;
+		sf:: Sprite *sprite_background_;
 		sf:: Sprite *sprite_background2_;
+		int xa_, ya_;	
 		int xb_, yb_;
-		int xa_, ya_;
 };
 
 

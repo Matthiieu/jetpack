@@ -30,6 +30,5 @@ Bouton:: ~Bouton(){
 void 
 Bouton:: display(sf::RenderTarget *rt){
 	rt->draw(*rectangleShape_);
-	rt->draw(text_);
-	
+	rt->draw(text_);	
 }
