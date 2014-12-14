@@ -61,6 +61,7 @@ Jetpack::launch ()
 							High_Score = 1;
 							audio_->stop_menu();
 							audio_->play_score();
+							time3.restart();
 							break;
          				  	  default: break;
          					 }

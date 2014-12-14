@@ -50,13 +50,13 @@
 //Niveau Moyen
 #define SOSO		20000
 #define SPEED12		-3
-#define NEON1		15
-#define ROCKET1		15
+#define NEON1		10
+#define ROCKET1		13
 //Niveau Difficile
-#define HARD		75000
+#define HARD		30000
 #define SPEED22		-3
-#define NEON2		20
-#define ROCKET2		20
+#define NEON2		10
+#define ROCKET2		15
 
 #define FLOOR	540
 #define MIDDLE	100

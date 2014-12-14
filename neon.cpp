@@ -52,7 +52,7 @@ int
 Neon:: generator_number(){
 	// Génerer un nombre entre 0 et 600!
 	srand(time(NULL));
-	int alea = rand() % 600;
+	int alea = rand() % 580;
 	return alea;
 }
 
@@ -69,7 +69,7 @@ Neon:: from_scratch(bool boolean){
 bool
 Neon:: far_away(int x){
 	// Verifie si notre neon est partie bien loin...
-	if (x < 0)
+	if (x < (-10))
 		return true;
 	else
 		return false;

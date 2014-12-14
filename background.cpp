@@ -16,7 +16,6 @@ Background:: Background(string name, int x, int y){
 //Destructeur
 Background:: ~Background(){
 	delete sprite_background_;
-	delete sprite_background2_;
 }
 
 //Permet de positionner les fonds d'écran.

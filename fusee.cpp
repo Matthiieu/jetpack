@@ -44,7 +44,7 @@ int
 Fusee:: generator_number(){
 	// Génerer un nombre entre 0 et 600!
 	srand(time(NULL));
-	int alea = rand() % 600;
+	int alea = rand() % 550;
 	return alea;
 }
 
@@ -61,7 +61,7 @@ Fusee:: from_scratch(bool boolean){
 bool
 Fusee:: far_away(int x){
 	// Verifie si notre fusée est partie bien loin...
-	if (x < 0)
+	if (x < (-10))
 		return true;
 	else
 		return false;
