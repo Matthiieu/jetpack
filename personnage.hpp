@@ -27,10 +27,11 @@ class Personnage{
 	
 		void run();
 
-		void gravity(int X, int Y);
+		void gravity(int X, int Y, bool boolean);
 
 		bool collision1(int a, int b, int c, int d);
 		bool collision2(int a, int b, int c, int d);
+		bool collision3(int a, int b, int c, int d);
 		bool collision4(int a, int b, int c, int d);
 		void more_life(void);
 		void less_life(void);

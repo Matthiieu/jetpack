@@ -10,7 +10,7 @@ Cupcake:: Cupcake(){
 	sprite_cupcake_->setTexture(cupcake_);
 	sprite_cupcake_->setScale(0.03f, 0.03f);
 	xc_ = 800;
-	yc_ = 100;
+	yc_ = 500;
 }
 
 Cupcake:: ~Cupcake(){

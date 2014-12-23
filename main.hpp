@@ -27,6 +27,7 @@
 #define	TAILLE_RECTANGLE_LARGEUR	50
 #define ECHELLE_RECTANGLE		2.0f
 #define ECHELLE_SAM			1.5f
+#define ECHELLE_SAM_GRAVITY		-1.5f
 
 #define TAILLE_POLICE 50
 #define POLICE_BOUTON 65
@@ -59,7 +60,9 @@
 #define ROCKET2		15
 
 #define FLOOR	540
+#define FLOOR2	700
 #define MIDDLE	100
+#define CEILING	50
 
 #define UPDATE	200
 

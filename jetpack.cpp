@@ -27,6 +27,8 @@ Jetpack::launch ()
   int Aide = 0;
   bool launch_heart;
   bool semaphore = true;
+  bool semaphore2 = true;
+  bool semaphore3 = true;
   int High_Score = 0;
   Personnage *sam = NULL;
   Fusee *fusee = NULL;
@@ -75,9 +77,15 @@ Jetpack::launch ()
 					break;
 				case sf::Event::KeyPressed:
 					if (event.key.code == sf::Keyboard::Up){
-						if (Play == 1){
+						if ((Play == 1) && (semaphore3 == true)){
 							sam->setPosition(sam->getX(), sam->getY());	
 							sam->deplacer(0, SPEED);		
+						}					
+					}
+					else if (event.key.code == sf::Keyboard::Down){
+						if ((Play == 1) && (semaphore3 == false)){
+							sam->setPosition(sam->getX(), sam->getY());	
+							sam->deplacer(0, -SPEED);		
 						}					
 					}
 					break;
@@ -98,7 +106,7 @@ Jetpack::launch ()
 						background->setPosition(background->getX(), background->getY());
 						background->parade(NEON0, 0);
 					}
-					sam->gravity(0, SPEED02);
+					sam->gravity(0, SPEED02, semaphore2);
 					sam->run();
 					neon->move(NEON0, 0);
 					if (neon->from_scratch(neon->far_away(neon->getX()))){
@@ -134,7 +142,7 @@ Jetpack::launch ()
 						background->setPosition(background->getX(), background->getY());
 						background->parade(NEON1, 0);
 					}
-					sam->gravity(0, SPEED12);
+					sam->gravity(0, SPEED12, semaphore2);
 					sam->run();
 					fusee->launch(ROCKET1, 0);
 					neon->move(NEON1, 0);
@@ -184,7 +192,7 @@ Jetpack::launch ()
 						background->parade(NEON1, 0);
 					}
 					//menu_->display_vie(win_);
-					sam->gravity(0, SPEED22);
+					sam->gravity(0, SPEED22, semaphore2);
 					sam->run();
 					fusee->launch(ROCKET2, 0);
 					neon->move(NEON2, 0);
@@ -281,6 +289,11 @@ Jetpack::launch ()
 			else
 				launch_heart = false;
 			menu_->display_vie(win_, sam->getLIFE());
+			if(((sam->collision3(sam->getX(), sam->getY(), cupcake->getX(), cupcake->getY())) == true)){
+				cout << "Sam a mangé le cupcake" << endl;
+				semaphore2 = false;
+				semaphore3 = false;
+			}
 			if (sam->is_alive() == false){
 				Play = 0;	//On sort de la gamePlay
 				Loose = 1;	//On rentre dans la fenetre "Perdu"

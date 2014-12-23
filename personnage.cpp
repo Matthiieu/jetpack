@@ -8,6 +8,7 @@ Personnage:: Personnage(){
 	personnage_.setSmooth(true);
 	sprite_perso_ = new sf::Sprite;
 	sprite_perso_->setTexture(personnage_);
+	sprite_perso_->scale((0.8f), (0.8f));
 	x_ = MIDDLE;
 	y_ = FLOOR;
 	anim.x = 0;
@@ -55,7 +56,7 @@ Personnage:: collision2(int a, int b, int c, int d){
 		return false;
 }
 
-/*bool 
+bool 
 Personnage:: collision3(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec le cupcake!
 	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
@@ -63,7 +64,7 @@ Personnage:: collision3(int a, int b, int c, int d){
 	}
 	else
 		return false;
-}*/
+}
 
 bool 
 Personnage:: collision4(int a, int b, int c, int d){
@@ -111,13 +112,14 @@ Personnage:: run(){
 			time.restart();
 		}
 		sprite_perso_->setTextureRect(sf::IntRect(anim.x * 32, anim.y * 32, 32, 32));
-		sprite_perso_->setScale(ECHELLE_SAM,ECHELLE_SAM);
+		//sprite_perso_->setScale(ECHELLE_SAM, gravity);
 	}
 	else{
 		sprite_perso_->setTextureRect(sf::IntRect(32, 64, 32, 32));
-		sprite_perso_->setScale(ECHELLE_SAM, ECHELLE_SAM);
+		//sprite_perso_->setScale(ECHELLE_SAM, gravity);
 	}
 }
+
 
 void
 Personnage:: display(sf::RenderTarget *rt){
@@ -126,13 +128,25 @@ Personnage:: display(sf::RenderTarget *rt){
 }
 
 void
-Personnage:: gravity(int X, int Y){
-		x_ = x_ - X;
-		y_ = y_ - Y;
-		if(y_ >= FLOOR)
-			y_ = FLOOR;
-		if (y_ <= 0)
-			y_ = 0;
+Personnage:: gravity(int X, int Y, bool boolean){
+		if (boolean == true){	// correspond à la gravité
+			sprite_perso_->setScale(ECHELLE_SAM, ECHELLE_SAM);
+			x_ = x_ - X;
+			y_ = y_ - Y;
+			if(y_ >= FLOOR)
+				y_ = FLOOR;
+			if (y_ <= 0)
+				y_ = 0;
+		}
+		else{			// correspond à l'anti gravité
+			sprite_perso_->setScale(ECHELLE_SAM, ECHELLE_SAM_GRAVITY);
+			x_ = x_ - X;
+			y_ = y_ + Y;
+			if (y_ >= FLOOR2)	
+				y_ = FLOOR2;
+			if (y_ <= CEILING)
+				y_ = CEILING;
+		}
 		sprite_perso_->move(x_, y_);
 }
 
