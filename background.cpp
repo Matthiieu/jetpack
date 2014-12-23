@@ -9,7 +9,7 @@ Background:: Background(string name, int x, int y){
 	sprite_background_ = new sf::Sprite;
 	sprite_background_->setTexture(background_);
 	sprite_background_->setPosition(x, y);
-	xb_ = x;	//Coordonnées du sprite.
+	xb_ = x;					//Coordonnées du sprite.
 	yb_ = y;
 }
 
@@ -72,4 +72,5 @@ int
 Background:: getY(){
     return yb_;
 }
+
 

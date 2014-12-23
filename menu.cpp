@@ -141,7 +141,7 @@ Menu:: distance(sf::RenderTarget *rt, int number){
 }
 
 void 
-Menu:: display_vie(sf::RenderTarget *rt){
+Menu:: display_vie(sf::RenderTarget *rt, int number){
 	sf:: Texture vie_;
 	sf:: Sprite sprite_vie_;
 	if(!vie_.loadFromFile("vie.png")){
@@ -149,10 +149,30 @@ Menu:: display_vie(sf::RenderTarget *rt){
 	}
 	sprite_vie_.setTexture(vie_);
 	sprite_vie_.setPosition(600, 10);
-	sprite_vie_.setScale(0.05f, 0.05f);
-	//cout << "coucou"<< endl;
+	sprite_vie_.setScale(0.15f, 0.15f);
+	char buffer[6];
+	gcvt(number, 6, buffer);
+	sf:: Text texte3_;
+	//sf:: Text texte4_;
+	sf:: Font font_;
+	if(!font_.loadFromFile("police.ttf")){
+		exit(1);
+	}
+	texte3_.setFont(font_);
+	//texte4_.setFont(font_);
+	texte3_.setCharacterSize(20);
+	//texte4_.setCharacterSize(20);
+	texte3_.setColor(sf::Color::White);
+	//texte4_.setColor(sf::Color::White);
+	//texte4_.setString("X");
+	texte3_.setString(buffer);
+	//texte4_.setPosition(630, 0);
+	texte3_.setPosition(650, 10);
+	rt->draw(texte3_);
+	//rt->draw(texte4_);
 	rt->draw(sprite_vie_);
 }
+
 
 void 
 Menu:: display_chrono(sf::RenderTarget *rt, int number){

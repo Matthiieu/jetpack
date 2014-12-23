@@ -33,6 +33,8 @@ Personnage:: gagner_vie(){
 	nbre_vie += 1;
 }
 
+
+//PREVOIR UNE FONCTION GENERALE COLLISION!!!!!!!!!!!!!!!!
 bool 
 Personnage:: collision1(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec la fusee!
@@ -51,6 +53,44 @@ Personnage:: collision2(int a, int b, int c, int d){
 	}
 	else
 		return false;
+}
+
+/*bool 
+Personnage:: collision3(int a, int b, int c, int d){
+	// previens s'il y a eu collision avec le cupcake!
+	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
+		return true;
+	}
+	else
+		return false;
+}*/
+
+bool 
+Personnage:: collision4(int a, int b, int c, int d){
+	// previens s'il y a eu collision avec le coeur!
+	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
+		return true;
+	}
+	else
+		return false;
+}
+
+void 
+Personnage:: more_life(void){
+		nbre_vie++;
+}
+
+void 
+Personnage:: less_life(void){
+		nbre_vie--;
+}
+
+bool
+Personnage:: is_alive(){
+	if(nbre_vie == 0)
+		return false;
+	else
+		return true;
 }
 
 void 
@@ -104,4 +144,9 @@ Personnage:: getX(){
 int
 Personnage:: getY(){
     return y_;
+}
+
+int 
+Personnage:: getLIFE(){
+	return nbre_vie;
 }

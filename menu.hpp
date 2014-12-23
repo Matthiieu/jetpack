@@ -25,7 +25,7 @@ class Menu
 		void distance(sf::RenderTarget *rt, int number);
 		void display_chrono(sf::RenderTarget *rt, int number);
 
-		void display_vie(sf::RenderTarget *rt);
+		void display_vie(sf::RenderTarget *rt, int number);
 
  		void written_score(int number);
 		void reading_score(sf::RenderTarget *rt);

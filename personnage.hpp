@@ -22,6 +22,8 @@ class Personnage{
 		int getX();
 
 		int getY();
+
+		int getLIFE();
 	
 		void run();
 
@@ -29,7 +31,11 @@ class Personnage{
 
 		bool collision1(int a, int b, int c, int d);
 		bool collision2(int a, int b, int c, int d);
-
+		bool collision4(int a, int b, int c, int d);
+		void more_life(void);
+		void less_life(void);
+		bool is_alive();
+		
 		friend class Fusee;
 
 	private:

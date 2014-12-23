@@ -12,6 +12,8 @@
 #include "fusee.hpp"
 #include "neon.hpp"
 #include "background.hpp"
+#include "cupcake.hpp"
+#include "heart.hpp"
 
 //class Menu;
 

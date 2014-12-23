@@ -25,16 +25,22 @@ Jetpack::launch ()
   int Loose = 0;
   int Level = 0;
   int Aide = 0;
+  bool launch_heart;
+  bool semaphore = true;
   int High_Score = 0;
   Personnage *sam = NULL;
   Fusee *fusee = NULL;
   Neon *neon = NULL;
+  Cupcake *cupcake = NULL;
   Menu *menu_ = NULL;
+  Heart *heart = NULL;
   menu_ = new Menu();
   Background *background = NULL;
   background = new Background("essaic.png", 0, 0);
   neon = new Neon;
+  heart = new Heart;
   sam = new Personnage;
+  cupcake = new Cupcake;
   fusee = new Fusee;
   sf:: Clock time;	//Compteur score
   sf:: Clock time2;	//Decompteur avant lancement jeu
@@ -100,19 +106,25 @@ Jetpack::launch ()
 						neon->move(NEON0, 0);
 					}
 					sf::Time elapsed1 = time.getElapsedTime();
-					menu_->distance(win_, elapsed1.asMilliseconds());
+
 					if (elapsed1.asMilliseconds() > SOSO)
 						Level = 1;
 					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
-						Play = 0;	//On sort de la gamePlay
-						Loose = 1;	//On rentre dans la fenetre "Perdu"
-						time3.restart();
+						sam->less_life();
+					}
+					if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
+						cout << "Sam a gagné une vie supplémentaire!" << endl;
+						sam->more_life();
+						cout << sam->getLIFE() << endl;
 					}
 					win_->clear();
 					background->display(win_);
-					menu_->display_vie(win_);
 					sam->display(win_);
 					neon->display(win_);
+					menu_->distance(win_, elapsed1.asMilliseconds());
+					if (launch_heart == true)
+						heart->move(NEON0, 0);
+						heart->display(win_);
 				}				
 				break;
 			case 1:
@@ -126,6 +138,7 @@ Jetpack::launch ()
 					sam->run();
 					fusee->launch(ROCKET1, 0);
 					neon->move(NEON1, 0);
+					cupcake->move(NEON1, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
 						fusee->setPosition(fusee->getX(), fusee->generator_number());
 						fusee->launch(ROCKET1, 0);
@@ -134,25 +147,33 @@ Jetpack::launch ()
 						neon->setPosition(neon->getX(), neon->generator_number());
 						neon->move(NEON1, 0);
 					}
+					if (semaphore == true){
+						if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
+							cout << "Sam a gagné une vie supplémentaire!" << endl;
+							sam->more_life();
+							cout << sam->getLIFE() << endl;
+							semaphore = false;
+						}
+					}
 					sf::Time elapsed2 = time.getElapsedTime();
-					menu_->distance(win_, elapsed2.asMilliseconds());
 					if (elapsed2.asMilliseconds() > HARD)
 						Level = 2;
 					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
-						Play = 0;	//On sort de la gamePlay
-						Loose = 1;	//On rentre dans la fenetre "Perdu"
-						time3.restart();
+						sam->less_life();
 					}
 					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
-						Play = 0;	//On sort de la gamePlay
-						Loose = 1;	//On rentre dans la fenetre "Perdu"
-						time3.restart();
+						sam->less_life();
 					}
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
 					fusee->display(win_);
 					neon->display(win_);
+					cupcake->display(win_);
+					menu_->distance(win_, elapsed2.asMilliseconds());
+					if (launch_heart == true)
+						heart->move(NEON0, 0);
+						heart->display(win_);
 				}
 				break;
 			case 2:
@@ -175,17 +196,12 @@ Jetpack::launch ()
 						neon->setPosition(neon->getX(), neon->generator_number());
 						neon->move(NEON2, 0);
 					}
-					sf::Time elapsed3 = time2.getElapsedTime();
-					menu_->distance(win_, elapsed3.asMilliseconds());
+					sf::Time elapsed3 = time.getElapsedTime();
 					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
-						Play = 0;	//On sort de la gamePlay
-						Loose = 1;	//On rentre dans la fenetre "Perdu"
-						time3.restart();
+						sam->less_life();
 					}
 					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
-						Play = 0;	//On sort de la gamePlay
-						Loose = 1;	//On rentre dans la fenetre "Perdu"*		
-						time3.restart();
+						sam->less_life();
 					}
 					neon->rotate();
 					win_->clear();
@@ -193,6 +209,10 @@ Jetpack::launch ()
 					sam->display(win_);
 					fusee->display(win_);
 					neon->display(win_);
+					menu_->distance(win_, elapsed3.asMilliseconds());
+					if (launch_heart == true)
+						heart->move(NEON0, 0);
+						heart->display(win_);
 				}
 				break;
 			default:
@@ -254,10 +274,25 @@ Jetpack::launch ()
 			menu_->display_texte(win_);
 		}
 	/*********************************************************************************/ //
+		if (Play == 1){
+			sf::Time elapsed7 = time2.getElapsedTime();
+			if(elapsed7.asSeconds() > 13)
+				launch_heart = true;
+			else
+				launch_heart = false;
+			menu_->display_vie(win_, sam->getLIFE());
+			if (sam->is_alive() == false){
+				Play = 0;	//On sort de la gamePlay
+				Loose = 1;	//On rentre dans la fenetre "Perdu"
+			}
+			
+		}
 		win_->display();			
 	}
 	delete sam;
 	delete fusee;
 	delete neon;
 	delete background;
+	delete cupcake;
+	delete heart;
 }
