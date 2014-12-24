@@ -14,6 +14,7 @@
 #include "background.hpp"
 #include "cupcake.hpp"
 #include "heart.hpp"
+#include "bitcoin.hpp"
 
 //class Menu;
 

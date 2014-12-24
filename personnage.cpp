@@ -4,11 +4,10 @@ using namespace std;
 
 Personnage:: Personnage(){ 
 	nbre_vie = 1;
-	personnage_.loadFromFile("character.png");
+	personnage_.loadFromFile("samy.png");
 	personnage_.setSmooth(true);
 	sprite_perso_ = new sf::Sprite;
 	sprite_perso_->setTexture(personnage_);
-	sprite_perso_->scale((0.8f), (0.8f));
 	x_ = MIDDLE;
 	y_ = FLOOR;
 	anim.x = 0;
@@ -130,7 +129,7 @@ Personnage:: display(sf::RenderTarget *rt){
 void
 Personnage:: gravity(int X, int Y, bool boolean){
 		if (boolean == true){	// correspond à la gravité
-			sprite_perso_->setScale(ECHELLE_SAM, ECHELLE_SAM);
+			sprite_perso_->setScale(ECHELLE_SAM2, ECHELLE_SAM);
 			x_ = x_ - X;
 			y_ = y_ - Y;
 			if(y_ >= FLOOR)

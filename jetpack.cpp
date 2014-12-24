@@ -32,6 +32,7 @@ Jetpack::launch ()
   int High_Score = 0;
   Personnage *sam = NULL;
   Fusee *fusee = NULL;
+  Bitcoin *bitcoin = NULL;
   Neon *neon = NULL;
   Cupcake *cupcake = NULL;
   Menu *menu_ = NULL;
@@ -40,6 +41,7 @@ Jetpack::launch ()
   Background *background = NULL;
   background = new Background("essaic.png", 0, 0);
   neon = new Neon;
+  bitcoin = new Bitcoin;
   heart = new Heart;
   sam = new Personnage;
   cupcake = new Cupcake;
@@ -108,6 +110,8 @@ Jetpack::launch ()
 					}
 					sam->gravity(0, SPEED02, semaphore2);
 					sam->run();
+					cupcake->move(NEON1, 0);
+					bitcoin->move(NEON1, 0);
 					neon->move(NEON0, 0);
 					if (neon->from_scratch(neon->far_away(neon->getX()))){
 						neon->setPosition(neon->getX(), neon->generator_number());
@@ -121,6 +125,7 @@ Jetpack::launch ()
 						sam->less_life();
 					}
 					if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
+						audio_->play_vie();
 						cout << "Sam a gagné une vie supplémentaire!" << endl;
 						sam->more_life();
 						cout << sam->getLIFE() << endl;
@@ -129,6 +134,8 @@ Jetpack::launch ()
 					background->display(win_);
 					sam->display(win_);
 					neon->display(win_);
+					bitcoin->display(win_);
+					cupcake->display(win_);
 					menu_->distance(win_, elapsed1.asMilliseconds());
 					if (launch_heart == true)
 						heart->move(NEON0, 0);
@@ -146,7 +153,6 @@ Jetpack::launch ()
 					sam->run();
 					fusee->launch(ROCKET1, 0);
 					neon->move(NEON1, 0);
-					cupcake->move(NEON1, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
 						fusee->setPosition(fusee->getX(), fusee->generator_number());
 						fusee->launch(ROCKET1, 0);
@@ -157,6 +163,7 @@ Jetpack::launch ()
 					}
 					if (semaphore == true){
 						if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
+							audio_->play_vie();
 							cout << "Sam a gagné une vie supplémentaire!" << endl;
 							sam->more_life();
 							cout << sam->getLIFE() << endl;
@@ -177,7 +184,6 @@ Jetpack::launch ()
 					sam->display(win_);
 					fusee->display(win_);
 					neon->display(win_);
-					cupcake->display(win_);
 					menu_->distance(win_, elapsed2.asMilliseconds());
 					if (launch_heart == true)
 						heart->move(NEON0, 0);
@@ -252,6 +258,7 @@ Jetpack::launch ()
 			win_->clear();
 			menu_->display_chrono(win_, number);	
 			menu_->reading_score(win_);
+			menu_->screenshot(win_);
 		}
 	/*********************************************************************************/ //
 		if (Loose == 1){
@@ -268,6 +275,7 @@ Jetpack::launch ()
 			Play = 0;
 			win_->clear();
 			menu_->display_looser(win_);
+			//menu_->screenshot(win_);
 			sf::Time elapsed7 = time.getElapsedTime();
 			//Obtenir le kilometrage et l'inscrire dans le fichier
 			menu_->written_score(elapsed7.asMilliseconds());
@@ -291,14 +299,22 @@ Jetpack::launch ()
 			menu_->display_vie(win_, sam->getLIFE());
 			if(((sam->collision3(sam->getX(), sam->getY(), cupcake->getX(), cupcake->getY())) == true)){
 				cout << "Sam a mangé le cupcake" << endl;
+				audio_->play_cupcake();
 				semaphore2 = false;
 				semaphore3 = false;
 			}
 			if (sam->is_alive() == false){
+				audio_->play_crash();
+				sf:: Image screen = win_->capture();
+				screen.saveToFile("screenshot.jpg"); // maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				Play = 0;	//On sort de la gamePlay
 				Loose = 1;	//On rentre dans la fenetre "Perdu"
 			}
-			
+			if(((sam->collision3(sam->getX(), sam->getY(), bitcoin->getX(), bitcoin->getY())) == true)){
+				cout << "Sam a attrapé une piece" << endl;
+				audio_->play_cupcake();
+				bitcoin->collection();
+			}
 		}
 		win_->display();			
 	}

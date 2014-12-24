@@ -1,4 +1,10 @@
-
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : BOUTON.CPP                */
+/*****************************************************/
 
 #include "bouton.hpp"
 
@@ -9,17 +15,17 @@ Bouton::Bouton (int X, int Y, sf::String text)
 	if(!font_.loadFromFile("police.ttf")){
 		exit(1);
 	}
-	if(!texture_->loadFromFile("texture_metallique.jpg")){
+	if(!texture_->loadFromFile("texture_bois.png")){
 		exit(1);
 	}
 	rectangleShape_->setTexture(texture_);
 	rectangleShape_->setPosition(X, Y);
-	rectangleShape_->scale(ECHELLE_RECTANGLE, ECHELLE_RECTANGLE);
+	rectangleShape_->scale(2.6f, 2.6f);
 	text_.setFont(font_);
 	text_.setCharacterSize(POLICE_BOUTON);
-	text_.setColor(sf::Color::Black);
+	text_.setColor(sf::Color::White);
 	text_.setString(text);
-	text_.setPosition(X, Y);
+	text_.setPosition(X + 50, Y + 10);
 }
 
 Bouton:: ~Bouton(){

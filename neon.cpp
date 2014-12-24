@@ -4,11 +4,12 @@
 using namespace std;
 
 Neon:: Neon(){ 
-	neon_.loadFromFile("baguette.png");
+	neon_.loadFromFile("Baguette.png");
 	neon_.setSmooth(true);
 	sprite_neon_ = new sf::Sprite;
 	sprite_neon_->setTexture(neon_);
-	sprite_neon_->setScale(0.8f, 0.5f);
+	sprite_neon_->rotate(100);
+	sprite_neon_->setScale(0.4f, 0.2f);
 	xn_ = 800;
 	yn_ = 100;
 }
@@ -52,7 +53,7 @@ int
 Neon:: generator_number(){
 	// Génerer un nombre entre 0 et 600!
 	srand(time(NULL));
-	int alea = rand() % 580;
+	int alea = rand() % 480;
 	return alea;
 }
 

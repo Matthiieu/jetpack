@@ -37,7 +37,7 @@ class Personnage{
 		void less_life(void);
 		bool is_alive();
 		
-		friend class Fusee;
+		friend class Bitcoin;
 
 	private:
 		int nbre_vie;

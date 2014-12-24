@@ -3,12 +3,11 @@
 using namespace std;
 
 Menu:: Menu(){
-	if(!texture_.loadFromFile("index.jpeg")){
+	if(!texture_first.loadFromFile("foreground.png")){
 		exit(1);
 	}
-	logo_.setTexture(texture_);
-	logo_.setPosition(POSITION_IMAGE_MENU_X, POSITION_IMAGE_MENU_Y);
-	logo_.setScale(ECHELLE_IMAGE_MENU_X, ECHELLE_IMAGE_MENU_Y);	
+	logo_first.setTexture(texture_first);
+	logo_first.setPosition(0, 5);
 }
 	
 Menu:: ~Menu(){
@@ -32,21 +31,23 @@ Menu:: display_texte(sf::RenderTarget *rt){
 	sf:: Text texte_;
 	sf:: Text texte2_;
 	sf:: Font font_;
-	if(!font_.loadFromFile("police.ttf")){
+	if(!font_.loadFromFile("font2.ttf")){
 		exit(1);
 	}
 	texte_.setFont(font_);
-	texte_.setRotation(ROTATE);
-	texte_.setCharacterSize(TAILLE_POLICE);
-	texte_.setColor(sf::Color::White);
-	texte_.setPosition(POSITION_TITRE_MENU_X, POSITION_TITRE_MENU_Y);
+	texte_.setRotation(-15);
+	texte_.setCharacterSize(90);
+	texte_.setColor(sf::Color::Black);
+	texte_.setStyle(sf::Text::Bold);
+	texte_.setPosition(50, 100 );
 	texte_.setString("Welcome to the\n");
 	texte2_.setFont(font_);
 	//texte2_.setRotation(ROTATE);
-	texte2_.setCharacterSize(TAILLE_POLICE);
-	texte2_.setColor(sf::Color::White);
-	texte2_.setPosition(130, 320);
-	texte2_.setString("At the bakery!\n");
+	texte2_.setCharacterSize(120);
+	texte2_.setColor(sf::Color::Black);
+	texte2_.setPosition(180, 150);
+	texte2_.setStyle(sf::Text::Bold);
+	texte2_.setString("Jetpack Joyride\nAt the bakery!\n");
 	rt->draw(texte_);
 	rt->draw(texte2_);
 }
@@ -83,7 +84,7 @@ Menu:: reading_score(sf::RenderTarget *rt){
 	}
 	texte2_.setFont(font_);
 	texte2_.setCharacterSize(40);
-	texte2_.setColor(sf::Color::White);
+	texte2_.setColor(sf::Color::Red);
 	texte2_.setString("Last Score:");
 	texte2_.setPosition(30, 2);
 	rt->draw(texte2_);
@@ -97,7 +98,7 @@ Menu:: reading_score(sf::RenderTarget *rt){
 			gcvt(i, 2, buffer2);
 			texte3_.setFont(font_);
 			texte3_.setCharacterSize(40);
-			texte3_.setColor(sf::Color::White);
+			texte3_.setColor(sf::Color::Red);
 			texte3_.setString(buffer2);
 			texte3_.setPosition(10, 30 * i);
 			texte_.setFont(font_);
@@ -115,6 +116,19 @@ Menu:: reading_score(sf::RenderTarget *rt){
 		cerr << "Impossible d'ouvrir le fichier en lecture" << endl;
 	}
 	//cout << string1 << string2 << endl;	
+}
+
+void
+Menu:: screenshot(sf::RenderTarget *rt){
+	if(!texture_screenshot.loadFromFile("screenshot.jpg")){
+		exit(1);
+	}
+	logo_screenshot.setTexture(texture_screenshot);
+	logo_screenshot.setRotation(10);
+	logo_screenshot.setPosition(POSITION_SCREENSHOT_MENU_X, POSITION_SCREENSHOT_MENU_Y);
+	logo_screenshot.setScale(ECHELLE_SCREENSHOT_MENU_X, ECHELLE_SCREENSHOT_MENU_Y);
+	rt->draw(logo_screenshot);
+
 }
 
 void 
@@ -208,7 +222,7 @@ Menu:: display_looser(sf::RenderTarget *rt){
 
 void 
 Menu:: display(sf::RenderTarget *rt){
-	rt->draw(logo_);
+	rt->draw(logo_first);
 	display_bouton(rt);
 }
 
@@ -223,7 +237,7 @@ Menu:: display_aide(sf::RenderTarget *rt){
 	texte_.setCharacterSize(30);
 	texte_.setColor(sf::Color::White);
 	texte_.setPosition(0, 20);
-	texte_.setString("Le boulanger ne veut plus vendre de baguette!\nAide Sam a acheter sa baguette en evitant\nles projectiles lances par le boulanger.\n\nVous disposez d une seule touche de\n direction 'Up' qui permet de surelever Sam\nSam redescend automatiquement par gravite\n\nBon courage et surtout.. Bonne chance!");
+	texte_.setString("Aide Sam a eviter les projectiles lances par\n le boulanger.\n\n\n Pour cela, vous disposez d'une seule touche\n qui permet de surelever\n votre personnage.\n Attention aux cupcakes qui inversent\n la gravite et donc de touche!\n\n\nBon courage et surtout.. Bonne chance!");
 	rt->draw(texte_);
 }
 

@@ -27,13 +27,17 @@ class Menu
 
 		void display_vie(sf::RenderTarget *rt, int number);
 
+		void screenshot(sf::RenderTarget *rt);
+
  		void written_score(int number);
 		void reading_score(sf::RenderTarget *rt);
 		sf::Text transformator_string(int Taille, int PosX, int PosY, string String);
 
 	private:
-		sf:: Texture texture_;
-		sf:: Sprite logo_;
+		sf:: Texture texture_first;
+		sf:: Sprite logo_first;
+		sf:: Texture texture_screenshot;
+		sf:: Sprite logo_screenshot;
 		sf:: Text textes_;
 		
 };
