@@ -37,8 +37,9 @@ Personnage:: gagner_vie(){
 //PREVOIR UNE FONCTION GENERALE COLLISION!!!!!!!!!!!!!!!!
 bool 
 Personnage:: collision1(int a, int b, int c, int d){
-	// previens s'il y a eu collision avec la fusee!
-	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 25)){
+	// previens s'il y a eu collision avec la brioche!
+	if ((abs(a-c) <= 15 ) && (abs(b-d) <= 15)){
+		cout << "COLLISION BRIOCHE" << endl;
 		return true;
 	}
 	else
@@ -47,8 +48,10 @@ Personnage:: collision1(int a, int b, int c, int d){
 
 bool 
 Personnage:: collision2(int a, int b, int c, int d){
-	// previens s'il y a eu collision avec le neon!
-	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
+	// previens s'il y a eu collision avec la baguette!
+	if ((abs(a-c) <= 20 ) && (abs(b-d) <= 80)){
+		cout << abs(a-c) << endl << abs(b-d) << endl << c << endl << d << endl;
+		cout << "COLLISION BAGUETTE" << endl;
 		return true;
 	}
 	else
@@ -59,6 +62,7 @@ bool
 Personnage:: collision3(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec le cupcake!
 	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
+		cout << "COLLISION CUPCAKE" << endl;
 		return true;
 	}
 	else
@@ -69,6 +73,7 @@ bool
 Personnage:: collision4(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec le coeur!
 	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
+		cout << "COLLISION COEUR" << endl;
 		return true;
 	}
 	else

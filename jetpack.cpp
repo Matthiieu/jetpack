@@ -6,7 +6,7 @@ Jetpack::Jetpack()
 {
 	win_ = new sf::RenderWindow(sf::VideoMode(LONGUEUR_FENETRE, LARGEUR_FENETRE), "Jetpack Joyride", sf::Style::Close); 
 	//win_->setPosition(sf::Vector2i(POSITION_FENETRE_X, POSITION_FENETRE_Y));
-	//win_->setFramerateLimit(80);
+	win_->setFramerateLimit(80);
 	audio_ = new Audio();
 }
 
@@ -103,25 +103,25 @@ Jetpack::launch ()
 		switch(Level){
 			case 0:
 				if (Play == 1){
-					background->parade(NEON0, 0);
+					background->parade(BACKGROUND0, 0);
 					if (background->from_scratch(background->far_away(background->getX()))){
 						background->setPosition(background->getX(), background->getY());
-						background->parade(NEON0, 0);
+						background->parade(BACKGROUND0, 0);
 					}
-					sam->gravity(0, SPEED02, semaphore2);
+					sam->gravity(0, SPEED0, semaphore2);
 					sam->run();
-					cupcake->move(NEON1, 0);
-					bitcoin->move(NEON1, 0);
-					neon->move(NEON0, 0);
+					cupcake->move(CUPCAKE0, 0);
+					bitcoin->move(BITCOIN0, 0);
+					neon->move(FRENCH_STICK0, 0);
 					if (neon->from_scratch(neon->far_away(neon->getX()))){
 						neon->setPosition(neon->getX(), neon->generator_number());
-						neon->move(NEON0, 0);
+						neon->move(FRENCH_STICK0, 0);
 					}
 					sf::Time elapsed1 = time.getElapsedTime();
 
 					if (elapsed1.asMilliseconds() > SOSO)
 						Level = 1;
-					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
 						sam->less_life();
 					}
 					if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
@@ -138,28 +138,28 @@ Jetpack::launch ()
 					cupcake->display(win_);
 					menu_->distance(win_, elapsed1.asMilliseconds());
 					if (launch_heart == true)
-						heart->move(NEON0, 0);
+						heart->move(HEART0, 0);
 						heart->display(win_);
 				}				
 				break;
 			case 1:
 				if (Play == 1){
-					background->parade(NEON1, 0);
+					background->parade(BACKGROUND1, 0);
 					if (background->from_scratch(background->far_away(background->getX()))){
 						background->setPosition(background->getX(), background->getY());
-						background->parade(NEON1, 0);
+						background->parade(BACKGROUND1, 0);
 					}
-					sam->gravity(0, SPEED12, semaphore2);
+					sam->gravity(0, SPEED1, semaphore2);
 					sam->run();
-					fusee->launch(ROCKET1, 0);
-					neon->move(NEON1, 0);
+					fusee->launch(BRIOCHE1, 0);
+					neon->move(FRENCH_STICK1, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
 						fusee->setPosition(fusee->getX(), fusee->generator_number());
-						fusee->launch(ROCKET1, 0);
+						fusee->launch(BRIOCHE1, 0);
 					}
 					if (neon->from_scratch(neon->far_away(neon->getX()))){
 						neon->setPosition(neon->getX(), neon->generator_number());
-						neon->move(NEON1, 0);
+						neon->move(FRENCH_STICK1, 0);
 					}
 					if (semaphore == true){
 						if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
@@ -176,7 +176,7 @@ Jetpack::launch ()
 					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
 						sam->less_life();
 					}
-					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
 						sam->less_life();
 					}
 					win_->clear();
@@ -186,35 +186,35 @@ Jetpack::launch ()
 					neon->display(win_);
 					menu_->distance(win_, elapsed2.asMilliseconds());
 					if (launch_heart == true)
-						heart->move(NEON0, 0);
+						heart->move(HEART0, 0);
 						heart->display(win_);
 				}
 				break;
 			case 2:
 				if (Play == 1){
-					background->parade(NEON1, 0);
+					background->parade(BACKGROUND2, 0);
 					if (background->from_scratch(background->far_away(background->getX()))){
 						background->setPosition(background->getX(), background->getY());
-						background->parade(NEON1, 0);
+						background->parade(BACKGROUND2, 0);
 					}
 					//menu_->display_vie(win_);
-					sam->gravity(0, SPEED22, semaphore2);
+					sam->gravity(0, SPEED2, semaphore2);
 					sam->run();
-					fusee->launch(ROCKET2, 0);
-					neon->move(NEON2, 0);
+					fusee->launch(BRIOCHE2, 0);
+					neon->move(FRENCH_STICK2, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
 						fusee->setPosition(fusee->getX(), fusee->generator_number());
-						fusee->launch(ROCKET2, 0);
+						fusee->launch(BRIOCHE2, 0);
 					}
 					if (neon->from_scratch(neon->far_away(neon->getX()))){
 						neon->setPosition(neon->getX(), neon->generator_number());
-						neon->move(NEON2, 0);
+						neon->move(FRENCH_STICK2, 0);
 					}
 					sf::Time elapsed3 = time.getElapsedTime();
 					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
 						sam->less_life();
 					}
-					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY())) == true)){
+					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
 						sam->less_life();
 					}
 					neon->rotate();
@@ -225,7 +225,7 @@ Jetpack::launch ()
 					neon->display(win_);
 					menu_->distance(win_, elapsed3.asMilliseconds());
 					if (launch_heart == true)
-						heart->move(NEON0, 0);
+						heart->move(HEART0, 0);
 						heart->display(win_);
 				}
 				break;
@@ -256,8 +256,8 @@ Jetpack::launch ()
 				audio_->stop_score();
 			}
 			win_->clear();
-			menu_->display_chrono(win_, number);	
 			menu_->reading_score(win_);
+			menu_->display_chrono(win_, number);	
 			menu_->screenshot(win_);
 		}
 	/*********************************************************************************/ //
@@ -275,10 +275,7 @@ Jetpack::launch ()
 			Play = 0;
 			win_->clear();
 			menu_->display_looser(win_);
-			//menu_->screenshot(win_);
-			sf::Time elapsed7 = time.getElapsedTime();
 			//Obtenir le kilometrage et l'inscrire dans le fichier
-			menu_->written_score(elapsed7.asMilliseconds());
 			neon->from_scratch(true);
 			fusee->from_scratch(true);
 			background->from_scratch(true);
@@ -291,8 +288,8 @@ Jetpack::launch ()
 		}
 	/*********************************************************************************/ //
 		if (Play == 1){
-			sf::Time elapsed7 = time2.getElapsedTime();
-			if(elapsed7.asSeconds() > 13)
+			sf::Time elapsed8 = time2.getElapsedTime();
+			if(elapsed8.asSeconds() > 13)
 				launch_heart = true;
 			else
 				launch_heart = false;
@@ -305,6 +302,8 @@ Jetpack::launch ()
 			}
 			if (sam->is_alive() == false){
 				audio_->play_crash();
+				sf::Time elapsed7 = time.getElapsedTime();
+				menu_->written_score(elapsed7.asMilliseconds());
 				sf:: Image screen = win_->capture();
 				screen.saveToFile("screenshot.jpg"); // maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				Play = 0;	//On sort de la gamePlay
