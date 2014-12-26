@@ -20,7 +20,7 @@ Bouton::Bouton (int X, int Y, sf::String text)
 	}
 	rectangleShape_->setTexture(texture_);
 	rectangleShape_->setPosition(X, Y);
-	rectangleShape_->scale(2.6f, 2.6f);
+	rectangleShape_->scale(2.6f, 2.4f);
 	text_.setFont(font_);
 	text_.setCharacterSize(POLICE_BOUTON);
 	text_.setColor(sf::Color::White);

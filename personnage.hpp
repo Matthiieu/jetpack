@@ -26,6 +26,8 @@ class Personnage{
 		int getLIFE();
 	
 		void run();
+		void rotation_personnage1(void);
+		void rotation_personnage2(void);
 
 		void gravity(int X, int Y, bool boolean);
 

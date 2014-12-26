@@ -33,8 +33,8 @@
 #define	TAILLE_RECTANGLE_LARGEUR	50
 #define ECHELLE_RECTANGLE		2.0f
 #define ECHELLE_SAM			2.0f
-#define ECHELLE_SAM2			1.7f
-#define ECHELLE_SAM_GRAVITY		-1.5f
+#define ECHELLE_SAM2			1.0f
+#define ECHELLE_SAM_GRAVITY		-1.0f
 
 #define TAILLE_POLICE 50
 #define POLICE_BOUTON 65
@@ -43,12 +43,14 @@
 
 #define ROTATE	-10
 
-#define ZONE1	575
-#define ZONE2	671
-#define ZONE3	91
-#define ZONE4	380
-#define ZONE5	441
-#define ZONE6	733
+#define ZONE1	490
+#define ZONE2	565
+#define ZONE3	611
+#define ZONE4	686
+#define ZONE5	90
+#define ZONE6	380
+#define ZONE7	440
+#define ZONE8	730
 
 
 #define SPEED		23		//Vitesse de montee Sam

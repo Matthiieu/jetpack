@@ -8,6 +8,7 @@ Personnage:: Personnage(){
 	personnage_.setSmooth(true);
 	sprite_perso_ = new sf::Sprite;
 	sprite_perso_->setTexture(personnage_);
+	sprite_perso_->setScale(1.7f, 1.7f);
 	x_ = MIDDLE;
 	y_ = FLOOR;
 	anim.x = 0;
@@ -38,7 +39,7 @@ Personnage:: gagner_vie(){
 bool 
 Personnage:: collision1(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec la brioche!
-	if ((abs(a-c) <= 15 ) && (abs(b-d) <= 15)){
+	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 15)){
 		cout << "COLLISION BRIOCHE" << endl;
 		return true;
 	}
@@ -49,7 +50,7 @@ Personnage:: collision1(int a, int b, int c, int d){
 bool 
 Personnage:: collision2(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec la baguette!
-	if ((abs(a-c) <= 20 ) && (abs(b-d) <= 80)){
+	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
 		cout << abs(a-c) << endl << abs(b-d) << endl << c << endl << d << endl;
 		cout << "COLLISION BAGUETTE" << endl;
 		return true;
@@ -61,7 +62,7 @@ Personnage:: collision2(int a, int b, int c, int d){
 bool 
 Personnage:: collision3(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec le cupcake!
-	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
+	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
 		cout << "COLLISION CUPCAKE" << endl;
 		return true;
 	}
@@ -72,7 +73,7 @@ Personnage:: collision3(int a, int b, int c, int d){
 bool 
 Personnage:: collision4(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec le coeur!
-	if ((abs(a-c) <= 25 ) && (abs(b-d) <= 80)){
+	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
 		cout << "COLLISION COEUR" << endl;
 		return true;
 	}
@@ -92,8 +93,9 @@ Personnage:: less_life(void){
 
 bool
 Personnage:: is_alive(){
-	if(nbre_vie == 0)
+	if(nbre_vie == 0){
 		return false;
+	}
 	else
 		return true;
 }
@@ -132,9 +134,19 @@ Personnage:: display(sf::RenderTarget *rt){
 }
 
 void
+Personnage:: rotation_personnage2(void){
+	sprite_perso_->setScale(1.7f, -1.7f);
+}
+
+void
+Personnage:: rotation_personnage1(void){
+	sprite_perso_->setScale(1.7f, 1.7f);
+}
+
+void
 Personnage:: gravity(int X, int Y, bool boolean){
 		if (boolean == true){	// correspond à la gravité
-			sprite_perso_->setScale(ECHELLE_SAM2, ECHELLE_SAM);
+			rotation_personnage1();
 			x_ = x_ - X;
 			y_ = y_ - Y;
 			if(y_ >= FLOOR)
@@ -143,7 +155,7 @@ Personnage:: gravity(int X, int Y, bool boolean){
 				y_ = 0;
 		}
 		else{			// correspond à l'anti gravité
-			sprite_perso_->setScale(ECHELLE_SAM, ECHELLE_SAM_GRAVITY);
+			rotation_personnage2();
 			x_ = x_ - X;
 			y_ = y_ + Y;
 			if (y_ >= FLOOR2)	

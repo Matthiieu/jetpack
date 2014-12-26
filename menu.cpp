@@ -16,9 +16,13 @@ Menu:: ~Menu(){
 
 void
 Menu:: display_bouton(sf::RenderTarget *rt){
-	Bouton bouton_aide_(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2, "Play");
-	Bouton bouton_score_(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2, "Score");
+	Bouton bouton_play_(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 - 80, "Play");
+	Bouton bouton_score_(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 - 80, "Score");
+	Bouton bouton_quitter_(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 + 40, "Exit");
+	Bouton bouton_aide_(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 + 40, "Help");
 	bouton_score_.display(rt);
+	bouton_play_.display(rt);
+	bouton_quitter_.display(rt);
 	bouton_aide_.display(rt);
 }
 
@@ -32,15 +36,15 @@ Menu:: display_texte(sf::RenderTarget *rt){
 	}
 	texte_.setFont(font_);
 	texte_.setRotation(-15);
-	texte_.setCharacterSize(90);
+	texte_.setCharacterSize(70);
 	texte_.setColor(sf::Color::Black);
 	texte_.setStyle(sf::Text::Bold);
 	texte_.setPosition(50, 80 );
 	texte_.setString("Welcome to the\n");
 	texte2_.setFont(font_);
-	texte2_.setCharacterSize(150);
+	texte2_.setCharacterSize(100);
 	texte2_.setColor(sf::Color::Black);
-	texte2_.setPosition(100, 110);
+	texte2_.setPosition(140, 110);
 	texte2_.setStyle(sf::Text::Bold);
 	texte2_.setString("Jetpack Joyride\n   At the bakery!\n");
 	rt->draw(texte_);
@@ -136,15 +140,41 @@ Menu:: distance(sf::RenderTarget *rt, int number){
 		}
 		texte_.setFont(font_);
 		texte2_.setFont(font_);
-		texte_.setCharacterSize(20);
-		texte2_.setCharacterSize(20);
-		texte_.setColor(sf::Color::White);
-		texte2_.setColor(sf::Color::White);
+		texte_.setCharacterSize(30);
+		texte2_.setCharacterSize(30);
+		texte_.setColor(sf::Color::Red);
+		texte2_.setColor(sf::Color::Red);
 		texte2_.setString("metres");
 		texte_.setString(buffer);
 		texte2_.setPosition(80, 0);
 		rt->draw(texte_);
 		rt->draw(texte2_);
+}
+
+void 
+Menu:: display_bitcoin(sf::RenderTarget *rt, int number){
+	sf:: Texture bitcoin_;
+	sf:: Sprite sprite_bitcoin_;
+	if(!bitcoin_.loadFromFile("bitcoin1.png")){
+		exit(1);
+	}
+	sprite_bitcoin_.setTexture(bitcoin_);
+	sprite_bitcoin_.setPosition(380, 10);
+	sprite_bitcoin_.setScale(0.15f, 0.15f);
+	char buffer[6];
+	gcvt(number, 6, buffer);
+	sf:: Text texte5_;
+	sf:: Font font_;
+	if(!font_.loadFromFile("police.ttf")){
+		exit(1);
+	}
+	texte5_.setFont(font_);
+	texte5_.setCharacterSize(20);
+	texte5_.setColor(sf::Color::White);
+	texte5_.setString(buffer);
+	texte5_.setPosition(400, 10);
+	rt->draw(texte5_);
+	rt->draw(sprite_bitcoin_);
 }
 
 void 
@@ -213,10 +243,10 @@ Menu:: display(sf::RenderTarget *rt){
 }
 
 void
-Menu:: display_aide(sf::RenderTarget *rt){
+Menu:: display_presentation(sf::RenderTarget *rt){
 	sf:: Text texte_;
 	sf:: Font font_;
-	if(!font_.loadFromFile("police.ttf")){
+	if(!font_.loadFromFile("font2.ttf")){
 		exit(1);
 	}
 	texte_.setFont(font_);
@@ -229,18 +259,45 @@ Menu:: display_aide(sf::RenderTarget *rt){
 	rt->draw(texte_);
 }
 
+void
+Menu:: display_aide(sf::RenderTarget *rt){
+	sf:: Text texte5_;
+	sf:: Font font_;
+	if(!font_.loadFromFile("font2.ttf")){
+		exit(1);
+	}
+	texte5_.setFont(font_);
+	texte5_.setCharacterSize(60);
+	texte5_.setColor(sf::Color::Black);
+	texte5_.setStyle(sf::Text::Bold);
+	texte5_.setPosition(0, 20);
+	texte5_.setString("Vous avez a votre disposition une seule touche\n(fleche du haut) pour surelever votre\npersonnage. Lorsque celui-ci a\nmange le cupcake, vous avez la touche\n directionnelle 'Down'.\n La gravite a change. Si vous tapez\ncontre une baguette, c est moins 1 vie.\nSi c est contre une brioche c est moins 1 vie.\nSi c est le coeur c est plus 1 vie.\nSi c est un croissant, vous perdez\ntous vos vies. Si c est une piece,\nau bout de 10, c es plus une vie.");
+	rt->draw(logo_first);
+	rt->draw(texte5_);
+}
+
 int
 Menu:: setCurrentAction(sf::Vector2i localPosition){
 	cout << localPosition.x << endl << localPosition.y << endl;
 	if(localPosition.y >= ZONE1 && localPosition.y <= ZONE2){
-		if (localPosition.x >= ZONE3 && localPosition.x <= ZONE4){
+		if (localPosition.x >= ZONE5 && localPosition.x <= ZONE6){
 			cout << "Play" << endl;
 			return 0;
 		}
-		else if (localPosition.x >= ZONE5 && localPosition.x <= ZONE6){
+		else if (localPosition.x >= ZONE7 && localPosition.x <= ZONE8){
 			cout << "Score" << endl;
 			return 1;
 		}
 	}
-	return 2;
+	else if (localPosition.y >= ZONE3 && localPosition.y <= ZONE4){
+		if (localPosition.x >= ZONE5 && localPosition.x <= ZONE6){
+			cout << "Help" << endl;
+			return 2;
+		}
+		else if (localPosition.x >= ZONE7 && localPosition.x <= ZONE8){
+			cout << "Exit" << endl;
+			return 3;
+		}
+	}
+	return 4;	//Rien de spécial
 }
