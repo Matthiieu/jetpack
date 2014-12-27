@@ -21,6 +21,7 @@ Liste des choses à faire:
 -> Problème lors de la relance du jeu. Créer une fonction initialisation..
 -> Changer musique score.
 -> Penser à une meilleure presentation de la page aide 
+-> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire..
 *******************************************************************/
 
 Jetpack::Jetpack()
@@ -393,4 +394,5 @@ Jetpack::launch ()
 	delete background;
 	delete cupcake;
 	delete heart;
+	delete bitcoin;
 }
