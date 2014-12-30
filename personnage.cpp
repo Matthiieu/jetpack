@@ -81,6 +81,17 @@ Personnage:: collision4(int a, int b, int c, int d){
 		return false;
 }
 
+bool 
+Personnage:: collision5(int a, int b, int c, int d){
+	// previens s'il y a eu collision avec le croissant!
+	if ((abs(a-c) <= 35 ) && (abs(b-d) <= 180)){
+		cout << "COLLISION CROISSANT" << endl;
+		return true;
+	}
+	else
+		return false;
+}
+
 void 
 Personnage:: more_life(void){
 		nbre_vie++;

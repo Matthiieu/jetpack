@@ -2,13 +2,14 @@
 
 using namespace std;
 
-Croissant:: Croissant(): x_(800), y_(100){ 
-	croissant_.loadFromFile("Baguette.png");
+Croissant:: Croissant(): x_(800), y_(550)
+{ 
+	croissant_.loadFromFile("croissant.png");
 	croissant_.setSmooth(true);
 	sprite_croissant_ = new sf::Sprite;
 	sprite_croissant_->setTexture(croissant_);
-	sprite_croissant_->rotate(100);
-	sprite_croissant_->setScale(0.4f, 0.2f);
+	//sprite_croissant_->rotate(100);
+	sprite_croissant_->setScale(0.05f, 0.05f);
 }
 
 Croissant:: ~Croissant(){
@@ -19,6 +20,11 @@ void
 Croissant:: setPosition (int x, const int y){
   	 	x_ = x;
    	 	y_ = y;
+}
+
+void
+Croissant:: rotate(void){
+	sprite_croissant_->rotate(20);
 }
 
 bool
@@ -35,11 +41,6 @@ Croissant:: scale(int number){
 	int ok = number % 1 ;
 	cout << ok << endl;
 	sprite_croissant_->setScale(0.1f , 0.1f * ok);
-}
-
-void
-Croissant:: rotate(void){
-	sprite_croissant_->rotate(5);
 }
 
 void 

@@ -11,7 +11,7 @@ Bitcoin:: Bitcoin(){
 	sprite_bitcoin_->setTexture(bitcoin_);
 	sprite_bitcoin_->setScale(0.03f, 0.03f);
 	xb_ = 800;
-	yb_ = 500;
+	yb_ = 100;
 	collection_ = 0;
 }
 

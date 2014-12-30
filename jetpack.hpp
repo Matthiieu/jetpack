@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
-#include "jetpack.hpp"
+//#include "jetpack.hpp"
 #include "main.hpp"
 #include "menu.hpp"
 #include "audio.hpp"
@@ -15,6 +15,7 @@
 #include "cupcake.hpp"
 #include "heart.hpp"
 #include "bitcoin.hpp"
+#include "croissant.hpp"
 
 
 

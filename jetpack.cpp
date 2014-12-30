@@ -6,7 +6,7 @@ using namespace std;
 Liste des choses à faire:
 -> Fonction qui dès que le personnage meurt, se penche.
 -> Invincibilité du personnage avec le Cupcake.
--> Classe Croissant, ce croissant vous tue avec n'importe quel nombre de vie.
+-> Classe Croissant, ce croissant vous tue avec n'importe quel nombre de vie.	XXX
 -> Ajouter pleins de sémaphore.
 -> Trouver moyen pour que le personnage puisse pivoter (*2). Presque fait, manque le cas PERDU
 -> Nettoyer les fichiers, rassembler les codes redondants.
@@ -23,6 +23,7 @@ Liste des choses à faire:
 -> Penser à une meilleure presentation de la page aide 
 -> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire..
 -> Changer le fond d'écran High Score..
+-> Creer 3 types de collision (collision1, 2 et 3)..
 *******************************************************************/
 
 Jetpack::Jetpack()
@@ -64,6 +65,7 @@ Jetpack::launch ()
   Cupcake *cupcake = NULL;
   Menu *menu_ = NULL;
   Heart *heart = NULL;
+  Croissant *croissant = NULL;
   menu_ = new Menu();
   Background *background = NULL;
   background = new Background("essaic.png", 0, 0);
@@ -73,6 +75,7 @@ Jetpack::launch ()
   sam = new Personnage;
   cupcake = new Cupcake;
   fusee = new Fusee;
+  croissant = new Croissant;
   sf:: Clock time;	//Compteur score
   sf:: Clock time2;	//Decompteur avant lancement jeu
   sf:: Clock time3;	//Decompteur avant lancement menu
@@ -147,6 +150,7 @@ Jetpack::launch ()
 					sam->run();
 					cupcake->move(CUPCAKE0, 0);
 					bitcoin->move(BITCOIN0, 0);
+					croissant->move(BITCOIN0,0);
 					neon->move(FRENCH_STICK0, 0);
 					if (neon->from_scratch(neon->far_away(neon->getX()))){
 						neon->setPosition(neon->getX(), neon->generator_number());
@@ -171,12 +175,19 @@ Jetpack::launch ()
 						sam->more_life();
 						cout << sam->getLIFE() << endl;
 					}
+					if(((sam->collision5(sam->getX(), sam->getY(), croissant->getX(), croissant->getY())) == true)){
+						Play = 0;
+						Loose = 1;
+						time3.restart();
+					}
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
 					neon->display(win_);
 					bitcoin->display(win_);
 					cupcake->display(win_);
+					croissant->rotate();
+					croissant->display(win_);
 					menu_->distance(win_, elapsed1.asMilliseconds());
 					if (launch_heart == true)
 						heart->move(HEART0, 0);
