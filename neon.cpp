@@ -1,17 +1,14 @@
 #include "neon.hpp"
 
-
 using namespace std;
 
-Neon:: Neon(){ 
+Neon:: Neon(): x_(800), y_(100){ 
 	neon_.loadFromFile("Baguette.png");
 	neon_.setSmooth(true);
 	sprite_neon_ = new sf::Sprite;
 	sprite_neon_->setTexture(neon_);
 	sprite_neon_->rotate(100);
 	sprite_neon_->setScale(0.4f, 0.2f);
-	xn_ = 800;
-	yn_ = 100;
 }
 
 Neon:: ~Neon(){
@@ -20,8 +17,17 @@ Neon:: ~Neon(){
 
 void
 Neon:: setPosition (int x, const int y){
-  	 	xn_ = x;
-   	 	yn_ = y;
+  	 	x_ = x;
+   	 	y_ = y;
+}
+
+bool
+Neon:: far_away(int x){
+	// Verifie si notre neon est partie bien loin...
+	if (x < (-10))
+		return true;
+	else
+		return false;
 }
 
 void
@@ -38,14 +44,14 @@ Neon:: rotate(void){
 
 void 
 Neon:: move(int X, const int Y){
-	xn_ = xn_ - X;
-	yn_ = yn_ - Y;
-	sprite_neon_->move(xn_, yn_);
+	x_ = x_ - X;
+	y_ = y_ - Y;
+	sprite_neon_->move(x_, y_);
 }
 
 void
 Neon:: display(sf::RenderTarget *rt){
-		sprite_neon_->setPosition(xn_, yn_);
+		sprite_neon_->setPosition(x_, y_);
 		rt->draw(*sprite_neon_);
 }
 
@@ -57,31 +63,23 @@ Neon:: generator_number(){
 	return alea;
 }
 
+
 bool
 Neon:: from_scratch(bool boolean){
 	if (boolean){
-		xn_ = 800;
+		x_ = 800;
 		return true;
 	}
 	else 
 		return false;
 }
 
-bool
-Neon:: far_away(int x){
-	// Verifie si notre neon est partie bien loin...
-	if (x < (-10))
-		return true;
-	else
-		return false;
-}
-
 int 
 Neon:: getX(){
-    return xn_;
+    return x_;
 }
 
 int
 Neon:: getY(){
-    return yn_;
+    return y_;
 }

@@ -1,5 +1,5 @@
-#ifndef NEON_HPP
-#define NEON_HPP
+#ifndef CROISSANT_HPP
+#define CROISSANT_HPP
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp> 
@@ -7,11 +7,11 @@
 #include "jetpack.hpp"
 
 
-class Neon
+class Croissant
 {
 	public:
-		Neon();
-		~Neon(); 
+		Croissant();
+		~Croissant(); 
 
 		void move(int X, const int Y);
 
@@ -34,8 +34,8 @@ class Neon
 		void scale(int number);
 
 	private:
-		sf:: Texture neon_;
-		sf:: Sprite *sprite_neon_;
+		sf:: Texture croissant_;
+		sf:: Sprite *sprite_croissant_;
 		int x_, y_;
 };
 

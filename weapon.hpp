@@ -1,17 +1,16 @@
-#ifndef NEON_HPP
-#define NEON_HPP
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp> 
-#include "main.hpp"
 #include "jetpack.hpp"
+#include "main.hpp"
 
-
-class Neon
+class Weapon
 {
 	public:
-		Neon();
-		~Neon(); 
+		Weapon();
+		~Weapon(); 
 
 		void move(int X, const int Y);
 
@@ -33,10 +32,8 @@ class Neon
 
 		void scale(int number);
 
-	private:
-		sf:: Texture neon_;
-		sf:: Sprite *sprite_neon_;
-		int x_, y_;
+	//private:
+		//int x_, y_;
 };
 
 #endif

@@ -22,6 +22,7 @@ Liste des choses à faire:
 -> Changer musique score.
 -> Penser à une meilleure presentation de la page aide 
 -> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire..
+-> Changer le fond d'écran High Score..
 *******************************************************************/
 
 Jetpack::Jetpack()
@@ -53,7 +54,7 @@ Jetpack::launch ()
   bool semaphore2 = true;	// verouillage anti-gravité
   bool semaphore3 = true;	//verouillage changer de touche!	// En fait, le cupcake est un allié puisque tu es invincible :(
   bool semaphore4 = true;	//bloque une fois la collision avec le cupcake.	//A faire pour tous :(
-  bool semaphore5 = true;	//semaphore collision baguette
+ // bool semaphore5 = true;	//semaphore collision baguette
   bool anti_gravity = false;
   int High_Score = 0;
   Personnage *sam = NULL;
@@ -162,7 +163,7 @@ Jetpack::launch ()
 						}
 						else
 							sam->less_life();
-						semaphore5 = true;
+						//semaphore5 = true;
 					}
 					if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
 						audio_->play_vie();
