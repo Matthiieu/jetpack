@@ -2,14 +2,12 @@
 
 using namespace std;
 
-Personnage Sam;
-
 Bitcoin:: Bitcoin(){ 
 	bitcoin_.loadFromFile("bitcoin1.png");
 	bitcoin_.setSmooth(true);
 	sprite_bitcoin_ = new sf:: Sprite;
 	sprite_bitcoin_->setTexture(bitcoin_);
-	sprite_bitcoin_->setScale(0.03f, 0.03f);
+	sprite_bitcoin_->setScale(0.05f, 0.05f);
 	xb_ = 800;
 	yb_ = 100;
 	collection_ = 0;
@@ -46,6 +44,14 @@ Bitcoin:: generator_number(){
 	return alea;
 }
 
+int generator_number2(){
+	// Génerer un nombre entre 0 et -400!
+	srand(time(NULL));
+	int alea2 = rand() % (900);
+	alea2 -= 1600;
+	return alea2;
+}
+
 bool
 Bitcoin:: from_scratch(bool boolean){
 	if (boolean){
@@ -59,8 +65,10 @@ Bitcoin:: from_scratch(bool boolean){
 bool
 Bitcoin:: far_away(int x){
 	// Verifie si notre cupcake est partie bien loin...
-	if (x < (-10))
+	if (x < (generator_number2())){
+		cout << generator_number2() << endl;
 		return true;
+	}
 	else
 		return false;
 }
@@ -76,13 +84,16 @@ Bitcoin:: getY(){
 }
 
 void
-Bitcoin:: collection(){
-	cout << "coucou "<< endl;
+Bitcoin:: increase_collection(){
 	collection_++;
-	if (collection_ >= 5){
+	if (collection_ >= 4){
 		collection_ = 0;
-		Sam.more_life();
 	}
+}
+
+int 
+Bitcoin:: getCOLLECTION(){
+	return collection_;
 }
 
 

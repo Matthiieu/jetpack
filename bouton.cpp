@@ -8,11 +8,13 @@
 
 #include "bouton.hpp"
 
+
 Bouton::Bouton (int X, int Y, sf::String text) 
 {
 	rectangleShape_ = new sf::RectangleShape(sf::Vector2f(TAILLE_RECTANGLE_LONGUEUR, TAILLE_RECTANGLE_LARGEUR));
 	texture_ = new sf::Texture;
-	if(!font_.loadFromFile("police.ttf")){
+	font_ = new sf::Font;
+	if(!font_->loadFromFile("police.ttf")){
 		exit(1);
 	}
 	if(!texture_->loadFromFile("texture_bois.png")){
@@ -21,7 +23,7 @@ Bouton::Bouton (int X, int Y, sf::String text)
 	rectangleShape_->setTexture(texture_);
 	rectangleShape_->setPosition(X, Y);
 	rectangleShape_->scale(2.6f, 2.4f);
-	text_.setFont(font_);
+	text_.setFont(*font_);
 	text_.setCharacterSize(POLICE_BOUTON);
 	text_.setColor(sf::Color::White);
 	text_.setString(text);
@@ -31,6 +33,7 @@ Bouton::Bouton (int X, int Y, sf::String text)
 Bouton:: ~Bouton(){
 	delete texture_;
 	delete rectangleShape_;
+	delete font_;
 }
 
 void 

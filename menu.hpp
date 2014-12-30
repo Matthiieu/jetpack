@@ -9,6 +9,8 @@
 
 using namespace std;
 
+class Bouton;
+
 class Menu
 {
 	public:
@@ -35,13 +37,23 @@ class Menu
 		void reading_score(sf::RenderTarget *rt);
 
 
+
+
 	private:
 		sf:: Texture texture_first;
-		sf:: Sprite logo_first;
+		sf:: Sprite *logo_first;
 		sf:: Texture texture_screenshot;
-		sf:: Sprite logo_screenshot;
+		sf:: Sprite *logo_screenshot;
 		sf:: Text textes_;
-		
+		sf:: Texture bitcoin_;
+		sf:: Sprite *sprite_bitcoin_;
+		sf:: Sprite *sprite_vie_;
+		sf:: Texture vie_;
+		sf:: Font *font_;
+  		Bouton *bouton_play_;
+  		Bouton *bouton_quitter_;
+  		Bouton *bouton_score_;
+  		Bouton *bouton_aide_;
 };
 
 #endif

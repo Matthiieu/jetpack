@@ -53,14 +53,14 @@
 #define ZONE8	730
 
 
-#define SPEED		23		//Vitesse de montee Sam
+#define SPEED		20		//Vitesse de montee Sam
 //Niveau Facile
-#define BACKGROUND0	10
-#define SPEED0		-5		//Force de gravité
-#define FRENCH_STICK0	10
-#define BITCOIN0	18
-#define CUPCAKE0	18
-#define HEART0		18
+#define BACKGROUND0	5
+#define SPEED0		-2		//Force de gravité
+#define FRENCH_STICK0	5
+#define BITCOIN0	5
+#define CUPCAKE0	5
+#define HEART0		5
 
 //Niveau Moyen
 #define SOSO		22000	//sur en accordance avec musique

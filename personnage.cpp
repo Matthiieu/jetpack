@@ -84,7 +84,7 @@ Personnage:: collision4(int a, int b, int c, int d){
 bool 
 Personnage:: collision5(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec le croissant!
-	if ((abs(a-c) <= 35 ) && (abs(b-d) <= 180)){
+	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
 		cout << "COLLISION CROISSANT" << endl;
 		return true;
 	}
@@ -135,6 +135,11 @@ Personnage:: run(){
 		sprite_perso_->setTextureRect(sf::IntRect(32, 64, 32, 32));
 		//sprite_perso_->setScale(ECHELLE_SAM, gravity);
 	}
+}
+
+void 
+Personnage:: bend(void){
+	sprite_perso_->rotate(-5);
 }
 
 

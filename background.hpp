@@ -31,9 +31,7 @@ class Background
 
 	private:
 		sf:: Texture background_;
-		sf:: Texture background2_;
 		sf:: Sprite *sprite_background_;
-		sf:: Sprite *sprite_background2_;
 		int xa_, ya_;	
 		int xb_, yb_;
 };

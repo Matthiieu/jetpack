@@ -4,14 +4,14 @@ using namespace std;
 
 /*******************************************************************
 Liste des choses à faire:
--> Fonction qui dès que le personnage meurt, se penche.
--> Invincibilité du personnage avec le Cupcake.
+-> Fonction qui dès que le personnage meurt, se penche.	XXX
+-> Invincibilité du personnage avec le Cupcake.	XXX
 -> Classe Croissant, ce croissant vous tue avec n'importe quel nombre de vie.	XXX
 -> Ajouter pleins de sémaphore.
 -> Trouver moyen pour que le personnage puisse pivoter (*2). Presque fait, manque le cas PERDU
 -> Nettoyer les fichiers, rassembler les codes redondants.
 -> Effacer les printfs, commenter.
--> Classe Bitcoin à implémenter.
+-> Classe Bitcoin à implémenter.	XXX
 -> Ajouter l'indicateur du nombre de pièce récoltée. 
 -> Page aide? Surement... :/	XXX
 -> Changer la musique du menu.	XXX
@@ -24,6 +24,8 @@ Liste des choses à faire:
 -> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire..
 -> Changer le fond d'écran High Score..
 -> Creer 3 types de collision (collision1, 2 et 3)..
+-> Ameliorer page tu t'es pris un pain..
+-> Ralentir vitesse bitcoin
 *******************************************************************/
 
 Jetpack::Jetpack()
@@ -375,27 +377,34 @@ Jetpack::launch ()
 			else
 				launch_heart = false;
 			menu_->display_vie(win_, sam->getLIFE());
+			menu_->display_bitcoin(win_, bitcoin->getCOLLECTION());
+			if (bitcoin->from_scratch(bitcoin->far_away(bitcoin->getX()))){
+				bitcoin->setPosition(bitcoin->getX(), bitcoin->generator_number());
+				bitcoin->move(10, 0);
+			}
 			if((sam->collision3(sam->getX(), sam->getY(), cupcake->getX(), cupcake->getY()) == true) && (semaphore4 == true)){
 				semaphore4 = false;
 				cout << "Sam a mangé le cupcake" << endl;
 				audio_->play_cupcake();
-				anti_gravity = true;	//permet de savoir s'il est en anti-gravity
+				anti_gravity = true;	//Permet de savoir s'il est en anti-gravity
 				semaphore2 = false;
 				semaphore3 = false;
 			}
 			if (sam->is_alive() == false){
 				audio_->play_crash();
+				sam->bend();
+				sam->display(win_);
 				sf::Time elapsed7 = time.getElapsedTime();
 				menu_->written_score(elapsed7.asMilliseconds());
 				sf:: Image screen = win_->capture();
-				screen.saveToFile("screenshot.jpg"); // maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				screen.saveToFile("screenshot.jpg");	//Maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				Play = 0;	//On sort de la gamePlay
 				Loose = 1;	//On rentre dans la fenetre "Perdu"
 			}
 			if(((sam->collision3(sam->getX(), sam->getY(), bitcoin->getX(), bitcoin->getY())) == true)){
 				cout << "Sam a attrapé une piece" << endl;
 				audio_->play_cupcake();
-				bitcoin->collection();
+				bitcoin->increase_collection();
 			}
 		}
 		win_->display();
@@ -407,4 +416,6 @@ Jetpack::launch ()
 	delete cupcake;
 	delete heart;
 	delete bitcoin;
+	delete menu_;
+	delete croissant;
 }

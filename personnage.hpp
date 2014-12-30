@@ -24,6 +24,7 @@ class Personnage{
 		int getY();
 
 		int getLIFE();
+		void bend(void);
 	
 		void run();
 		void rotation_personnage1(void);

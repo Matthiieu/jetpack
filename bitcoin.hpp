@@ -26,7 +26,9 @@ class Bitcoin{
 
 		bool from_scratch(bool boolean);
 
-		void collection(void);
+		void increase_collection(void);
+
+		int getCOLLECTION(void);
 
 	private:
 		sf:: Texture bitcoin_;

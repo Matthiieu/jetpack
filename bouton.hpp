@@ -3,8 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "main.hpp"
-#include "menu.hpp" 
+#include "main.hpp" 
 
 class Bouton{
 	public:
@@ -17,7 +16,7 @@ class Bouton{
 		sf:: RectangleShape *rectangleShape_;
 		sf:: Texture *texture_;
 		sf:: Text text_;
-		sf:: Font font_;
+		sf:: Font *font_;
 
 };
 
