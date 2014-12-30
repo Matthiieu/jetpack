@@ -3,7 +3,7 @@
 using namespace std;
 
 Personnage:: Personnage(){ 
-	nbre_vie = 1;
+	nbre_vie = 10;
 	personnage_.loadFromFile("samy.png");
 	personnage_.setSmooth(true);
 	sprite_perso_ = new sf::Sprite;
@@ -155,7 +155,7 @@ Personnage:: rotation_personnage1(void){
 
 void
 Personnage:: gravity(int X, int Y, bool boolean){
-		if (boolean == true){	// correspond à la gravité
+		if (boolean == false){	// correspond à la gravité
 			rotation_personnage1();
 			x_ = x_ - X;
 			y_ = y_ - Y;

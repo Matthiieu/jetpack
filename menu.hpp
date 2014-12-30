@@ -41,6 +41,8 @@ class Menu
 		sf:: Sprite *logo_first;
 		sf:: Texture texture_screenshot;
 		sf:: Sprite *logo_screenshot;
+		sf:: Texture texture_score;
+		sf:: Sprite *logo_score;
 		sf:: Text textes_;
 		sf:: Texture bitcoin_;
 		sf:: Sprite *sprite_bitcoin_;

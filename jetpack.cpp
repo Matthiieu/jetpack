@@ -8,11 +8,11 @@ Liste des choses à faire:
 -> Invincibilité du personnage avec le Cupcake.	XXX
 -> Classe Croissant, ce croissant vous tue avec n'importe quel nombre de vie.	XXX
 -> Ajouter pleins de sémaphore.
--> Trouver moyen pour que le personnage puisse pivoter (*2). Presque fait, manque le cas PERDU
+-> Trouver moyen pour que le personnage puisse pivoter (*2). Presque fait, manque le cas PERDU	XXX
 -> Nettoyer les fichiers, rassembler les codes redondants.
 -> Effacer les printfs, commenter.
 -> Classe Bitcoin à implémenter.	XXX
--> Ajouter l'indicateur du nombre de pièce récoltée. 
+-> Ajouter l'indicateur du nombre de pièce récoltée. XXX
 -> Page aide? Surement... :/	XXX
 -> Changer la musique du menu.	XXX
 -> Ajouter donc 2 boutons. Bouton quitter et bouton aide. XXX
@@ -21,11 +21,12 @@ Liste des choses à faire:
 -> Problème lors de la relance du jeu. Créer une fonction initialisation..
 -> Changer musique score.
 -> Penser à une meilleure presentation de la page aide 
--> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire..
+-> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire.. XXX Reconstruite mais tjrs pb memoire
 -> Changer le fond d'écran High Score..
 -> Creer 3 types de collision (collision1, 2 et 3)..
 -> Ameliorer page tu t'es pris un pain..
 -> Ralentir vitesse bitcoin
+-> Ajouter animation
 *******************************************************************/
 
 Jetpack::Jetpack()
@@ -54,7 +55,6 @@ Jetpack::launch ()
   int Aide = 0;
   bool launch_heart;
   bool semaphore = true;
-  bool semaphore2 = true;	// verouillage anti-gravité
   bool semaphore3 = true;	//verouillage changer de touche!	// En fait, le cupcake est un allié puisque tu es invincible :(
   bool semaphore4 = true;	//bloque une fois la collision avec le cupcake.	//A faire pour tous :(
   bool semaphore45 = true;
@@ -150,7 +150,7 @@ Jetpack::launch ()
 						background->setPosition(background->getX(), background->getY());
 						background->parade(BACKGROUND0, 0);
 					}
-					sam->gravity(0, SPEED0, semaphore2);
+					sam->gravity(0, SPEED0, anti_gravity);
 					sam->run();
 					cupcake->move(CUPCAKE0, 0);
 					bitcoin->move(BITCOIN0, 0);
@@ -167,6 +167,7 @@ Jetpack::launch ()
 					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
 						if (anti_gravity == true){
 							anti_gravity = false;
+							semaphore3 = true;
 							sam->run();
 						}
 						else
@@ -205,7 +206,7 @@ Jetpack::launch ()
 						background->setPosition(background->getX(), background->getY());
 						background->parade(BACKGROUND1, 0);
 					}
-					sam->gravity(0, SPEED1, semaphore2);
+					sam->gravity(0, SPEED1, anti_gravity);
 					sam->run();
 					bitcoin->move(BITCOIN0, 0);
 					fusee->launch(BRIOCHE1, 0);
@@ -230,7 +231,8 @@ Jetpack::launch ()
 					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
 						if (anti_gravity == true){
 							anti_gravity = false;
-							sam->gravity(0, SPEED1, true);
+							semaphore3 = true;
+							sam->gravity(0, SPEED1, anti_gravity);
 						}
 						else
 							sam->less_life();
@@ -238,7 +240,8 @@ Jetpack::launch ()
 					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
 						if (anti_gravity == true){
 							anti_gravity = false;
-							sam->gravity(0, SPEED1, true);
+							semaphore3 = true;
+							sam->gravity(0, SPEED1, anti_gravity);
 						}
 						else
 							sam->less_life();
@@ -263,7 +266,7 @@ Jetpack::launch ()
 						background->parade(BACKGROUND2, 0);
 					}
 					//menu_->display_vie(win_);
-					sam->gravity(0, SPEED2, semaphore2);
+					sam->gravity(0, SPEED2, anti_gravity);
 					sam->run();
 					bitcoin->move(BITCOIN0, 0);
 					fusee->launch(BRIOCHE2, 0);
@@ -280,7 +283,8 @@ Jetpack::launch ()
 					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
 						if (anti_gravity == true){
 							anti_gravity = false;
-							sam->gravity(0, SPEED1, true);
+							semaphore3 = true;
+							sam->gravity(0, SPEED1, anti_gravity);
 						}
 						else
 							sam->less_life();
@@ -288,6 +292,7 @@ Jetpack::launch ()
 					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
 						if (anti_gravity == true){
 							anti_gravity = false;
+							semaphore3 = true;
 							sam->gravity(0, SPEED1, true);
 						}
 						else
@@ -393,7 +398,6 @@ Jetpack::launch ()
 				cout << "Sam a mangé le cupcake" << endl;
 				audio_->play_cupcake();
 				anti_gravity = true;	//Permet de savoir s'il est en anti-gravity
-				semaphore2 = false;
 				semaphore3 = false;
 			}
 			if(bitcoin->getCOLLECTION() == 2){

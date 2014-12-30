@@ -23,6 +23,11 @@ Menu:: Menu(){
 		exit(1);
 	}
 
+	logo_score = new sf::Sprite;
+	if(!texture_score.loadFromFile("fond_score.png")){
+		exit(1);
+	}
+
 	sprite_vie_ = new sf::Sprite;
 	if(!vie_.loadFromFile("vie.png")){
 		exit(1);
@@ -39,6 +44,7 @@ Menu:: ~Menu(){
 	delete bouton_score_;
 	delete sprite_bitcoin_;
 	delete sprite_vie_;
+	delete logo_score;
 }
 
 void
@@ -100,7 +106,8 @@ Menu:: reading_score(sf::RenderTarget *rt){
 	texte4_.setColor(sf::Color::Red);
 	texte4_.setString("Last Score:");
 	texte4_.setPosition(30, 2);
-	rt->draw(*logo_first);
+	logo_score->setTexture(texture_score);
+	rt->draw(*logo_score);
 	rt->draw(texte4_);
 	ifstream fichier ("aide.txt", ios::in);
 	if (fichier){
@@ -218,6 +225,7 @@ Menu:: display_looser(sf::RenderTarget *rt){
 		texte_11.setPosition(50, 100);
 		texte_11.setString("Tu t'es pris\n\t un pain!");
 		rt->draw(texte_11);
+		rt->draw(*logo_score);
 }
 
 void 
