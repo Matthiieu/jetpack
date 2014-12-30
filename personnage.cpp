@@ -3,7 +3,7 @@
 using namespace std;
 
 Personnage:: Personnage(){ 
-	nbre_vie = 10;
+	nbre_vie = 1;
 	personnage_.loadFromFile("samy.png");
 	personnage_.setSmooth(true);
 	sprite_perso_ = new sf::Sprite;

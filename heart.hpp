@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "jetpack.hpp"
+#include "main.hpp"
 
 
 class Heart{
@@ -16,6 +17,8 @@ class Heart{
 		void display(sf::RenderTarget *rt);
 
 		void setPosition (int x, int y);
+
+		bool from_scratch(bool boolean);
 
 		int getX();
 

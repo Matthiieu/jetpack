@@ -373,6 +373,11 @@ Jetpack::launch ()
 			neon->from_scratch(true);
 			fusee->from_scratch(true);
 			background->from_scratch(true);
+			croissant->from_scratch(true);
+			cupcake->from_scratch(true);
+			heart->from_scratch(true);
+			bitcoin->from_scratch(true);
+			sam->more_life();
 		}
 	/*********************************************************************************/ // Menu!
 		if (Round == 0){

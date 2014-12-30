@@ -46,6 +46,16 @@ Heart:: display(sf::RenderTarget *rt){
 		rt->draw(*sprite_heart_);
 }
 
+bool
+Heart:: from_scratch(bool boolean){
+	if (boolean){
+		xh_ = 800;
+		return true;
+	}
+	else 
+		return false;
+}
+
 
 int 
 Heart:: getX(){
