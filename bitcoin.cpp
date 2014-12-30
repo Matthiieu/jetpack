@@ -86,9 +86,11 @@ Bitcoin:: getY(){
 void
 Bitcoin:: increase_collection(){
 	collection_++;
-	if (collection_ >= 4){
-		collection_ = 0;
-	}
+}
+
+void
+Bitcoin:: restart_collection(){
+	collection_ = 0;
 }
 
 int 

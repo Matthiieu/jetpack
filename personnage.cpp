@@ -29,12 +29,6 @@ Personnage:: setPosition (int x, int y){
 			y_ = 0;
 }
 
-void
-Personnage:: gagner_vie(){
-	nbre_vie += 1;
-}
-
-
 //PREVOIR UNE FONCTION GENERALE COLLISION!!!!!!!!!!!!!!!!
 bool 
 Personnage:: collision1(int a, int b, int c, int d){
@@ -84,7 +78,7 @@ Personnage:: collision4(int a, int b, int c, int d){
 bool 
 Personnage:: collision5(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec le croissant!
-	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
+	if ((abs(a-c) <= 1) && (abs(b-d) <= 1)){
 		cout << "COLLISION CROISSANT" << endl;
 		return true;
 	}

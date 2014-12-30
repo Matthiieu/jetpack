@@ -13,8 +13,6 @@ class Personnage{
 
 		void deplacer(int X, int Y); 
 
-		void gagner_vie();
-
 		void display(sf::RenderTarget *rt);
 
 		void setPosition (int x, int y);

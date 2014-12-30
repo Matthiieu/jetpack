@@ -30,6 +30,8 @@ class Bitcoin{
 
 		int getCOLLECTION(void);
 
+		void restart_collection();
+
 	private:
 		sf:: Texture bitcoin_;
 		sf:: Sprite *sprite_bitcoin_;

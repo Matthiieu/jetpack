@@ -36,9 +36,6 @@ class Menu
  		void written_score(int number);
 		void reading_score(sf::RenderTarget *rt);
 
-
-
-
 	private:
 		sf:: Texture texture_first;
 		sf:: Sprite *logo_first;

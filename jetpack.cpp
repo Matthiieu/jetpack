@@ -57,6 +57,7 @@ Jetpack::launch ()
   bool semaphore2 = true;	// verouillage anti-gravité
   bool semaphore3 = true;	//verouillage changer de touche!	// En fait, le cupcake est un allié puisque tu es invincible :(
   bool semaphore4 = true;	//bloque une fois la collision avec le cupcake.	//A faire pour tous :(
+  bool semaphore45 = true;
  // bool semaphore5 = true;	//semaphore collision baguette
   bool anti_gravity = false;
   int High_Score = 0;
@@ -81,6 +82,7 @@ Jetpack::launch ()
   sf:: Clock time;	//Compteur score
   sf:: Clock time2;	//Decompteur avant lancement jeu
   sf:: Clock time3;	//Decompteur avant lancement menu
+  sf:: Clock time4;	//semaphore45
 /****************************************************************/
   while (win_->isOpen()){
 		sf:: Event event;
@@ -205,6 +207,7 @@ Jetpack::launch ()
 					}
 					sam->gravity(0, SPEED1, semaphore2);
 					sam->run();
+					bitcoin->move(BITCOIN0, 0);
 					fusee->launch(BRIOCHE1, 0);
 					neon->move(FRENCH_STICK1, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
@@ -243,6 +246,7 @@ Jetpack::launch ()
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
+					bitcoin->display(win_);
 					fusee->display(win_);
 					neon->display(win_);
 					menu_->distance(win_, elapsed2.asMilliseconds());
@@ -261,6 +265,7 @@ Jetpack::launch ()
 					//menu_->display_vie(win_);
 					sam->gravity(0, SPEED2, semaphore2);
 					sam->run();
+					bitcoin->move(BITCOIN0, 0);
 					fusee->launch(BRIOCHE2, 0);
 					neon->move(FRENCH_STICK2, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
@@ -292,6 +297,7 @@ Jetpack::launch ()
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
+					bitcoin->display(win_);
 					fusee->display(win_);
 					neon->display(win_);
 					menu_->distance(win_, elapsed3.asMilliseconds());
@@ -390,6 +396,10 @@ Jetpack::launch ()
 				semaphore2 = false;
 				semaphore3 = false;
 			}
+			if(bitcoin->getCOLLECTION() == 2){
+				sam->more_life();
+				bitcoin->restart_collection();
+			}
 			if (sam->is_alive() == false){
 				audio_->play_crash();
 				sam->bend();
@@ -401,11 +411,18 @@ Jetpack::launch ()
 				Play = 0;	//On sort de la gamePlay
 				Loose = 1;	//On rentre dans la fenetre "Perdu"
 			}
-			if(((sam->collision3(sam->getX(), sam->getY(), bitcoin->getX(), bitcoin->getY())) == true)){
+			if((sam->collision3(sam->getX(), sam->getY(), bitcoin->getX(), bitcoin->getY()) == true) && (semaphore45 == true)){
 				cout << "Sam a attrapé une piece" << endl;
 				audio_->play_cupcake();
 				bitcoin->increase_collection();
+				semaphore45 = false;
+				time4.restart();
 			}
+			sf::Time elapsed9 = time4.getElapsedTime();		// mettre un timer pour remettre le semaphore a true
+				if(elapsed9.asSeconds() > 2){
+					semaphore45 = true;
+				}
+
 		}
 		win_->display();
 	}
