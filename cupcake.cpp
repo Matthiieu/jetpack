@@ -4,7 +4,7 @@
 using namespace std;
 
 Cupcake:: Cupcake(){ 
-	cupcake_.loadFromFile("cupcake.png");
+	cupcake_.loadFromFile("Pictures/cupcake.png");
 	cupcake_.setSmooth(true);
 	sprite_cupcake_ = new sf:: Sprite;
 	sprite_cupcake_->setTexture(cupcake_);

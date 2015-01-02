@@ -5,12 +5,12 @@
 #include <fstream>
 #include <sstream>
 #include "main.hpp"
-#include "bouton.hpp"
+#include "button.hpp"
 #include "jetpack.hpp"
 
 using namespace std;
 
-class Bouton;
+class Button;
 
 class Menu
 {
@@ -53,10 +53,10 @@ class Menu
 		sf:: Texture vie_;
 		sf:: Font *font_;
 		sf:: Font *font_2;
-  		Bouton *bouton_play_;
-  		Bouton *bouton_quitter_;
-  		Bouton *bouton_score_;
-  		Bouton *bouton_aide_;
+  		Button *bouton_play_;
+  		Button *bouton_quitter_;
+  		Button *bouton_score_;
+  		Button *bouton_aide_;
 };
 
 #endif

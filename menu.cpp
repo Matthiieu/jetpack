@@ -3,44 +3,44 @@
 using namespace std;
 
 Menu:: Menu(){
-	texture_first.loadFromFile("foreground.png");
+	texture_first.loadFromFile("Pictures/foreground.png");
 	logo_first = new sf::Sprite;
 	logo_first->setTexture(texture_first);
 	logo_first->setPosition(0, 0);
-	bouton_play_ = new Bouton(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 - 80, "Play");
-	bouton_score_ = new Bouton(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 - 80, "Score");
-	bouton_quitter_ = new Bouton(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 + 40, "Exit");
-	bouton_aide_ = new Bouton(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 + 40, "Help");
+	bouton_play_ = new Button(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 - 80, "Play");
+	bouton_score_ = new Button(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 - 80, "Score");
+	bouton_quitter_ = new Button(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 + 40, "Exit");
+	bouton_aide_ = new Button(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 + 40, "Help");
 	logo_screenshot = new sf::Sprite;
 
 	font_2 = new sf::Font;
-	if(!font_2->loadFromFile("font_help.ttf")){
+	if(!font_2->loadFromFile("Font/font_help.ttf")){
 		cout << "erreur"<< endl;
 	}
 
 	font_ = new sf::Font;
-	if(!font_->loadFromFile("font2.ttf")){
+	if(!font_->loadFromFile("Font/font2.ttf")){
 		cout << "erreur"<< endl;
 	}
 
 	sprite_bitcoin_ = new sf::Sprite;
-	if(!bitcoin_.loadFromFile("bitcoin1.png")){
+	if(!bitcoin_.loadFromFile("Pictures/bitcoin1.png")){
 		exit(1);
 	}
 
 	sprite_blesse = new sf::Sprite;
-	if(!blesse_.loadFromFile("blesse.png")){
+	if(!blesse_.loadFromFile("Pictures/blesse.png")){
 		exit(1);
 	}
 
 	logo_score = new sf::Sprite;
-	if(!texture_score.loadFromFile("fond_score.png")){
+	if(!texture_score.loadFromFile("Pictures/fond_score.png")){
 		exit(1);
 	}
 	logo_score->setTexture(texture_score);
 
 	sprite_vie_ = new sf::Sprite;
-	if(!vie_.loadFromFile("vie.png")){
+	if(!vie_.loadFromFile("Pictures/vie.png")){
 		exit(1);
 	}
 }
@@ -91,13 +91,12 @@ void
 Menu:: written_score(int number){
 	char buffer[6];
 	gcvt(number, 6, buffer);
-	ifstream fichier("aide.txt");
+	ifstream fichier("score.txt");
 	if (fichier){
 		stringstream buffer2;
 		buffer2 << fichier.rdbuf();
 		string timeString = buffer2.str();
-		ofstream fichier2("aide.txt");
-		//cout << timeString << endl;
+		ofstream fichier2("score.txt");
 		fichier2 << number << endl;
 		fichier2 << timeString << endl;
 		fichier2.close();
@@ -125,7 +124,7 @@ Menu:: reading_score(sf::RenderTarget *rt){
 	texte4_.setPosition(30, 2);
 	rt->draw(*logo_score);
 	rt->draw(texte4_);
-	ifstream fichier ("aide.txt", ios::in);
+	ifstream fichier ("score.txt", ios::in);
 	if (fichier){
 		while((!fichier.eof()) && i <= 10){
 			fichier >> number;
@@ -155,7 +154,7 @@ Menu:: reading_score(sf::RenderTarget *rt){
 
 void
 Menu:: screenshot(sf::RenderTarget *rt){
-	texture_screenshot.loadFromFile("screenshot.jpg");
+	texture_screenshot.loadFromFile("Pictures/screenshot.jpg");
 	logo_screenshot->setTexture(texture_screenshot);
 	logo_screenshot->setRotation(10);
 	logo_screenshot->setPosition(POSITION_SCREENSHOT_MENU_X, POSITION_SCREENSHOT_MENU_Y);

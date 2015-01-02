@@ -4,13 +4,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
-//#include "jetpack.hpp"
 #include "main.hpp"
 #include "menu.hpp"
 #include "audio.hpp"
-#include "personnage.hpp"
-#include "fusee.hpp"
-#include "neon.hpp"
+#include "character.hpp"
+#include "brioche.hpp"
+#include "french_stick.hpp"
 #include "background.hpp"
 #include "cupcake.hpp"
 #include "heart.hpp"

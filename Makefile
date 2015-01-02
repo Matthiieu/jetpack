@@ -2,7 +2,7 @@ CC = g++
 CFLAGS := -std=c++11 -Wall -Wfatal-errors -c -ggdb
 LDFLAGS := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 BIN = main
-OBJ = main.o  personnage.o bouton.o menu.o neon.o fusee.o background.o jetpack.o cupcake.o heart.o bitcoin.o croissant.o
+OBJ = main.o  character.o button.o menu.o french_stick.o brioche.o background.o jetpack.o cupcake.o heart.o bitcoin.o croissant.o
 all: .depend $(BIN)
 
 $(BIN): $(OBJ)

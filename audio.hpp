@@ -21,12 +21,12 @@ class Audio
 		music_vie = new sf::Music;
 		music_cupcake = new sf::Music;
 		music_crash = new sf::Music;
-		music_main->openFromFile("main.ogg");
-		music_menu->openFromFile("music_menu.ogg");
-		music_score->openFromFile("score.ogg");
-		music_vie->openFromFile("gagner_vie.ogg");
-		music_cupcake->openFromFile("manger_cupcake.ogg");
-		music_crash->openFromFile("crash.ogg");
+		music_main->openFromFile("Music/main.ogg");
+		music_menu->openFromFile("Music/music_menu.ogg");
+		music_score->openFromFile("Music/score.ogg");
+		music_vie->openFromFile("Music/gagner_vie.ogg");
+		music_cupcake->openFromFile("Music/manger_cupcake.ogg");
+		music_crash->openFromFile("Music/crash.ogg");
 	}
 
 	~Audio(){

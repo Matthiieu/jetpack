@@ -32,7 +32,6 @@ Liste des choses à faire:
 Jetpack::Jetpack()
 {
 	win_ = new sf::RenderWindow(sf::VideoMode(LONGUEUR_FENETRE, LARGEUR_FENETRE), "Jetpack Joyride", sf::Style::Close); 
-	//win_->setPosition(sf::Vector2i(POSITION_FENETRE_X, POSITION_FENETRE_Y));
 	win_->setFramerateLimit(80);
 	audio_ = new Audio();
 }
@@ -60,23 +59,23 @@ Jetpack::launch ()
  // bool semaphore5 = true;	//semaphore collision baguette
   bool anti_gravity = false;
   int High_Score = 0;
-  Personnage *sam = NULL;
-  Fusee *fusee = NULL;
+  Character *sam = NULL;
+  Brioche *brioche = NULL;
   Bitcoin *bitcoin = NULL;
-  Neon *neon = NULL;
+  French_stick *french_stick = NULL;
   Cupcake *cupcake = NULL;
   Menu *menu_ = NULL;
   Heart *heart = NULL;
   Croissant *croissant = NULL;
   menu_ = new Menu();
   Background *background = NULL;
-  background = new Background("essaic.png", 0, 0);
-  neon = new Neon;
+  background = new Background("Pictures/essaic.png", 0, 0);
+  french_stick = new French_stick;
   bitcoin = new Bitcoin;
   heart = new Heart;
-  sam = new Personnage;
+  sam = new Character;
   cupcake = new Cupcake;
-  fusee = new Fusee;
+  brioche = new Brioche;
   croissant = new Croissant;
   sf:: Clock time;	//Compteur score
   sf:: Clock time2;	//Decompteur avant lancement jeu
@@ -153,10 +152,10 @@ Jetpack::launch ()
 					sam->run();
 					bitcoin->move(BITCOIN0, 0);
 					croissant->move(BITCOIN0,0);
-					neon->move(FRENCH_STICK0, 0);
-					if (neon->from_scratch(neon->far_away(neon->getX()))){
-						neon->setPosition(neon->getX(), neon->generator_number());
-						neon->move(FRENCH_STICK0, 0);
+					french_stick->move(FRENCH_STICK0, 0);
+					if (french_stick->from_scratch(french_stick->far_away(french_stick->getX()))){
+						french_stick->setPosition(french_stick->getX(), french_stick->generator_number());
+						french_stick->move(FRENCH_STICK0, 0);
 					}
 					sf::Time elapsed1 = time.getElapsedTime();
 					if (elapsed1.asMilliseconds() > SOSO)
@@ -164,7 +163,7 @@ Jetpack::launch ()
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
-					neon->display(win_);
+					french_stick->display(win_);
 					bitcoin->display(win_);
 					croissant->rotate();
 					croissant->display(win_);
@@ -181,16 +180,16 @@ Jetpack::launch ()
 					sam->gravity(0, SPEED1, anti_gravity);
 					sam->run();
 					bitcoin->move(BITCOIN0, 0);
-					fusee->launch(BRIOCHE1, 0);
-					neon->move(FRENCH_STICK1, 0);
+					brioche->launch(BRIOCHE1, 0);
+					french_stick->move(FRENCH_STICK1, 0);
 					cupcake->move(CUPCAKE0, 0);
-					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
-						fusee->setPosition(fusee->getX(), fusee->generator_number());
-						fusee->launch(BRIOCHE1, 0);
+					if (brioche->from_scratch(brioche->far_away(brioche->getX()))){
+						brioche->setPosition(brioche->getX(), brioche->generator_number());
+						brioche->launch(BRIOCHE1, 0);
 					}
-					if (neon->from_scratch(neon->far_away(neon->getX()))){
-						neon->setPosition(neon->getX(), neon->generator_number());
-						neon->move(FRENCH_STICK1, 0);
+					if (french_stick->from_scratch(french_stick->far_away(french_stick->getX()))){
+						french_stick->setPosition(french_stick->getX(), french_stick->generator_number());
+						french_stick->move(FRENCH_STICK1, 0);
 					}
 					sf::Time elapsed2 = time.getElapsedTime();
 					if (elapsed2.asMilliseconds() > HARD)
@@ -199,8 +198,8 @@ Jetpack::launch ()
 					background->display(win_);
 					sam->display(win_);
 					bitcoin->display(win_);
-					fusee->display(win_);
-					neon->display(win_);
+					brioche->display(win_);
+					french_stick->display(win_);
 					cupcake->display(win_);
 					menu_->distance(win_, elapsed2.asMilliseconds());
 				}
@@ -215,25 +214,25 @@ Jetpack::launch ()
 					sam->gravity(0, SPEED2, anti_gravity);
 					sam->run();
 					bitcoin->move(BITCOIN0, 0);
-					fusee->launch(BRIOCHE2, 0);
+					brioche->launch(BRIOCHE2, 0);
 					heart->move(HEART0, 0);
-					neon->move(FRENCH_STICK2, 0);
-					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
-						fusee->setPosition(fusee->getX(), fusee->generator_number());
-						fusee->launch(BRIOCHE2, 0);
+					french_stick->move(FRENCH_STICK2, 0);
+					if (brioche->from_scratch(brioche->far_away(brioche->getX()))){
+						brioche->setPosition(brioche->getX(), brioche->generator_number());
+						brioche->launch(BRIOCHE2, 0);
 					}
-					if (neon->from_scratch(neon->far_away(neon->getX()))){
-						neon->setPosition(neon->getX(), neon->generator_number());
-						neon->move(FRENCH_STICK2, 0);
+					if (french_stick->from_scratch(french_stick->far_away(french_stick->getX()))){
+						french_stick->setPosition(french_stick->getX(), french_stick->generator_number());
+						french_stick->move(FRENCH_STICK2, 0);
 					}
 					sf::Time elapsed3 = time.getElapsedTime();
-					neon->rotate();
+					french_stick->rotate();
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
 					bitcoin->display(win_);
-					fusee->display(win_);
-					neon->display(win_);
+					brioche->display(win_);
+					french_stick->display(win_);
 					menu_->distance(win_, elapsed3.asMilliseconds());
 					heart->display(win_);
 				}
@@ -298,8 +297,8 @@ Jetpack::launch ()
 			win_->clear();
 			menu_->display_looser(win_);
 			//Obtenir le kilometrage et l'inscrire dans le fichier
-			neon->from_scratch(true);
-			fusee->from_scratch(true);
+			french_stick->from_scratch(true);
+			brioche->from_scratch(true);
 			background->from_scratch(true);
 			croissant->from_scratch(true);
 			cupcake->from_scratch(true);
@@ -320,7 +319,7 @@ Jetpack::launch ()
 				bitcoin->setPosition(bitcoin->getX(), bitcoin->generator_number());
 				bitcoin->move(10, 0);
 			}
-			if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 140)) == true)){
+			if(((sam->collision2(sam->getX(), sam->getY(), french_stick->getX(), french_stick->getY() + 140)) == true)){
 				if (anti_gravity == true){
 					anti_gravity = false;
 					semaphore3 = true;
@@ -335,11 +334,16 @@ Jetpack::launch ()
 				cout << sam->getLIFE() << endl;
 			}
 			if(((sam->collision1(sam->getX(), sam->getY(), croissant->getX(), croissant->getY())) == true)){
-				Play = 0;
-				Loose = 1;
+				audio_->play_crash();
+				sf::Time elapsed7 = time.getElapsedTime();
+				menu_->written_score(elapsed7.asMilliseconds());
+				sf:: Image screen = win_->capture();
+				screen.saveToFile("screenshot.jpg");	//Maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				Play = 0;	//On sort de la gamePlay
+				Loose = 1;	//On rentre dans la fenetre "Perdu"
 				time3.restart();
 			}
-			if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
+			if(((sam->collision1(sam->getX(), sam->getY(), brioche->getX(), brioche->getY())) == true)){
 				if (anti_gravity == true){
 					anti_gravity = false;
 					semaphore3 = true;
@@ -363,7 +367,7 @@ Jetpack::launch ()
 				sf::Time elapsed7 = time.getElapsedTime();
 				menu_->written_score(elapsed7.asMilliseconds());
 				sf:: Image screen = win_->capture();
-				screen.saveToFile("screenshot.jpg");	//Maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				screen.saveToFile("Pictures/screenshot.jpg");	//Maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				Play = 0;	//On sort de la gamePlay
 				Loose = 1;	//On rentre dans la fenetre "Perdu"
 				time3.restart();
@@ -382,8 +386,8 @@ Jetpack::launch ()
 		win_->display();
 	}
 	delete sam;
-	delete fusee;
-	delete neon;
+	delete french_stick;
+	delete brioche;
 	delete background;
 	delete cupcake;
 	delete heart;

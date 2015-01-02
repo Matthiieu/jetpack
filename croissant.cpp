@@ -4,7 +4,7 @@ using namespace std;
 
 Croissant:: Croissant(): x_(800), y_(550)
 { 
-	croissant_.loadFromFile("croissant.png");
+	croissant_.loadFromFile("Pictures/croissant.png");
 	croissant_.setSmooth(true);
 	sprite_croissant_ = new sf::Sprite;
 	sprite_croissant_->setTexture(croissant_);

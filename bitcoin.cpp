@@ -3,7 +3,7 @@
 using namespace std;
 
 Bitcoin:: Bitcoin(){ 
-	bitcoin_.loadFromFile("bitcoin1.png");
+	bitcoin_.loadFromFile("Pictures/bitcoin1.png");
 	bitcoin_.setSmooth(true);
 	sprite_bitcoin_ = new sf:: Sprite;
 	sprite_bitcoin_->setTexture(bitcoin_);

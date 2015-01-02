@@ -5,7 +5,7 @@ using namespace std;
 bool limit_heart = true;
 
 Heart:: Heart(){ 
-	heart_.loadFromFile("vie.png");
+	heart_.loadFromFile("Pictures/vie.png");
 	heart_.setSmooth(true);
 	sprite_heart_ = new sf::Sprite;
 	sprite_heart_->setTexture(heart_);
