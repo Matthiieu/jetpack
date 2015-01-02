@@ -1,3 +1,11 @@
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : CHARACTER.CPP             */
+/*****************************************************/
+
 #include "character.hpp"
 
 using namespace std;
@@ -31,7 +39,7 @@ Character:: setPosition (int x, int y){
 
 bool 
 Character:: collision1(int a, int b, int c, int d){
-	if ((abs(a-c) <= 40 ) && (abs(b-d) <= 40)){
+	if ((abs(a-c) <= 50 ) && (abs(b-d) <= 50)){
 		cout << "COLLISION DE TYPE BRIOCHE, CUPCAKE, HEART, CROISSANT, BITCOIN" << endl;
 		return true;
 	}

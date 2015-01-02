@@ -1,3 +1,11 @@
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : CROISSANT.CPP             */
+/*****************************************************/
+
 #include "croissant.hpp"
 
 using namespace std;
@@ -9,7 +17,7 @@ Croissant:: Croissant(): x_(800), y_(550)
 	sprite_croissant_ = new sf::Sprite;
 	sprite_croissant_->setTexture(croissant_);
 	//sprite_croissant_->rotate(100);
-	sprite_croissant_->setScale(0.05f, 0.05f);
+	sprite_croissant_->setScale(0.05f, 0.07f);
 }
 
 Croissant:: ~Croissant(){
@@ -24,7 +32,7 @@ Croissant:: setPosition (int x, const int y){
 
 void
 Croissant:: rotate(void){
-	sprite_croissant_->rotate(20);
+	sprite_croissant_->rotate(10);
 }
 
 bool

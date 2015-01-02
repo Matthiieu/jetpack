@@ -1,3 +1,11 @@
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : CUPCAKE.CPP               */
+/*****************************************************/
+
 #include "cupcake.hpp"
 
 
@@ -56,7 +64,6 @@ Cupcake:: from_scratch(bool boolean){
 
 bool
 Cupcake:: far_away(int x){
-	// Verifie si notre cupcake est partie bien loin...
 	if (x < (-10))
 		return true;
 	else

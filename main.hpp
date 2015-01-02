@@ -1,3 +1,11 @@
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : MAIN.HPP                  */
+/*****************************************************/
+
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
@@ -63,22 +71,22 @@
 #define HEART0		5
 
 //Niveau Moyen
-#define SOSO		22000		//sur en accordance avec musique
-#define BACKGROUND1	12
+#define SOSO		12000		//sur en accordance avec musique 22000
+#define BACKGROUND1	8
 #define SPEED1		-5
-#define FRENCH_STICK1	12
-#define BITCOIN1	15
-#define CUPCAKE1	15
+#define FRENCH_STICK1	8
+#define BITCOIN1	10
+#define CUPCAKE1	10
 #define BRIOCHE1	12
 
 //Niveau Difficile
-#define HARD		35000
-#define BACKGROUND2	12
+#define HARD		22000
+#define BACKGROUND2	10
 #define SPEED2		-5
-#define FRENCH_STICK2	12
+#define FRENCH_STICK2	10
 #define BITCOIN2	12
 #define CUPCAKE2	12
-#define BRIOCHE2	12
+#define BRIOCHE2	14
 
 #define FLOOR	531
 #define FLOOR2	700

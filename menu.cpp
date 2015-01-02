@@ -1,3 +1,11 @@
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : MENU.CPP                  */
+/*****************************************************/
+
 #include "menu.hpp"
 
 using namespace std;
@@ -225,7 +233,7 @@ Menu:: display_chrono(sf::RenderTarget *rt, int number){
 		sf:: Text texte10_;
 		texte10_.setFont(*font_2);
 		texte10_.setCharacterSize(80);
-		texte10_.setColor(sf::Color::White);
+		texte10_.setColor(sf::Color::Red);
 		texte10_.setString(buffer);
 		texte10_.setPosition(630, 475);
 		rt->draw(texte10_);
@@ -235,12 +243,12 @@ void
 Menu:: display_looser(sf::RenderTarget *rt){
 		sf:: Text texte_11;
 		sprite_blesse->setTexture(blesse_);
-		sprite_blesse->setPosition(20, 100);
-		sprite_blesse->setScale(0.5f, 0.5f);
+		sprite_blesse->setPosition(20, 180);
+		sprite_blesse->setScale(1.2f, 1.2f);
 		texte_11.setFont(*font_2);
 		texte_11.setCharacterSize(90);
 		texte_11.setColor(sf::Color::White);
-		texte_11.setPosition(330, 180);
+		texte_11.setPosition(330, 200);
 		texte_11.setString("Tu t'es pris\n  un pain!");
 		rt->draw(texte_11);
 		rt->draw(*sprite_blesse);
@@ -259,7 +267,7 @@ Menu:: display_presentation(sf::RenderTarget *rt){
 	texte_12.setCharacterSize(30);
 	texte_12.setColor(sf::Color::Black);
 	texte_12.setStyle(sf::Text::Bold);
-	texte_12.setPosition(0, 20);
+	texte_12.setPosition(20, 50);
 	texte_12.setString("Le boulanger n'arrive plus a joindre les deux bouts: il est\nau bord de la faillite!!\nAide Sam a raisonner le boulanger en evitant ses\nprojectiles.\n\nSituation: Vous vous situez dans les rues de Paris a\nla poursuite du boulanger. Ce dernier tres enerve a decide\nde vous lancer sa fournee.\n\nLes brioches, baguettes et croissants sont vos ennemis.\n\nVous disposez d'une touche qui permet de surelever votre\npersonnage.\n\nBon courage et surtout.. Bonne chance!");
 	rt->draw(*logo_first);
 	rt->draw(texte_12);

@@ -1,6 +1,14 @@
 #ifndef FRENCH_STICK_HPP
 #define FRENCH_STICK_HPP
 
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : FRENCH_STICK.HPP          */
+/*****************************************************/
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp> 
 #include "main.hpp"

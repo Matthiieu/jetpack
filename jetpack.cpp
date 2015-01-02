@@ -1,33 +1,14 @@
+/*****************************************************/
+/*  [EI-SE4] Polytech Paris UPMC                     */
+/*---------------------------------------------------*/
+/* BOULANGER MATTHIEU : matthieu.blngr@gmail.com     */
+/*---------------------------------------------------*/
+/*                  FILE : JETPACK.CPP               */
+/*****************************************************/
+
 #include "jetpack.hpp"
 
 using namespace std;
-
-/*******************************************************************
-Liste des choses à faire:
--> Fonction qui dès que le personnage meurt, se penche.	XXX
--> Invincibilité du personnage avec le Cupcake.	XXX
--> Classe Croissant, ce croissant vous tue avec n'importe quel nombre de vie.	XXX
--> Ajouter pleins de sémaphore.	XXX Avec modération
--> Trouver moyen pour que le personnage puisse pivoter (*2). Presque fait, manque le cas PERDU	XXX
--> Nettoyer les fichiers, rassembler les codes redondants.
--> Effacer les printfs, commenter.
--> Classe Bitcoin à implémenter.	XXX
--> Ajouter l'indicateur du nombre de pièce récoltée. XXX
--> Page aide? Surement... :/	XXX
--> Changer la musique du menu.	XXX
--> Ajouter donc 2 boutons. Bouton quitter et bouton aide. XXX
--> Implémenter la page aide. (Nouvelle musique, choix du fond, style, etc..).
--> Recommencer la page d'acceuil.	XXX
--> Problème lors de la relance du jeu. Créer une fonction initialisation..
--> Changer musique score.
--> Penser à une meilleure presentation de la page aide 
--> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire.. XXX Reconstruite mais tjrs pb memoire
--> Changer le fond d'écran High Score..		XXX Fait
--> Creer 3 types de collision (collision1, 2 et 3)..	XXX juste 2 types de collision
--> Ameliorer page tu t'es pris un pain..	XXX
--> Ralentir vitesse bitcoin	XXX NON
--> Ajouter animation
-*******************************************************************/
 
 Jetpack::Jetpack()
 {
@@ -53,8 +34,8 @@ Jetpack::launch ()
   int Presentation = 0;
   int Aide = 0;
   bool semaphore = true;
-  bool semaphore3 = true;	//verouillage changer de touche!	// En fait, le cupcake est un allié puisque tu es invincible :(
-  bool semaphore4 = true;	//bloque une fois la collision avec le cupcake.	//A faire pour tous :(
+  bool semaphore3 = true;	//verouillage changer de touche!
+  bool semaphore4 = true;	//bloque une fois la collision avec le cupcake.	
   bool semaphore45 = true;
  // bool semaphore5 = true;	//semaphore collision baguette
   bool anti_gravity = false;
@@ -130,8 +111,9 @@ Jetpack::launch ()
 							sam->deplacer(0, -SPEED);		
 						}					
 					}
+					else if (event.key.code == sf::Keyboard::Escape)
+						win_->close();
 					break;
-				//ajouter un case event escape
 				case sf::Event:: Closed: 
         				win_->close();
        					break;
@@ -296,7 +278,6 @@ Jetpack::launch ()
 			Play = 0;
 			win_->clear();
 			menu_->display_looser(win_);
-			//Obtenir le kilometrage et l'inscrire dans le fichier
 			french_stick->from_scratch(true);
 			brioche->from_scratch(true);
 			background->from_scratch(true);
@@ -304,6 +285,11 @@ Jetpack::launch ()
 			cupcake->from_scratch(true);
 			heart->from_scratch(true);
 			bitcoin->from_scratch(true);
+ 		  	semaphore = true;
+  			semaphore3 = true;
+		   	semaphore4 = true;	
+ 			semaphore45 = true;
+		 	anti_gravity = false;
 		}
 	/*********************************************************************************/ // Menu!
 		if (Round == 0){
@@ -319,7 +305,7 @@ Jetpack::launch ()
 				bitcoin->setPosition(bitcoin->getX(), bitcoin->generator_number());
 				bitcoin->move(10, 0);
 			}
-			if(((sam->collision2(sam->getX(), sam->getY(), french_stick->getX(), french_stick->getY() + 140)) == true)){
+			if(((sam->collision2(sam->getX(), sam->getY(), french_stick->getX(), french_stick->getY() + 50)) == true)){
 				if (anti_gravity == true){
 					anti_gravity = false;
 					semaphore3 = true;
@@ -338,7 +324,7 @@ Jetpack::launch ()
 				sf::Time elapsed7 = time.getElapsedTime();
 				menu_->written_score(elapsed7.asMilliseconds());
 				sf:: Image screen = win_->capture();
-				screen.saveToFile("screenshot.jpg");	//Maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				screen.saveToFile("Pictures/screenshot.jpg");	//Maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				Play = 0;	//On sort de la gamePlay
 				Loose = 1;	//On rentre dans la fenetre "Perdu"
 				time3.restart();
