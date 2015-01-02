@@ -2,7 +2,8 @@
 #define MENU_HPP
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
+#include <fstream>
+#include <sstream>
 #include "main.hpp"
 #include "bouton.hpp"
 #include "jetpack.hpp"
@@ -45,10 +46,13 @@ class Menu
 		sf:: Sprite *logo_score;
 		sf:: Text textes_;
 		sf:: Texture bitcoin_;
+		sf:: Texture blesse_;
 		sf:: Sprite *sprite_bitcoin_;
+		sf:: Sprite *sprite_blesse;
 		sf:: Sprite *sprite_vie_;
 		sf:: Texture vie_;
 		sf:: Font *font_;
+		sf:: Font *font_2;
   		Bouton *bouton_play_;
   		Bouton *bouton_quitter_;
   		Bouton *bouton_score_;

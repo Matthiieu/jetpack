@@ -33,8 +33,8 @@ Personnage:: setPosition (int x, int y){
 bool 
 Personnage:: collision1(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec la brioche!
-	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 15)){
-		cout << "COLLISION BRIOCHE" << endl;
+	if ((abs(a-c) <= 40 ) && (abs(b-d) <= 40)){
+		cout << "COLLISION DE TYPE BRIOCHE, CUPCAKE, HEART, CROISSANT, BITCOIN" << endl;
 		return true;
 	}
 	else
@@ -44,42 +44,9 @@ Personnage:: collision1(int a, int b, int c, int d){
 bool 
 Personnage:: collision2(int a, int b, int c, int d){
 	// previens s'il y a eu collision avec la baguette!
-	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
+	if ((abs(a-c) <= 15 ) && (abs(b-d) <= 80)){
 		cout << abs(a-c) << endl << abs(b-d) << endl << c << endl << d << endl;
-		cout << "COLLISION BAGUETTE" << endl;
-		return true;
-	}
-	else
-		return false;
-}
-
-bool 
-Personnage:: collision3(int a, int b, int c, int d){
-	// previens s'il y a eu collision avec le cupcake!
-	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
-		cout << "COLLISION CUPCAKE" << endl;
-		return true;
-	}
-	else
-		return false;
-}
-
-bool 
-Personnage:: collision4(int a, int b, int c, int d){
-	// previens s'il y a eu collision avec le coeur!
-	if ((abs(a-c) <= 5 ) && (abs(b-d) <= 80)){
-		cout << "COLLISION COEUR" << endl;
-		return true;
-	}
-	else
-		return false;
-}
-
-bool 
-Personnage:: collision5(int a, int b, int c, int d){
-	// previens s'il y a eu collision avec le croissant!
-	if ((abs(a-c) <= 1) && (abs(b-d) <= 1)){
-		cout << "COLLISION CROISSANT" << endl;
+		cout << "COLLISION DE TYPE BAGUETTE" << endl;
 		return true;
 	}
 	else
@@ -130,12 +97,6 @@ Personnage:: run(){
 		//sprite_perso_->setScale(ECHELLE_SAM, gravity);
 	}
 }
-
-void 
-Personnage:: bend(void){
-	sprite_perso_->rotate(-5);
-}
-
 
 void
 Personnage:: display(sf::RenderTarget *rt){

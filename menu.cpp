@@ -13,6 +13,11 @@ Menu:: Menu(){
 	bouton_aide_ = new Bouton(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 + 40, "Help");
 	logo_screenshot = new sf::Sprite;
 
+	font_2 = new sf::Font;
+	if(!font_2->loadFromFile("font_help.ttf")){
+		cout << "erreur"<< endl;
+	}
+
 	font_ = new sf::Font;
 	if(!font_->loadFromFile("font2.ttf")){
 		cout << "erreur"<< endl;
@@ -23,10 +28,16 @@ Menu:: Menu(){
 		exit(1);
 	}
 
+	sprite_blesse = new sf::Sprite;
+	if(!blesse_.loadFromFile("blesse.png")){
+		exit(1);
+	}
+
 	logo_score = new sf::Sprite;
 	if(!texture_score.loadFromFile("fond_score.png")){
 		exit(1);
 	}
+	logo_score->setTexture(texture_score);
 
 	sprite_vie_ = new sf::Sprite;
 	if(!vie_.loadFromFile("vie.png")){
@@ -76,20 +87,26 @@ Menu:: display_texte(sf::RenderTarget *rt){
 	rt->draw(texte2_);
 }
 
-void 
+void
 Menu:: written_score(int number){
 	char buffer[6];
 	gcvt(number, 6, buffer);
-	ofstream fichier ("aide.txt", ios::app);
+	ifstream fichier("aide.txt");
 	if (fichier){
-		fichier << number << endl;
-		fichier.close();
+		stringstream buffer2;
+		buffer2 << fichier.rdbuf();
+		string timeString = buffer2.str();
+		ofstream fichier2("aide.txt");
+		//cout << timeString << endl;
+		fichier2 << number << endl;
+		fichier2 << timeString << endl;
+		fichier2.close();
 	}
-	else{
-		cerr << "Impossible d'ouvrir le fichier en ecriture" << endl;
-	}
-
+	else
+		cerr << "Impossible d'ouvrir le fichier en lecture" << endl;
+	fichier.close();
 }
+
 
 void
 Menu:: reading_score(sf::RenderTarget *rt){
@@ -101,35 +118,34 @@ Menu:: reading_score(sf::RenderTarget *rt){
 	sf:: Text texte3_;
 	sf:: Text texte4_;
 	sf:: Text texte5_;
-	texte4_.setFont(*font_);
+	texte4_.setFont(*font_2);
 	texte4_.setCharacterSize(40);
 	texte4_.setColor(sf::Color::Red);
 	texte4_.setString("Last Score:");
 	texte4_.setPosition(30, 2);
-	logo_score->setTexture(texture_score);
 	rt->draw(*logo_score);
 	rt->draw(texte4_);
 	ifstream fichier ("aide.txt", ios::in);
 	if (fichier){
-		// Ajouter un sémaphore pour corriger pb
-		while(!fichier.eof()){
+		while((!fichier.eof()) && i <= 10){
 			fichier >> number;
 			gcvt(number, 6, buffer);
 			gcvt(i, 2, buffer2);
-			texte5_.setFont(*font_);
+			texte5_.setFont(*font_2);
 			texte5_.setCharacterSize(40);
 			texte5_.setColor(sf::Color::Red);
 			texte5_.setString(buffer2);
-			texte5_.setPosition(10, 30 * i);
-			texte3_.setFont(*font_);
+			texte5_.setPosition(10, 50 * i);
+			texte3_.setFont(*font_2);
 			texte3_.setCharacterSize(40);
-			texte3_.setColor(sf::Color::Black);
-			texte3_.setPosition(70, 30 * i);
+			texte3_.setColor(sf::Color::White);
+			texte3_.setPosition(70, 50 * i);
 			texte3_.setString(buffer);
 			rt->draw(texte3_);
 			rt->draw(texte5_);
 			i++;
 		}
+		fichier.clear();
 		fichier.close();
 	}
 	else{
@@ -154,16 +170,16 @@ Menu:: distance(sf::RenderTarget *rt, int number){
 		gcvt(number, 6, buffer);
 		sf:: Text texte6_;
 		sf:: Text texte7_;
-		texte7_.setFont(*font_);
-		texte6_.setFont(*font_);
-		texte7_.setCharacterSize(60);
-		texte6_.setCharacterSize(60);
+		texte7_.setFont(*font_2);
+		texte6_.setFont(*font_2);
+		texte7_.setCharacterSize(20);
+		texte6_.setCharacterSize(20);
 		texte7_.setColor(sf::Color::Red);
 		texte6_.setColor(sf::Color::Red);
 		texte7_.setString("metres");
 		texte6_.setString(buffer);
-		texte6_.setPosition(0, -30);
-		texte7_.setPosition(80, -30);
+		texte6_.setPosition(0, 5);
+		texte7_.setPosition(80, 5);
 		rt->draw(texte6_);
 		rt->draw(texte7_);
 }
@@ -171,16 +187,16 @@ Menu:: distance(sf::RenderTarget *rt, int number){
 void 
 Menu:: display_bitcoin(sf::RenderTarget *rt, int number){
 	sprite_bitcoin_->setTexture(bitcoin_);
-	sprite_bitcoin_->setPosition(380, 10);
+	sprite_bitcoin_->setPosition(380, 5);
 	sprite_bitcoin_->setScale(0.03f, 0.03f);
 	char buffer[6];
 	gcvt(number, 6, buffer);
 	sf:: Text texte8_;
-	texte8_.setFont(*font_);
-	texte8_.setCharacterSize(60);
-	texte8_.setColor(sf::Color::White);
+	texte8_.setFont(*font_2);
+	texte8_.setCharacterSize(20);
+	texte8_.setColor(sf::Color::Red);
 	texte8_.setString(buffer);
-	texte8_.setPosition(420, -30);
+	texte8_.setPosition(420, 10);
 	rt->draw(texte8_);
 	rt->draw(*sprite_bitcoin_);
 }
@@ -188,16 +204,16 @@ Menu:: display_bitcoin(sf::RenderTarget *rt, int number){
 void 
 Menu:: display_vie(sf::RenderTarget *rt, int number){
 	sprite_vie_->setTexture(vie_);
-	sprite_vie_->setPosition(600, 10);
+	sprite_vie_->setPosition(600, 5);
 	sprite_vie_->setScale(0.15f, 0.15f);
 	char buffer[6];
 	gcvt(number, 6, buffer);
 	sf:: Text texte9_;
-	texte9_.setFont(*font_);
-	texte9_.setCharacterSize(60);
-	texte9_.setColor(sf::Color::White);
+	texte9_.setFont(*font_2);
+	texte9_.setCharacterSize(20);
+	texte9_.setColor(sf::Color::Red);
 	texte9_.setString(buffer);
-	texte9_.setPosition(650, -30);
+	texte9_.setPosition(650, 10);
 	rt->draw(texte9_);
 	rt->draw(*sprite_vie_);
 }
@@ -208,24 +224,27 @@ Menu:: display_chrono(sf::RenderTarget *rt, int number){
 		char buffer[7];
 		gcvt(number, 7, buffer);
 		sf:: Text texte10_;
-		texte10_.setFont(*font_);
-		texte10_.setCharacterSize(60);
+		texte10_.setFont(*font_2);
+		texte10_.setCharacterSize(80);
 		texte10_.setColor(sf::Color::White);
 		texte10_.setString(buffer);
-		texte10_.setPosition(400, 400);
+		texte10_.setPosition(630, 475);
 		rt->draw(texte10_);
 }
 
 void 
 Menu:: display_looser(sf::RenderTarget *rt){
 		sf:: Text texte_11;
-		texte_11.setFont(*font_);
-		texte_11.setCharacterSize(60);
+		sprite_blesse->setTexture(blesse_);
+		sprite_blesse->setPosition(20, 100);
+		sprite_blesse->setScale(0.5f, 0.5f);
+		texte_11.setFont(*font_2);
+		texte_11.setCharacterSize(90);
 		texte_11.setColor(sf::Color::White);
-		texte_11.setPosition(50, 100);
-		texte_11.setString("Tu t'es pris\n\t un pain!");
+		texte_11.setPosition(330, 180);
+		texte_11.setString("Tu t'es pris\n  un pain!");
 		rt->draw(texte_11);
-		rt->draw(*logo_score);
+		rt->draw(*sprite_blesse);
 }
 
 void 
@@ -237,12 +256,12 @@ Menu:: display(sf::RenderTarget *rt){
 void
 Menu:: display_presentation(sf::RenderTarget *rt){
 	sf:: Text texte_12;
-	texte_12.setFont(*font_);
-	texte_12.setCharacterSize(50);
+	texte_12.setFont(*font_2);
+	texte_12.setCharacterSize(30);
 	texte_12.setColor(sf::Color::Black);
 	texte_12.setStyle(sf::Text::Bold);
 	texte_12.setPosition(0, 20);
-	texte_12.setString("Aide Sam a eviter les projectiles lances\n par le boulanger.\n\n\n Pour cela, vous disposez d'une seule touche\n qui permet de surelever\n votre personnage.\n Attention aux cupcakes qui inversent\n la gravite et donc de touche!\n\n\nBon courage et surtout.. Bonne chance!");
+	texte_12.setString("Le boulanger n'arrive plus a joindre les deux bouts: il est\nau bord de la faillite!!\nAide Sam a raisonner le boulanger en evitant ses\nprojectiles.\n\nSituation: Vous vous situez dans les rues de Paris a\nla poursuite du boulanger. Ce dernier tres enerve a decide\nde vous lancer sa fournee.\n\nLes brioches, baguettes et croissants sont vos ennemis.\n\nVous disposez d'une touche qui permet de surelever votre\npersonnage.\n\nBon courage et surtout.. Bonne chance!");
 	rt->draw(*logo_first);
 	rt->draw(texte_12);
 }
@@ -250,7 +269,7 @@ Menu:: display_presentation(sf::RenderTarget *rt){
 void
 Menu:: display_aide(sf::RenderTarget *rt){
 	sf:: Text texte_13;
-	texte_13.setFont(*font_);
+	texte_13.setFont(*font_2);
 	texte_13.setCharacterSize(50);
 	texte_13.setColor(sf::Color::Black);
 	texte_13.setStyle(sf::Text::Bold);

@@ -11,7 +11,7 @@
 #define	POSITION_IMAGE_MENU_X	200
 #define	POSITION_IMAGE_MENU_Y	5
 
-#define	POSITION_SCREENSHOT_MENU_X	500
+#define	POSITION_SCREENSHOT_MENU_X	350
 #define	POSITION_SCREENSHOT_MENU_Y	20
 
 #define	POSITION_TITRE_MENU_X	100
@@ -20,8 +20,8 @@
 #define ECHELLE_IMAGE_MENU_X	2.0f
 #define ECHELLE_IMAGE_MENU_Y	2.0f
 
-#define ECHELLE_SCREENSHOT_MENU_X	0.3f
-#define ECHELLE_SCREENSHOT_MENU_Y	0.3f
+#define ECHELLE_SCREENSHOT_MENU_X	0.5f
+#define ECHELLE_SCREENSHOT_MENU_Y	0.5f
 
 #define	BOUTON_RECTANGLE_MENU_X1	80
 #define	BOUTON_RECTANGLE_MENU_X2	430
@@ -63,22 +63,22 @@
 #define HEART0		5
 
 //Niveau Moyen
-#define SOSO		22000	//sur en accordance avec musique
+#define SOSO		22000		//sur en accordance avec musique
 #define BACKGROUND1	12
 #define SPEED1		-5
 #define FRENCH_STICK1	12
 #define BITCOIN1	15
 #define CUPCAKE1	15
-#define BRIOCHE1	25
+#define BRIOCHE1	12
 
 //Niveau Difficile
 #define HARD		35000
-#define BACKGROUND2	20
+#define BACKGROUND2	12
 #define SPEED2		-5
-#define FRENCH_STICK2	20
-#define BITCOIN2	23
-#define CUPCAKE2	23
-#define BRIOCHE2	25
+#define FRENCH_STICK2	12
+#define BITCOIN2	12
+#define CUPCAKE2	12
+#define BRIOCHE2	12
 
 #define FLOOR	531
 #define FLOOR2	700

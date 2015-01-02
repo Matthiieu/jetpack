@@ -22,7 +22,6 @@ class Personnage{
 		int getY();
 
 		int getLIFE();
-		void bend(void);
 	
 		void run();
 		void rotation_personnage1(void);
@@ -32,9 +31,6 @@ class Personnage{
 
 		bool collision1(int a, int b, int c, int d);
 		bool collision2(int a, int b, int c, int d);
-		bool collision3(int a, int b, int c, int d);
-		bool collision4(int a, int b, int c, int d);
-		bool collision5(int a, int b, int c, int d);
 		void more_life(void);
 		void less_life(void);
 		bool is_alive();

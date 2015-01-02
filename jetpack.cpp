@@ -7,7 +7,7 @@ Liste des choses à faire:
 -> Fonction qui dès que le personnage meurt, se penche.	XXX
 -> Invincibilité du personnage avec le Cupcake.	XXX
 -> Classe Croissant, ce croissant vous tue avec n'importe quel nombre de vie.	XXX
--> Ajouter pleins de sémaphore.
+-> Ajouter pleins de sémaphore.	XXX Avec modération
 -> Trouver moyen pour que le personnage puisse pivoter (*2). Presque fait, manque le cas PERDU	XXX
 -> Nettoyer les fichiers, rassembler les codes redondants.
 -> Effacer les printfs, commenter.
@@ -22,10 +22,10 @@ Liste des choses à faire:
 -> Changer musique score.
 -> Penser à une meilleure presentation de la page aide 
 -> S occuper des fuites de mémoire. La classe Menu pose probleme. Sans doute la reconstruire.. XXX Reconstruite mais tjrs pb memoire
--> Changer le fond d'écran High Score..
--> Creer 3 types de collision (collision1, 2 et 3)..
--> Ameliorer page tu t'es pris un pain..
--> Ralentir vitesse bitcoin
+-> Changer le fond d'écran High Score..		XXX Fait
+-> Creer 3 types de collision (collision1, 2 et 3)..	XXX juste 2 types de collision
+-> Ameliorer page tu t'es pris un pain..	XXX
+-> Ralentir vitesse bitcoin	XXX NON
 -> Ajouter animation
 *******************************************************************/
 
@@ -53,7 +53,6 @@ Jetpack::launch ()
   int Level = 0;
   int Presentation = 0;
   int Aide = 0;
-  bool launch_heart;
   bool semaphore = true;
   bool semaphore3 = true;	//verouillage changer de touche!	// En fait, le cupcake est un allié puisque tu es invincible :(
   bool semaphore4 = true;	//bloque une fois la collision avec le cupcake.	//A faire pour tous :(
@@ -152,7 +151,6 @@ Jetpack::launch ()
 					}
 					sam->gravity(0, SPEED0, anti_gravity);
 					sam->run();
-					cupcake->move(CUPCAKE0, 0);
 					bitcoin->move(BITCOIN0, 0);
 					croissant->move(BITCOIN0,0);
 					neon->move(FRENCH_STICK0, 0);
@@ -161,42 +159,16 @@ Jetpack::launch ()
 						neon->move(FRENCH_STICK0, 0);
 					}
 					sf::Time elapsed1 = time.getElapsedTime();
-
 					if (elapsed1.asMilliseconds() > SOSO)
 						Level = 1;
-					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
-						if (anti_gravity == true){
-							anti_gravity = false;
-							semaphore3 = true;
-							sam->run();
-						}
-						else
-							sam->less_life();
-						//semaphore5 = true;
-					}
-					if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
-						audio_->play_vie();
-						cout << "Sam a gagné une vie supplémentaire!" << endl;
-						sam->more_life();
-						cout << sam->getLIFE() << endl;
-					}
-					if(((sam->collision5(sam->getX(), sam->getY(), croissant->getX(), croissant->getY())) == true)){
-						Play = 0;
-						Loose = 1;
-						time3.restart();
-					}
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
 					neon->display(win_);
 					bitcoin->display(win_);
-					cupcake->display(win_);
 					croissant->rotate();
 					croissant->display(win_);
 					menu_->distance(win_, elapsed1.asMilliseconds());
-					if (launch_heart == true)
-						heart->move(HEART0, 0);
-						heart->display(win_);
 				}				
 				break;
 			case 1:
@@ -211,6 +183,7 @@ Jetpack::launch ()
 					bitcoin->move(BITCOIN0, 0);
 					fusee->launch(BRIOCHE1, 0);
 					neon->move(FRENCH_STICK1, 0);
+					cupcake->move(CUPCAKE0, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
 						fusee->setPosition(fusee->getX(), fusee->generator_number());
 						fusee->launch(BRIOCHE1, 0);
@@ -219,43 +192,17 @@ Jetpack::launch ()
 						neon->setPosition(neon->getX(), neon->generator_number());
 						neon->move(FRENCH_STICK1, 0);
 					}
-						if(((sam->collision4(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true) && (semaphore == true)){
-							semaphore = false;
-							audio_->play_vie();
-							sam->more_life();
-						}
-						semaphore = true;	// permet de reprendre un coeur
 					sf::Time elapsed2 = time.getElapsedTime();
 					if (elapsed2.asMilliseconds() > HARD)
 						Level = 2;
-					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
-						if (anti_gravity == true){
-							anti_gravity = false;
-							semaphore3 = true;
-							sam->gravity(0, SPEED1, anti_gravity);
-						}
-						else
-							sam->less_life();
-					}
-					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
-						if (anti_gravity == true){
-							anti_gravity = false;
-							semaphore3 = true;
-							sam->gravity(0, SPEED1, anti_gravity);
-						}
-						else
-							sam->less_life();
-					}
 					win_->clear();
 					background->display(win_);
 					sam->display(win_);
 					bitcoin->display(win_);
 					fusee->display(win_);
 					neon->display(win_);
+					cupcake->display(win_);
 					menu_->distance(win_, elapsed2.asMilliseconds());
-					if (launch_heart == true)
-						heart->move(HEART0, 0);
-						heart->display(win_);
 				}
 				break;
 			case 2:
@@ -265,11 +212,11 @@ Jetpack::launch ()
 						background->setPosition(background->getX(), background->getY());
 						background->parade(BACKGROUND2, 0);
 					}
-					//menu_->display_vie(win_);
 					sam->gravity(0, SPEED2, anti_gravity);
 					sam->run();
 					bitcoin->move(BITCOIN0, 0);
 					fusee->launch(BRIOCHE2, 0);
+					heart->move(HEART0, 0);
 					neon->move(FRENCH_STICK2, 0);
 					if (fusee->from_scratch(fusee->far_away(fusee->getX()))){
 						fusee->setPosition(fusee->getX(), fusee->generator_number());
@@ -280,24 +227,6 @@ Jetpack::launch ()
 						neon->move(FRENCH_STICK2, 0);
 					}
 					sf::Time elapsed3 = time.getElapsedTime();
-					if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
-						if (anti_gravity == true){
-							anti_gravity = false;
-							semaphore3 = true;
-							sam->gravity(0, SPEED1, anti_gravity);
-						}
-						else
-							sam->less_life();
-					}
-					if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 70)) == true)){
-						if (anti_gravity == true){
-							anti_gravity = false;
-							semaphore3 = true;
-							sam->gravity(0, SPEED1, true);
-						}
-						else
-							sam->less_life();
-					}
 					neon->rotate();
 					win_->clear();
 					background->display(win_);
@@ -306,9 +235,7 @@ Jetpack::launch ()
 					fusee->display(win_);
 					neon->display(win_);
 					menu_->distance(win_, elapsed3.asMilliseconds());
-					if (launch_heart == true)
-						heart->move(HEART0, 0);
-						heart->display(win_);
+					heart->display(win_);
 				}
 				break;
 			default:
@@ -361,6 +288,7 @@ Jetpack::launch ()
 			if (number < 1){
 				High_Score = 1;
 				Loose = 0;
+				sam->more_life();
 				time3.restart();
 				audio_->stop_main();
 				audio_->stop_menu();
@@ -377,7 +305,6 @@ Jetpack::launch ()
 			cupcake->from_scratch(true);
 			heart->from_scratch(true);
 			bitcoin->from_scratch(true);
-			sam->more_life();
 		}
 	/*********************************************************************************/ // Menu!
 		if (Round == 0){
@@ -387,20 +314,42 @@ Jetpack::launch ()
 		}
 	/*********************************************************************************/ //
 		if (Play == 1){
-			sf::Time elapsed8 = time2.getElapsedTime();
-			if(elapsed8.asSeconds() > 13)
-				launch_heart = true;
-			else
-				launch_heart = false;
 			menu_->display_vie(win_, sam->getLIFE());
 			menu_->display_bitcoin(win_, bitcoin->getCOLLECTION());
 			if (bitcoin->from_scratch(bitcoin->far_away(bitcoin->getX()))){
 				bitcoin->setPosition(bitcoin->getX(), bitcoin->generator_number());
 				bitcoin->move(10, 0);
 			}
-			if((sam->collision3(sam->getX(), sam->getY(), cupcake->getX(), cupcake->getY()) == true) && (semaphore4 == true)){
+			if(((sam->collision2(sam->getX(), sam->getY(), neon->getX(), neon->getY() + 140)) == true)){
+				if (anti_gravity == true){
+					anti_gravity = false;
+					semaphore3 = true;
+					sam->run();
+				}
+				else
+					sam->less_life();
+			}
+			if(((sam->collision1(sam->getX(), sam->getY(), heart->getX(), heart->getY())) == true)){
+				audio_->play_vie();
+				sam->more_life();
+				cout << sam->getLIFE() << endl;
+			}
+			if(((sam->collision1(sam->getX(), sam->getY(), croissant->getX(), croissant->getY())) == true)){
+				Play = 0;
+				Loose = 1;
+				time3.restart();
+			}
+			if(((sam->collision1(sam->getX(), sam->getY(), fusee->getX(), fusee->getY())) == true)){
+				if (anti_gravity == true){
+					anti_gravity = false;
+					semaphore3 = true;
+					sam->gravity(0, SPEED1, anti_gravity);
+				}
+				else
+					sam->less_life();
+			}
+			if((sam->collision1(sam->getX(), sam->getY(), cupcake->getX(), cupcake->getY()) == true) && (semaphore4 == true)){
 				semaphore4 = false;
-				cout << "Sam a mangé le cupcake" << endl;
 				audio_->play_cupcake();
 				anti_gravity = true;	//Permet de savoir s'il est en anti-gravity
 				semaphore3 = false;
@@ -411,17 +360,15 @@ Jetpack::launch ()
 			}
 			if (sam->is_alive() == false){
 				audio_->play_crash();
-				sam->bend();
-				sam->display(win_);
 				sf::Time elapsed7 = time.getElapsedTime();
 				menu_->written_score(elapsed7.asMilliseconds());
 				sf:: Image screen = win_->capture();
 				screen.saveToFile("screenshot.jpg");	//Maybe le mettre plus tot!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				Play = 0;	//On sort de la gamePlay
 				Loose = 1;	//On rentre dans la fenetre "Perdu"
+				time3.restart();
 			}
-			if((sam->collision3(sam->getX(), sam->getY(), bitcoin->getX(), bitcoin->getY()) == true) && (semaphore45 == true)){
-				cout << "Sam a attrapé une piece" << endl;
+			if((sam->collision1(sam->getX(), sam->getY(), bitcoin->getX(), bitcoin->getY()) == true) && (semaphore45 == true)){
 				audio_->play_cupcake();
 				bitcoin->increase_collection();
 				semaphore45 = false;
@@ -431,7 +378,6 @@ Jetpack::launch ()
 				if(elapsed9.asSeconds() > 2){
 					semaphore45 = true;
 				}
-
 		}
 		win_->display();
 	}
