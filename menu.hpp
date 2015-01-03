@@ -6,14 +6,12 @@
 /*                  FILE : MENU.HPP                  */
 /*****************************************************/
 
-
 #ifndef MENU_HPP
 #define MENU_HPP
 
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <sstream>
-#include "main.hpp"
 #include "button.hpp"
 #include "jetpack.hpp"
 

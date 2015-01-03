@@ -10,14 +10,14 @@
 
 using namespace std;
 
-//Constructeur "Background", permet de charger les fonds d'ecran.
+//Constructeur Background, permet de charger les fonds d'ecran.
 Background:: Background(string name, int x, int y){ 
 	background_.loadFromFile(name);
 	background_.setSmooth(true);
 	sprite_background_ = new sf::Sprite;
 	sprite_background_->setTexture(background_);
 	sprite_background_->setPosition(x, y);
-	xb_ = x;			//Coordonnées du sprite.
+	xb_ = x;	
 	yb_ = y;
 }
 

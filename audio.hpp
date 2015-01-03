@@ -43,37 +43,37 @@ class Audio
 
 	void play_main(void){
 		music_main->play();
-		music_main->setVolume(100);
+		music_main->setVolume(VOLUME);
 	}
 
 	void play_score(void){
 		music_score->play();
-		music_score->setVolume(100);
+		music_score->setVolume(VOLUME);
 	}
 
 	void play_menu(void){
 		music_menu->play();
-		music_menu->setVolume(100);
+		music_menu->setVolume(VOLUME);
 	}
 
 	void play_vie(void){
 		music_vie->play();
-		music_vie->setVolume(100);
+		music_vie->setVolume(VOLUME);
 	}
 
 	void play_cupcake(void){
 		music_cupcake->play();
-		music_cupcake->setVolume(100);
+		music_cupcake->setVolume(VOLUME);
 	}
 
 	void play_crash(void){
 		music_crash->play();
-		music_crash->setVolume(100);
+		music_crash->setVolume(VOLUME);
 	}
 
 	void play_bitcoin(void){
 		music_bitcoin->play();
-		music_bitcoin->setVolume(100);
+		music_bitcoin->setVolume(VOLUME);
 	}
 
 	void stop_main(void){

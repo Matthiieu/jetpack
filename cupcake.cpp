@@ -16,9 +16,9 @@ Cupcake:: Cupcake(){
 	cupcake_.setSmooth(true);
 	sprite_cupcake_ = new sf:: Sprite;
 	sprite_cupcake_->setTexture(cupcake_);
-	sprite_cupcake_->setScale(0.03f, 0.03f);
+	sprite_cupcake_->setScale(ECHELLE_CUPCAKE, ECHELLE_CUPCAKE);
 	xc_ = 800;
-	yc_ = 500;
+	yc_ = 100;
 }
 
 Cupcake:: ~Cupcake(){
@@ -44,14 +44,6 @@ Cupcake:: display(sf::RenderTarget *rt){
 		rt->draw(*sprite_cupcake_);
 }
 
-int 
-Cupcake:: generator_number(){
-	// Génerer un nombre entre 0 et 600!
-	srand(time(NULL));
-	int alea = rand() % 580;
-	return alea;
-}
-
 bool
 Cupcake:: from_scratch(bool boolean){
 	if (boolean){
@@ -59,14 +51,6 @@ Cupcake:: from_scratch(bool boolean){
 		return true;
 	}
 	else 
-		return false;
-}
-
-bool
-Cupcake:: far_away(int x){
-	if (x < (-10))
-		return true;
-	else
 		return false;
 }
 

@@ -16,7 +16,7 @@ Character:: Character(){
 	character_.setSmooth(true);
 	sprite_character_ = new sf::Sprite;
 	sprite_character_->setTexture(character_);
-	sprite_character_->setScale(1.7f, 1.7f);
+	sprite_character_->setScale(ECHELLE_SAM, ECHELLE_SAM);
 	x_ = MIDDLE;
 	y_ = FLOOR;
 	anim.x = 0;
@@ -39,21 +39,16 @@ Character:: setPosition (int x, int y){
 
 bool 
 Character:: collision1(int a, int b, int c, int d){
-	if ((abs(a-c) <= 40 ) && (abs(b-d) <= 50)){
-		cout << "COLLISION DE TYPE BRIOCHE, CUPCAKE, HEART, CROISSANT, BITCOIN" << endl;
+	if ((abs(a-c) <= SENSIBILITY1_X ) && (abs(b-d) <= SENSIBILITY1_Y))
 		return true;
-	}
 	else
 		return false;
 }
 
 bool 
 Character:: collision2(int a, int b, int c, int d){
-	if ((abs(a-c) <= 15 ) && (abs(b-d) <= 70)){
-		cout << abs(a-c) << endl << abs(b-d) << endl << c << endl << d << endl;
-		cout << "COLLISION DE TYPE BAGUETTE" << endl;
+	if ((abs(a-c) <= SENSIBILITY2_X ) && (abs(b-d) <= SENSIBILITY2_Y))
 		return true;
-	}
 	else
 		return false;
 }

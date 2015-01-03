@@ -11,7 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp> 
-#include "main.hpp"
 #include "jetpack.hpp"
 
 
@@ -36,8 +35,6 @@ class Croissant
 		bool from_scratch(bool boolean);
 
 		void rotate(void);
-
-		void scale(int number);
 
 	private:
 		sf:: Texture croissant_;

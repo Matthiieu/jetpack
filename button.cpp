@@ -22,12 +22,12 @@ Button::Button (int X, int Y, sf::String text)
 	}
 	rectangleShape_->setTexture(texture_);
 	rectangleShape_->setPosition(X, Y);
-	rectangleShape_->scale(2.6f, 2.4f);
+	rectangleShape_->scale(ECHELLE_BUTTON_X, ECHELLE_BUTTON_Y);
 	text_.setFont(*font_);
 	text_.setCharacterSize(POLICE_BOUTON);
 	text_.setColor(sf::Color::White);
 	text_.setString(text);
-	text_.setPosition(X + 50, Y + 10);
+	text_.setPosition(X + OFFSET2_1, Y + OFFSET2_2);
 }
 
 Button:: ~Button(){

@@ -11,7 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "main.hpp"
 #include "jetpack.hpp"
 
 using namespace std;
@@ -34,7 +33,6 @@ class Background
 	void display(sf::RenderTarget *rt);
 	
 	int getX();
-	
 	int getY();
 
 	private:

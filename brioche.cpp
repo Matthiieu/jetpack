@@ -19,7 +19,7 @@ Brioche:: Brioche(){
 	brioche_.loadFromFile("Pictures/bread.png");
 	sprite_brioche_ = new sf::Sprite;
 	sprite_brioche_->setTexture(brioche_);
-	sprite_brioche_->setScale(0.2f, 0.2f);
+	sprite_brioche_->setScale(ECHELLE_BRIOCHE, ECHELLE_BRIOCHE);
 	xf_ = 800;
 	yf_ = 200;
 }
@@ -49,7 +49,7 @@ Brioche:: display(sf::RenderTarget *rt){
 
 int 
 Brioche:: generator_number(){
-	// Génerer un nombre entre 0 et 600!
+	// Génerer un nombre entre 0 et 550!
 	srand(time(NULL));
 	int alea = rand() % 550;
 	return alea;
@@ -67,7 +67,6 @@ Brioche:: from_scratch(bool boolean){
 
 bool
 Brioche:: far_away(int x){
-	// Verifie si notre fusée est partie bien loin...
 	if (x < (-10))
 		return true;
 	else

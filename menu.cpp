@@ -15,10 +15,10 @@ Menu:: Menu(){
 	logo_first = new sf::Sprite;
 	logo_first->setTexture(texture_first);
 	logo_first->setPosition(0, 0);
-	bouton_play_ = new Button(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 - 80, "Play");
-	bouton_score_ = new Button(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 - 80, "Score");
-	bouton_quitter_ = new Button(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 + 40, "Exit");
-	bouton_aide_ = new Button(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 + 40, "Help");
+	bouton_play_ = new Button(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 - OFFSET3_1, "Play");
+	bouton_score_ = new Button(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 - OFFSET3_1, "Score");
+	bouton_quitter_ = new Button(BOUTON_RECTANGLE_MENU_X2, BOUTON_RECTANGLE_MENU_Y2 + OFFSET3_2, "Exit");
+	bouton_aide_ = new Button(BOUTON_RECTANGLE_MENU_X1, BOUTON_RECTANGLE_MENU_Y2 + OFFSET3_2, "Help");
 	logo_screenshot = new sf::Sprite;
 
 	font_2 = new sf::Font;
@@ -103,10 +103,10 @@ Menu:: written_score(int number){
 	if (fichier){
 		stringstream buffer2;
 		buffer2 << fichier.rdbuf();
-		string timeString = buffer2.str();
+		string score = buffer2.str();
 		ofstream fichier2("score.txt");
 		fichier2 << number << endl;
-		fichier2 << timeString << endl;
+		fichier2 << score << endl;
 		fichier2.close();
 	}
 	else
@@ -243,7 +243,7 @@ void
 Menu:: display_looser(sf::RenderTarget *rt){
 		sf:: Text texte_11;
 		sprite_blesse->setTexture(blesse_);
-		sprite_blesse->setPosition(300, 300);
+		sprite_blesse->setPosition(280, 300);
 		sprite_blesse->setScale(1.1f, 1.1f);
 		texte_11.setFont(*font_2);
 		texte_11.setCharacterSize(100);
@@ -299,14 +299,13 @@ Menu:: display_aide(sf::RenderTarget *rt){
 	texte_13.setColor(sf::Color::Black);
 	texte_13.setStyle(sf::Text::Bold);
 	texte_13.setPosition(0, 20);
-	texte_13.setString("Vous disposez de deux touches: la touche 'UP' (par defaut)\net la touche 'DOWN' (cupcake).\nVous redescendez automatiquement par gravite alors\nveuillez a bien enfoncer la touche pour avoir l effet\nescompte.\nCUPCAKE: Vous rend invincible jusqu a prochaine\ncollision. Inverse la gravite.\n\nCROISSANT: Vous tue avec n importe quel nombre de vie.\n\nFRENCH STICK: Vous fait perdre une vie.\n\nBITCOIN: Vous fait gagner une vie si deux pieces recoltees.\n\nHEART: Vous fait gagner une vie.\n\nBRIOCHE: Vous fait perdre une vie.");
+	texte_13.setString("Vous disposez de deux touches: la touche 'UP' (par defaut)\net la touche 'DOWN' (cupcake).\nVous redescendez automatiquement par gravite alors\nveuillez a bien enfoncer la touche pour avoir l effet\nescompte.\nCUPCAKE: Vous rend invincible jusqu a la prochaine\ncollision. Inverse la gravite.\n\nCROISSANT: Vous tue avec n importe quel nombre de vie.\n\nFRENCH STICK: Vous fait perdre une vie.\n\nBITCOIN: Vous fait gagner une vie si deux pieces recoltees.\n\nHEART: Vous fait gagner une vie.\n\nBRIOCHE: Vous fait perdre une vie.");
 	rt->draw(*logo_first);
 	rt->draw(texte_13);
 }
 
 int
 Menu:: setCurrentAction(sf::Vector2i localPosition){
-	cout << localPosition.x << endl << localPosition.y << endl;
 	if(localPosition.y >= ZONE1 && localPosition.y <= ZONE2){
 		if (localPosition.x >= ZONE5 && localPosition.x <= ZONE6){
 			cout << "Play" << endl;

@@ -14,7 +14,6 @@
 
 
 class Character{
-
 	public:
 		Character();
 		~Character();

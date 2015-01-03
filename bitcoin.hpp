@@ -10,7 +10,6 @@
 #define BITCOIN_HPP
 
 #include <SFML/Graphics.hpp>
-#include "main.hpp"
 #include "jetpack.hpp"
 
 class Bitcoin{

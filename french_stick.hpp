@@ -11,7 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp> 
-#include "main.hpp"
 #include "jetpack.hpp"
 
 
@@ -41,7 +40,6 @@ class French_stick
 
 		void rotate(void);
 
-		void scale(int number);
 
 	private:
 		sf:: Texture french_stick_;

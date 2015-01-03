@@ -17,9 +17,9 @@ Heart:: Heart(){
 	heart_.setSmooth(true);
 	sprite_heart_ = new sf::Sprite;
 	sprite_heart_->setTexture(heart_);
-	sprite_heart_->setScale(0.25f, 0.25f);
+	sprite_heart_->setScale(ECHELLE_HEART, ECHELLE_HEART);
 	xh_ = 800;
-	yh_ = 175;
+	yh_ = 375;
 }
 
 Heart:: ~Heart(){

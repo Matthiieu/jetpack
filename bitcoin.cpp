@@ -15,7 +15,7 @@ Bitcoin:: Bitcoin(){
 	bitcoin_.setSmooth(true);
 	sprite_bitcoin_ = new sf:: Sprite;
 	sprite_bitcoin_->setTexture(bitcoin_);
-	sprite_bitcoin_->setScale(0.05f, 0.05f);
+	sprite_bitcoin_->setScale(ECHELLE_BITCOIN, ECHELLE_BITCOIN);
 	xb_ = 800;
 	yb_ = 100;
 	collection_ = 0;
@@ -46,7 +46,7 @@ Bitcoin:: display(sf::RenderTarget *rt){
 
 int 
 Bitcoin:: generator_number(){
-	// Génerer un nombre entre 0 et 600!
+	// Génerer un nombre entre 0 et 580!
 	srand(time(NULL));
 	int alea = rand() % 580;
 	return alea;
@@ -73,10 +73,8 @@ Bitcoin:: from_scratch(bool boolean){
 bool
 Bitcoin:: far_away(int x){
 	// Verifie si notre cupcake est partie bien loin...
-	if (x < (generator_number2())){
-		cout << generator_number2() << endl;
+	if (x < (generator_number2()))
 		return true;
-	}
 	else
 		return false;
 }

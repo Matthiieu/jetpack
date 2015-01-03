@@ -15,23 +15,14 @@ French_stick:: French_stick(): x_(800), y_(100){
 	french_stick_.setSmooth(true);
 	sprite_french_stick_ = new sf::Sprite;
 	sprite_french_stick_->setTexture(french_stick_);
-	sprite_french_stick_->rotate(100);
-	sprite_french_stick_->setScale(0.4f, 0.2f);
+	sprite_french_stick_->rotate(ROTATE_FRENCH_STICK);
+	sprite_french_stick_->setScale(ECHELLE_FRENCH_STICK_X, ECHELLE_FRENCH_STICK_Y);
 }
 
 French_stick:: ~French_stick(){
 	delete sprite_french_stick_;
 }
 
-void
-French_stick:: initial(void){
-	french_stick_.loadFromFile("Pictures/Baguette.png");
-	french_stick_.setSmooth(true);
-	sprite_french_stick_ = new sf::Sprite;
-	sprite_french_stick_->setTexture(french_stick_);
-	sprite_french_stick_->rotate(100);
-	sprite_french_stick_->setScale(0.4f, 0.2f);
-}
 
 void
 French_stick:: setPosition (int x, const int y){
@@ -41,23 +32,15 @@ French_stick:: setPosition (int x, const int y){
 
 bool
 French_stick:: far_away(int x){
-	// Verifie si notre neon est partie bien loin...
-	if (x < (-10))
+	if (x < (-30))
 		return true;
 	else
 		return false;
 }
 
 void
-French_stick:: scale(int number){
-	int ok = number % 1 ;
-	cout << ok << endl;
-	sprite_french_stick_->setScale(0.1f , 0.1f * ok);
-}
-
-void
 French_stick:: rotate(void){
-	sprite_french_stick_->rotate(5);
+	sprite_french_stick_->rotate(ROTATE_FRENCH_STICK2);
 }
 
 void 
@@ -75,10 +58,19 @@ French_stick:: display(sf::RenderTarget *rt){
 
 int 
 French_stick:: generator_number(){
-	// Génerer un nombre entre 0 et 600!
+	// Génerer un nombre entre 0 et 480!
 	srand(time(NULL));
 	int alea = rand() % 480;
 	return alea;
+}
+
+void
+French_stick:: initial(void){
+	french_stick_.loadFromFile("Pictures/Baguette.png");
+	french_stick_.setSmooth(true);
+	sprite_french_stick_->setTexture(french_stick_);
+	sprite_french_stick_->rotate(ROTATE_FRENCH_STICK);
+	sprite_french_stick_->setScale(ECHELLE_FRENCH_STICK_X, ECHELLE_FRENCH_STICK_Y);
 }
 
 

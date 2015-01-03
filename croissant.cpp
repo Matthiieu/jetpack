@@ -16,8 +16,7 @@ Croissant:: Croissant(): x_(800), y_(550)
 	croissant_.setSmooth(true);
 	sprite_croissant_ = new sf::Sprite;
 	sprite_croissant_->setTexture(croissant_);
-	//sprite_croissant_->rotate(100);
-	sprite_croissant_->setScale(0.05f, 0.07f);
+	sprite_croissant_->setScale(ECHELLE_CROISSANT_X, ECHELLE_CROISSANT_Y);
 }
 
 Croissant:: ~Croissant(){
@@ -32,14 +31,7 @@ Croissant:: setPosition (int x, const int y){
 
 void
 Croissant:: rotate(void){
-	sprite_croissant_->rotate(10);
-}
-
-void
-Croissant:: scale(int number){
-	int ok = number % 1 ;
-	cout << ok << endl;
-	sprite_croissant_->setScale(0.1f , 0.1f * ok);
+	sprite_croissant_->rotate(ROTATE_CROISSANT);
 }
 
 void 
@@ -57,7 +49,7 @@ Croissant:: display(sf::RenderTarget *rt){
 
 int 
 Croissant:: generator_number(){
-	// Génerer un nombre entre 0 et 600!
+	// Génerer un nombre entre 0 et 480!
 	srand(time(NULL));
 	int alea = rand() % 480;
 	return alea;

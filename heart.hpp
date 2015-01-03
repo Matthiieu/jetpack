@@ -11,7 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "jetpack.hpp"
-#include "main.hpp"
 
 
 class Heart{
