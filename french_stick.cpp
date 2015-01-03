@@ -24,6 +24,16 @@ French_stick:: ~French_stick(){
 }
 
 void
+French_stick:: initial(void){
+	french_stick_.loadFromFile("Pictures/Baguette.png");
+	french_stick_.setSmooth(true);
+	sprite_french_stick_ = new sf::Sprite;
+	sprite_french_stick_->setTexture(french_stick_);
+	sprite_french_stick_->rotate(100);
+	sprite_french_stick_->setScale(0.4f, 0.2f);
+}
+
+void
 French_stick:: setPosition (int x, const int y){
   	 	x_ = x;
    	 	y_ = y;

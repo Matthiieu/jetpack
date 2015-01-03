@@ -211,7 +211,7 @@ Menu:: display_bitcoin(sf::RenderTarget *rt, int number){
 void 
 Menu:: display_vie(sf::RenderTarget *rt, int number){
 	sprite_vie_->setTexture(vie_);
-	sprite_vie_->setPosition(600, 5);
+	sprite_vie_->setPosition(600, 2);
 	sprite_vie_->setScale(0.15f, 0.15f);
 	char buffer[6];
 	gcvt(number, 6, buffer);
@@ -220,7 +220,7 @@ Menu:: display_vie(sf::RenderTarget *rt, int number){
 	texte9_.setCharacterSize(20);
 	texte9_.setColor(sf::Color::Red);
 	texte9_.setString(buffer);
-	texte9_.setPosition(650, 10);
+	texte9_.setPosition(650, 8);
 	rt->draw(texte9_);
 	rt->draw(*sprite_vie_);
 }
@@ -243,13 +243,14 @@ void
 Menu:: display_looser(sf::RenderTarget *rt){
 		sf:: Text texte_11;
 		sprite_blesse->setTexture(blesse_);
-		sprite_blesse->setPosition(20, 180);
-		sprite_blesse->setScale(1.2f, 1.2f);
+		sprite_blesse->setPosition(300, 300);
+		sprite_blesse->setScale(1.1f, 1.1f);
 		texte_11.setFont(*font_2);
-		texte_11.setCharacterSize(90);
+		texte_11.setCharacterSize(100);
 		texte_11.setColor(sf::Color::White);
-		texte_11.setPosition(330, 200);
+		texte_11.setPosition(200, 50);
 		texte_11.setString("Tu t'es pris\n  un pain!");
+		rt->draw(*logo_score);
 		rt->draw(texte_11);
 		rt->draw(*sprite_blesse);
 }
@@ -274,14 +275,31 @@ Menu:: display_presentation(sf::RenderTarget *rt){
 }
 
 void
+Menu:: display_level(sf::RenderTarget *rt, int number){
+	sf:: Text texte_14;
+	texte_14.setFont(*font_2);
+	texte_14.setCharacterSize(20);
+	texte_14.setColor(sf::Color::White);
+	texte_14.setStyle(sf::Text::Bold);
+	texte_14.setPosition(0, 30);
+	if (number == 1)
+		texte_14.setString("EASY");
+	else if (number == 2)
+		texte_14.setString("MEDIUM");
+	else
+		texte_14.setString("HARD");
+	rt->draw(texte_14);
+}
+
+void
 Menu:: display_aide(sf::RenderTarget *rt){
 	sf:: Text texte_13;
 	texte_13.setFont(*font_2);
-	texte_13.setCharacterSize(50);
+	texte_13.setCharacterSize(30);
 	texte_13.setColor(sf::Color::Black);
 	texte_13.setStyle(sf::Text::Bold);
 	texte_13.setPosition(0, 20);
-	texte_13.setString("Vous avez a votre disposition une seule touche\n(fleche du haut) pour surelever votre\npersonnage. Lorsque celui-ci a\nmange le cupcake, vous avez la touche\n directionnelle 'Down'.\n La gravite a change. Si vous tapez\ncontre une baguette, c est moins 1 vie.\nSi c est contre une brioche c est moins 1 vie.\nSi c est le coeur c est plus 1 vie.\nSi c est un croissant, vous perdez\ntous vos vies. Si c est une piece,\nau bout de 10, c es plus une vie.");
+	texte_13.setString("Vous disposez de deux touches: la touche 'UP' (par defaut)\net la touche 'DOWN' (cupcake).\nVous redescendez automatiquement par gravite alors\nveuillez a bien enfoncer la touche pour avoir l effet\nescompte.\nCUPCAKE: Vous rend invincible jusqu a prochaine\ncollision. Inverse la gravite.\n\nCROISSANT: Vous tue avec n importe quel nombre de vie.\n\nFRENCH STICK: Vous fait perdre une vie.\n\nBITCOIN: Vous fait gagner une vie si deux pieces recoltees.\n\nHEART: Vous fait gagner une vie.\n\nBRIOCHE: Vous fait perdre une vie.");
 	rt->draw(*logo_first);
 	rt->draw(texte_13);
 }

@@ -39,7 +39,7 @@ Character:: setPosition (int x, int y){
 
 bool 
 Character:: collision1(int a, int b, int c, int d){
-	if ((abs(a-c) <= 50 ) && (abs(b-d) <= 50)){
+	if ((abs(a-c) <= 40 ) && (abs(b-d) <= 50)){
 		cout << "COLLISION DE TYPE BRIOCHE, CUPCAKE, HEART, CROISSANT, BITCOIN" << endl;
 		return true;
 	}
@@ -49,7 +49,7 @@ Character:: collision1(int a, int b, int c, int d){
 
 bool 
 Character:: collision2(int a, int b, int c, int d){
-	if ((abs(a-c) <= 15 ) && (abs(b-d) <= 80)){
+	if ((abs(a-c) <= 15 ) && (abs(b-d) <= 70)){
 		cout << abs(a-c) << endl << abs(b-d) << endl << c << endl << d << endl;
 		cout << "COLLISION DE TYPE BAGUETTE" << endl;
 		return true;

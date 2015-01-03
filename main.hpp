@@ -61,31 +61,31 @@
 #define ZONE8	730
 
 
-#define SPEED		20		//Vitesse de montee Sam
+#define SPEED		15		//Vitesse de montee Sam
 //Niveau Facile
-#define BACKGROUND0	5
-#define SPEED0		-2		//Force de gravité
-#define FRENCH_STICK0	5
-#define BITCOIN0	5
-#define CUPCAKE0	5
-#define HEART0		5
+#define BACKGROUND0	4
+#define SPEED0		-3		//Force de gravité
+#define FRENCH_STICK0	6
+#define BITCOIN0	8
+#define CUPCAKE0	8
+#define HEART0		8
 
 //Niveau Moyen
-#define SOSO		12000		//sur en accordance avec musique 22000
-#define BACKGROUND1	8
-#define SPEED1		-5
-#define FRENCH_STICK1	8
+#define SOSO		22000		//sur en accordance avec musique 22000
+#define BACKGROUND1	9
+#define SPEED1		-3
+#define FRENCH_STICK1	9
 #define BITCOIN1	10
 #define CUPCAKE1	10
-#define BRIOCHE1	12
+#define BRIOCHE1	10
 
 //Niveau Difficile
-#define HARD		22000
-#define BACKGROUND2	10
-#define SPEED2		-5
+#define HARD		35000
+#define BACKGROUND2	11
+#define SPEED2		-3
 #define FRENCH_STICK2	10
-#define BITCOIN2	12
-#define CUPCAKE2	12
+#define BITCOIN2	13
+#define CUPCAKE2	13
 #define BRIOCHE2	14
 
 #define FLOOR	531

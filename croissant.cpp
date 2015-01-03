@@ -35,15 +35,6 @@ Croissant:: rotate(void){
 	sprite_croissant_->rotate(10);
 }
 
-bool
-Croissant:: far_away(int x){
-	// Verifie si notre neon est partie bien loin...
-	if (x < (-10))
-		return true;
-	else
-		return false;
-}
-
 void
 Croissant:: scale(int number){
 	int ok = number % 1 ;

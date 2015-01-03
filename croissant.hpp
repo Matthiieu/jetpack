@@ -33,8 +33,6 @@ class Croissant
 		
 		int generator_number();
 
-		bool far_away(int x);
-
 		bool from_scratch(bool boolean);
 
 		void rotate(void);

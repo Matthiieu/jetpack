@@ -21,12 +21,14 @@ class Audio
 		music_vie = new sf::Music;
 		music_cupcake = new sf::Music;
 		music_crash = new sf::Music;
+		music_bitcoin = new sf::Music;
 		music_main->openFromFile("Music/main.ogg");
 		music_menu->openFromFile("Music/music_menu.ogg");
-		music_score->openFromFile("Music/score.ogg");
+		music_score->openFromFile("Music/music_help.ogg");
 		music_vie->openFromFile("Music/gagner_vie.ogg");
 		music_cupcake->openFromFile("Music/manger_cupcake.ogg");
 		music_crash->openFromFile("Music/crash.ogg");
+		music_bitcoin->openFromFile("Music/bitcoin.ogg");
 	}
 
 	~Audio(){
@@ -36,36 +38,42 @@ class Audio
 		delete music_vie;
 		delete music_cupcake;
 		delete music_crash;
+		delete music_bitcoin;
 	}
 
 	void play_main(void){
 		music_main->play();
-		music_main->setVolume(0);
+		music_main->setVolume(100);
 	}
 
 	void play_score(void){
 		music_score->play();
-		music_score->setVolume(0);
+		music_score->setVolume(100);
 	}
 
 	void play_menu(void){
 		music_menu->play();
-		music_menu->setVolume(0);
+		music_menu->setVolume(100);
 	}
 
 	void play_vie(void){
 		music_vie->play();
-		music_vie->setVolume(0);
+		music_vie->setVolume(100);
 	}
 
 	void play_cupcake(void){
 		music_cupcake->play();
-		music_cupcake->setVolume(0);
+		music_cupcake->setVolume(100);
 	}
 
 	void play_crash(void){
 		music_crash->play();
-		music_crash->setVolume(0);
+		music_crash->setVolume(100);
+	}
+
+	void play_bitcoin(void){
+		music_bitcoin->play();
+		music_bitcoin->setVolume(100);
 	}
 
 	void stop_main(void){
@@ -87,6 +95,7 @@ class Audio
 		sf:: Music *music_vie;
 		sf:: Music *music_cupcake;
 		sf:: Music *music_crash;
+		sf:: Music *music_bitcoin;
 };
 
 #endif

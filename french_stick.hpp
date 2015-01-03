@@ -30,6 +30,8 @@ class French_stick
 		int getX();
 
 		int getY();
+
+		void initial(void);
 		
 		int generator_number();
 

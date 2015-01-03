@@ -45,6 +45,7 @@ class Menu
 
  		void written_score(int number);
 		void reading_score(sf::RenderTarget *rt);
+		void display_level(sf::RenderTarget *rt, int number);
 
 	private:
 		sf:: Texture texture_first;
